@@ -6,6 +6,5 @@ func _ready():
 	var levels = parse_json(file.get_as_text())
 	for level in levels:
 		var button = Button.new()
-		button.flat = true
 		button.text = level
 		add_child(button)

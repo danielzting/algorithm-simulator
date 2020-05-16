@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://LevelSelect.gd" type="Script" id=1]
+[ext_resource path="res://theme.theme" type="Theme" id=2]
 
 [node name="Viewport" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 2 )
 custom_constants/margin_right = 50
 custom_constants/margin_top = 30
 custom_constants/margin_left = 30
