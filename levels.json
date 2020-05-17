@@ -1,3 +1,6 @@
 [
-	"bubble"
+	{
+		"name": "BUBBLE SORT",
+		"documentation": "Bubble sort is a simple sorting algorithm typically taught in introductory computer science classes."
+	}
 ]

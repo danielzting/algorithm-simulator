@@ -16,7 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Human Computer Simulator"
-run/main_scene="res://MainMenu.tscn"
+run/main_scene="res://LevelSelect.tscn"
+run/low_processor_mode=true
 
 [display]
 

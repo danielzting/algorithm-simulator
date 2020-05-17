@@ -33,9 +33,9 @@ text = "Human Computer Simulator"
 uppercase = true
 
 [node name="Display" type="Control" parent="MainMenu"]
-margin_top = 42.0
+margin_top = 46.0
 margin_right = 1819.0
-margin_bottom = 977.0
+margin_bottom = 973.0
 size_flags_vertical = 3
 
 [node name="StartButton" type="Button" parent="MainMenu"]
