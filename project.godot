@@ -18,6 +18,7 @@ _global_script_class_icons={
 config/name="Human Computer Simulator"
 run/main_scene="res://LevelSelect.tscn"
 run/low_processor_mode=true
+boot_splash/image="res://splash.png"
 
 [display]
 
