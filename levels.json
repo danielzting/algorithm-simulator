@@ -1,6 +1,14 @@
-[
+{
+	"BUBBLE SORT":
 	{
-		"name": "BUBBLE SORT",
-		"documentation": "Bubble sort is a simple sorting algorithm typically taught in introductory computer science classes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et iaculis neque. Vivamus pellentesque dictum rutrum."
+		"about": "Bubble sort is a simple sorting algorithm, typically the first taught in introductory computer science classes."
+	},
+	"SELECTION SORT":
+	{
+		"about": "Why would you use selection sort when there's bubble sort and insertion sort..."
+	},
+	"INSERTION SORT":
+	{
+		"about": "Lorem ipsum sit dolor amet"
 	}
-]
+}
