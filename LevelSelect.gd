@@ -9,4 +9,4 @@ func _ready():
 		button.text = level.name
 		button.align = Button.ALIGN_LEFT
 		$Tree.add_child(button)
-		$Preview/Info.text = level.documentation
+		$VBoxContainer/Info.text = level.documentation
