@@ -8,5 +8,5 @@ func _ready():
 		var button = Button.new()
 		button.text = level.name
 		button.align = Button.ALIGN_LEFT
-		$Tree.add_child(button)
-		$VBoxContainer/Info.text = level.documentation
+		$LevelsBorder/Levels.add_child(button)
+		$PreviewBorder/Preview/Info.text = level.documentation
