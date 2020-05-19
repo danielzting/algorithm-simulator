@@ -4,7 +4,7 @@ var levels
 
 func _ready():
 	var descriptions = File.new()
-	descriptions.open("res://levels.json", descriptions.READ)
+	descriptions.open("res://assets/levels.json", descriptions.READ)
 	levels = parse_json(descriptions.get_as_text())
 	var first = true
 	for level in levels:
