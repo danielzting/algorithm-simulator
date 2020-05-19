@@ -22,4 +22,4 @@ func _on_Button_focus_changed():
 	$PreviewBorder/Preview/Info.text = levels[get_focus_owner().text]["about"]
 
 func _on_Button_pressed(level):
-	SceneSwitcher.change_scene("res://PlayingScreen.tscn", {"level": level})
+	scene.change_scene("res://scenes/play.tscn", {"level": level})
