@@ -12,6 +12,7 @@ func _ready():
 		button.text = level
 		button.align = Button.ALIGN_LEFT
 		button.connect("focus_entered", self, "_on_Button_focus_changed")
+		button.connect("pressed", self, "_on_Button_pressed", [level])
 		$LevelsBorder/Levels.add_child(button)
 		if first:
 			button.grab_focus()
@@ -19,3 +20,6 @@ func _ready():
 
 func _on_Button_focus_changed():
 	$PreviewBorder/Preview/Info.text = levels[get_focus_owner().text]["about"]
+
+func _on_Button_pressed(level):
+	SceneSwitcher.change_scene("res://PlayingScreen.tscn", {"level": level})
