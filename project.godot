@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "ArrayModel",
+"language": "GDScript",
+"path": "res://models/array_model.gd"
+}, {
+"base": "HBoxContainer",
+"class": "ArrayView",
+"language": "GDScript",
+"path": "res://views/array_view.gd"
+} ]
 _global_script_class_icons={
-
+"ArrayModel": "",
+"ArrayView": ""
 }
 
 [application]

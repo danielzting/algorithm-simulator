@@ -55,12 +55,6 @@ margin_bottom = 1020.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
-[node name="Display" type="Control" parent="PlayingScreen/DisplayBorder"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 1840.0
-margin_bottom = 914.0
-
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
