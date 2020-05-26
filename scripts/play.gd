@@ -22,7 +22,8 @@ func _on_Timer_timeout():
 	$DisplayBorder.get_child(0).queue_free()
 	# Load level
 	var array = ArrayModel.new(10)
+	var level
 	match scene.get_param("level"):
 		"BUBBLE SORT":
-			pass
-	$DisplayBorder.add_child(ArrayView.new(array))
+			level = BubbleSort.new(array)
+	$DisplayBorder.add_child(ArrayView.new(level))
