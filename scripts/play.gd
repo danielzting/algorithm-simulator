@@ -6,9 +6,8 @@ func _ready():
 	$HUDBorder/HUD/Level.text = scene.get_param("level")
 
 func _process(delta):
-	# Show elapsed time in milliseconds
-	var elapsed_time = stepify((OS.get_ticks_msec() - start_time) / 1000.0, 0.001)
-	$HUDBorder/HUD/Score.text = "0.000" if start_time == -1 else "%.3f" % elapsed_time
+	if start_time >= 0:
+		$HUDBorder/HUD/Score.text = "%.3f" % get_score()
 
 func _on_Timer_timeout():
 	start_time = OS.get_ticks_msec()
@@ -25,5 +24,8 @@ func getLevel(level):
 		"BUBBLE SORT":
 			return BubbleSort
 
+func get_score():
+	return stepify((OS.get_ticks_msec() - start_time) / 1000.0, 0.001)
+
 func _on_Level_done():
-	scene.change_scene("res://scenes/end.tscn")
+	scene.change_scene("res://scenes/end.tscn", {"score": get_score()})
