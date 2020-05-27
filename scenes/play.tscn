@@ -55,6 +55,14 @@ margin_bottom = 1020.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
+[node name="Label" type="Label" parent="PlayingScreen/DisplayBorder"]
+margin_left = 20.0
+margin_top = 448.0
+margin_right = 1840.0
+margin_bottom = 486.0
+text = "ready..."
+align = 1
+
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true

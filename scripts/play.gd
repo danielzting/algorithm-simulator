@@ -4,11 +4,6 @@ var start_time = -1
 
 func _ready():
 	$HUDBorder/HUD/Level.text = scene.get_param("level")
-	# Show ready text
-	var label = Label.new()
-	label.text = "ready..."
-	label.align = Label.ALIGN_CENTER
-	$DisplayBorder.add_child(label)
 
 func _process(delta):
 	# Show elapsed time in milliseconds
@@ -18,7 +13,7 @@ func _process(delta):
 func _on_Timer_timeout():
 	start_time = OS.get_ticks_msec()
 	# Delete ready text
-	$DisplayBorder.get_child(0).queue_free()
+	$DisplayBorder/Label.queue_free()
 	# Load level
 	var array = ArrayModel.new(10)
 	var level = getLevel(scene.get_param("level")).new(array)

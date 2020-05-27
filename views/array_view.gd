@@ -25,4 +25,4 @@ func _process(delta):
 		rects[i].rect_size.y = rect_size.y * level.array.get(i) / level.array.size
 
 func _on_Level_mistake():
-	pass
+	get_parent().flash()
