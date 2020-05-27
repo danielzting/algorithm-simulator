@@ -22,12 +22,12 @@ _global_script_classes=[ {
 "base": "ComparisonSort",
 "class": "BubbleSort",
 "language": "GDScript",
-"path": "res://algorithms/bubble_sort.gd"
+"path": "res://levels/bubble_sort.gd"
 }, {
 "base": "Node",
 "class": "ComparisonSort",
 "language": "GDScript",
-"path": "res://algorithms/comparison_sort.gd"
+"path": "res://levels/comparison_sort.gd"
 } ]
 _global_script_class_icons={
 "ArrayModel": "",

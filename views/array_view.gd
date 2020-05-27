@@ -8,6 +8,7 @@ var level
 var rects = []
 
 func _init(level):
+	level.connect("mistake", self, "_on_Level_mistake")
 	add_child(level)
 	self.level = level
 	for i in range(level.array.size):
@@ -22,3 +23,6 @@ func _process(delta):
 		rects[i].rect_scale.y = -1 # Override parent Control scale
 		rects[i].color = ORANGE if level.emphasized(i) else GREEN
 		rects[i].rect_size.y = rect_size.y * level.array.get(i) / level.array.size
+
+func _on_Level_mistake():
+	pass

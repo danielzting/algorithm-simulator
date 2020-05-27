@@ -17,6 +17,12 @@ func _init(size):
 func get(i):
 	return array[i]
 
+func is_sorted():
+	for i in range(size - 1):
+		if array[i] > array[i + 1]:
+			return false
+	return true
+
 func swap(i, j):
 	var temp = array[i]
 	array[i] = array[j]

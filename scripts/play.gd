@@ -8,7 +8,6 @@ func _ready():
 	var label = Label.new()
 	label.text = "ready..."
 	label.align = Label.ALIGN_CENTER
-	label.set_anchors_preset(Control.PRESET_HCENTER_WIDE)
 	$DisplayBorder.add_child(label)
 
 func _process(delta):
@@ -22,8 +21,14 @@ func _on_Timer_timeout():
 	$DisplayBorder.get_child(0).queue_free()
 	# Load level
 	var array = ArrayModel.new(10)
-	var level
-	match scene.get_param("level"):
-		"BUBBLE SORT":
-			level = BubbleSort.new(array)
+	var level = getLevel(scene.get_param("level")).new(array)
+	level.connect("done", self, "_on_Level_done")
 	$DisplayBorder.add_child(ArrayView.new(level))
+
+func getLevel(level):
+	match level:
+		"BUBBLE SORT":
+			return BubbleSort
+
+func _on_Level_done():
+	scene.change_scene("res://scenes/end.tscn")
