@@ -21,7 +21,7 @@ func _ready():
 
 func _on_Button_focus_changed():
     var name = get_focus_owner().text
-    $Preview/InfoBorder/Info.text = levels[name]["about"]
+    $Preview/InfoBorder/Info/Description.text = levels[name]["about"]
     level = get_level(name).new(ArrayModel.new(10))
     level.active = false
     # Start over when simulation is finished
