@@ -35,28 +35,39 @@ margin_top = 20.0
 margin_right = 460.0
 margin_bottom = 1000.0
 
-[node name="PreviewBorder" type="MarginContainer" parent="LevelSelect"]
+[node name="Preview" type="VBoxContainer" parent="LevelSelect"]
 margin_left = 488.0
 margin_right = 1860.0
 margin_bottom = 1020.0
 size_flags_horizontal = 3
+
+[node name="Display" type="MarginContainer" parent="LevelSelect/Preview"]
+margin_right = 1372.0
+margin_bottom = 640.0
+rect_min_size = Vector2( 0, 640 )
 script = ExtResource( 3 )
 
-[node name="Preview" type="VBoxContainer" parent="LevelSelect/PreviewBorder"]
+[node name="Placeholder" type="Control" parent="LevelSelect/Preview/Display"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1352.0
-margin_bottom = 1000.0
-size_flags_horizontal = 3
+margin_bottom = 620.0
 
-[node name="Display" type="Control" parent="LevelSelect/PreviewBorder/Preview"]
-margin_right = 1332.0
-margin_bottom = 640.0
-rect_min_size = Vector2( 0, 640 )
-
-[node name="Info" type="Label" parent="LevelSelect/PreviewBorder/Preview"]
+[node name="InfoBorder" type="MarginContainer" parent="LevelSelect/Preview"]
 margin_top = 648.0
-margin_right = 1332.0
-margin_bottom = 686.0
-size_flags_horizontal = 3
+margin_right = 1372.0
+margin_bottom = 1020.0
+size_flags_vertical = 3
+script = ExtResource( 3 )
+
+[node name="Info" type="Label" parent="LevelSelect/Preview/InfoBorder"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1352.0
+margin_bottom = 352.0
+size_flags_vertical = 1
 autowrap = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="Timer" to="LevelSelect" method="_on_Timer_timeout"]

@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://views/array_view.gd"
 }, {
 "base": "ComparisonSort",
+"class": "BogoSort",
+"language": "GDScript",
+"path": "res://levels/bogo_sort.gd"
+}, {
+"base": "ComparisonSort",
 "class": "BubbleSort",
 "language": "GDScript",
 "path": "res://levels/bubble_sort.gd"
@@ -32,6 +37,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ArrayModel": "",
 "ArrayView": "",
+"BogoSort": "",
 "BubbleSort": "",
 "ComparisonSort": ""
 }
