@@ -85,8 +85,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "INSTRUCTIONS
 
-LEFT ARROW: SWAP
-RIGHT ARROW: DON'T SWAP"
+LEFT ARROW: CONTINUE
+RIGHT ARROW: SWAP"
 autowrap = true
 
 [node name="Timer" type="Timer" parent="."]
