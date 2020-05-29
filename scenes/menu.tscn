@@ -46,17 +46,30 @@ margin_top = 973.0
 margin_right = 1839.0
 margin_bottom = 973.0
 
-[node name="StartButton" type="Button" parent="MainMenu"]
-margin_left = 872.0
+[node name="Buttons" type="HBoxContainer" parent="MainMenu"]
+margin_left = 555.0
 margin_top = 981.0
-margin_right = 967.0
+margin_right = 1283.0
 margin_bottom = 1019.0
+size_flags_horizontal = 4
+custom_constants/separation = 500
+
+[node name="Start" type="Button" parent="MainMenu/Buttons"]
+margin_right = 95.0
+margin_bottom = 38.0
 size_flags_horizontal = 4
 text = "start"
 flat = true
 
+[node name="Credits" type="Button" parent="MainMenu/Buttons"]
+margin_left = 595.0
+margin_right = 728.0
+margin_bottom = 38.0
+text = "credits"
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
-[connection signal="pressed" from="MainMenu/StartButton" to="MainMenu" method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MainMenu/Buttons/Start" to="MainMenu" method="_on_Start_pressed"]
+[connection signal="pressed" from="MainMenu/Buttons/Credits" to="MainMenu" method="_on_Credits_pressed"]
 [connection signal="timeout" from="Timer" to="MainMenu" method="_on_Timer_timeout"]

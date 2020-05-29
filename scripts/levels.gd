@@ -6,7 +6,7 @@ var level
 func _ready():
     # Load level data
     var descriptions = File.new()
-    descriptions.open("res://assets/levels.json", descriptions.READ)
+    descriptions.open("res://assets/levels.json", File.READ)
     levels = parse_json(descriptions.get_as_text())
     # Dynamically add buttons
     for level in levels:
