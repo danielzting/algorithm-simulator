@@ -3,7 +3,7 @@ extends VBoxContainer
 var start_time = -1
 
 func _ready():
-    $HUDBorder/HUD/Level.text = scene.get_param("name")
+    $HUDBorder/HUD/Level.text = scene.get_param("level").TITLE
 
 func _process(delta):
     if start_time >= 0:
@@ -14,8 +14,7 @@ func _on_Timer_timeout():
     # Delete ready text
     $DisplayBorder/Label.queue_free()
     # Load level
-    var array = ArrayModel.new(10)
-    var level = scene.get_param("level").new(array)
+    var level = scene.get_param("level").new(ArrayModel.new(10))
     level.connect("done", self, "_on_Level_done")
     $DisplayBorder.add_child(ArrayView.new(level))
 

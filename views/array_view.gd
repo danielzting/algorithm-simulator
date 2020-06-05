@@ -4,7 +4,7 @@ class_name ArrayView
 const GREEN = Color(0.2, 1, 0.2)
 const ORANGE = Color(1, 0.69, 0)
 
-var level
+var level: ComparisonSort
 var rects = []
 
 func _init(level):
