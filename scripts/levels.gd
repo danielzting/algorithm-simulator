@@ -2,6 +2,7 @@ extends HBoxContainer
 
 var levels = [
     BubbleSort,
+    InsertionSort,
 ]
 var level: ComparisonSort
 
@@ -14,8 +15,10 @@ func _ready():
         button.connect("focus_entered", self, "_on_Button_focus_changed")
         button.connect("pressed", self, "_on_Button_pressed", [level.TITLE])
         $LevelsBorder/Levels.add_child(button)
-    # Automatically focus on first button
-    $LevelsBorder/Levels.get_child(0).grab_focus()
+        if scene.get_param("level") == level:
+            button.grab_focus()
+    if scene.get_param("level") == null:
+        $LevelsBorder/Levels.get_child(0).grab_focus()
 
 func _on_Button_focus_changed():
     level = get_level(get_focus_owner().text).new(ArrayModel.new(10))

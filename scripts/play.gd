@@ -22,4 +22,5 @@ func get_score():
     return stepify((OS.get_ticks_msec() - start_time) / 1000.0, 0.001)
 
 func _on_Level_done():
-    scene.change_scene("res://scenes/end.tscn", {"score": get_score()})
+    scene.change_scene("res://scenes/end.tscn",
+        {"level": scene.get_param("level"), "score": get_score()})

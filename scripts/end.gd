@@ -5,4 +5,5 @@ func _ready():
     $Button.grab_focus()
 
 func _on_Button_pressed():
-    scene.change_scene("res://scenes/levels.tscn")
+    scene.change_scene("res://scenes/levels.tscn",
+        {"level": scene.get_param("level")})

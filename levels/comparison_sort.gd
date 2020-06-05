@@ -7,7 +7,6 @@ signal mistake
 const ACTIONS = ["swap", "no_swap"]
 
 var array: ArrayModel
-var index = 0
 var timer = Timer.new()
 var active = true
 

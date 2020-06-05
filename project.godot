@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "ComparisonSort",
 "language": "GDScript",
 "path": "res://levels/comparison_sort.gd"
+}, {
+"base": "ComparisonSort",
+"class": "InsertionSort",
+"language": "GDScript",
+"path": "res://levels/insertion_sort.gd"
 } ]
 _global_script_class_icons={
 "ArrayModel": "",
 "ArrayView": "",
 "BogoSort": "",
 "BubbleSort": "",
-"ComparisonSort": ""
+"ComparisonSort": "",
+"InsertionSort": ""
 }
 
 [application]
@@ -106,12 +112,12 @@ ui_down={
 }
 swap={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
  ]
 }
 no_swap={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
  ]
 }
 

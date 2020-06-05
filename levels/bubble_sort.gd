@@ -7,6 +7,7 @@ each pair of elements, swapping them if they are out of order. When it
 has gone through the entire array without swapping a single pair, it has
 finished. Though simple to understand, bubble sort is hopelessly
 inefficient on all but the smallest of arrays."""
+var index = 0
 var swapped = false
 
 func _init(array).(array):
