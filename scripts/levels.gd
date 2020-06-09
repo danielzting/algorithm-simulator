@@ -3,6 +3,7 @@ extends HBoxContainer
 var levels = [
     BubbleSort,
     InsertionSort,
+    SelectionSort,
 ]
 var level: ComparisonSort
 
