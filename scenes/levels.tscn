@@ -68,7 +68,7 @@ margin_right = 1352.0
 margin_bottom = 352.0
 custom_constants/separation = 50
 
-[node name="Description" type="Label" parent="LevelSelect/Preview/InfoBorder/Info"]
+[node name="About" type="Label" parent="LevelSelect/Preview/InfoBorder/Info"]
 margin_right = 810.0
 margin_bottom = 332.0
 rect_min_size = Vector2( 810, 0 )
@@ -76,7 +76,7 @@ size_flags_vertical = 3
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus lorem felis, in imperdiet mauris faucibus in. Vestibulum interdum mi at arcu congue congue. Cras sodales mauris odio, eget iaculis dolor tempor quis. Suspendisse nec iaculis sapien, eu sollicitudin orci. Nulla volutpat pellentesque ex nec cursus."
 autowrap = true
 
-[node name="Instructions" type="Label" parent="LevelSelect/Preview/InfoBorder/Info"]
+[node name="Controls" type="Label" parent="LevelSelect/Preview/InfoBorder/Info"]
 margin_left = 860.0
 margin_right = 1332.0
 margin_bottom = 332.0

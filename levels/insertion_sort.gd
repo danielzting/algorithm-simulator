@@ -1,38 +1,46 @@
-extends ComparisonSort
 class_name InsertionSort
+extends ComparisonSort
 
-const TITLE = "INSERTION SORT"
-const ABOUT = """Insertion sort goes through the array and inserts each
+const NAME = "INSERTION SORT"
+const ABOUT = """
+Insertion sort goes through the array and inserts each
 element into its correct position. It is most similar to how most people
 would sort a deck of cards. It is also slow on large arrays but it is
 one of the faster quadratic algorithms. It is often used to sort smaller
-subarrays in hybrid sorting algorithms."""
-var end = 1
-var index = end
+subarrays in hybrid sorting algorithms.
+"""
+const CONTROLS = """
+Hit LEFT ARROW to SWAP the two highlighted elements as long as they are
+out of order. When this is no longer the case, hit RIGHT ARROW to
+advance.
+"""
+
+var _end = 1
+var _index = _end
 
 func _init(array).(array):
     pass
 
 func check(action):
-    if array.get(index - 1) > array.get(index):
-        return action == "swap"
+    if array.get(_index - 1) > array.get(_index):
+        return action == ACTIONS.SWAP
     else:
-        return action == "no_swap"
+        return action == ACTIONS.NO_SWAP
 
 func next():
-    if array.get(index - 1) > array.get(index):
-        array.swap(index - 1, index)
-        index -= 1
-        if index == 0:
+    if array.get(_index - 1) > array.get(_index):
+        array.swap(_index - 1, _index)
+        _index -= 1
+        if _index == 0:
             _grow()
     else:
         _grow()
 
 func _grow():
-    end += 1
-    if end == array.size:
+    _end += 1
+    if _end == array.size:
         emit_signal("done")
-    index = end
+    _index = _end
 
 func emphasized(i):
-    return i == index or i == index - 1
+    return i == _index or i == _index - 1

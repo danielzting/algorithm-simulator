@@ -1,34 +1,41 @@
-extends ComparisonSort
 class_name BubbleSort
+extends ComparisonSort
 
-const TITLE = "BUBBLE SORT"
-const ABOUT = """Bubble sort iterates through the array and looks at
-each pair of elements, swapping them if they are out of order. When it
-has gone through the entire array without swapping a single pair, it has
+const NAME = "BUBBLE SORT"
+const ABOUT = """
+Bubble sort iterates through the array and looks at each pair of
+elements, swapping them if they are out of order. When it has gone
+through the entire array without swapping a single pair, it has
 finished. Though simple to understand, bubble sort is hopelessly
-inefficient on all but the smallest of arrays."""
-var index = 0
-var swapped = false
+inefficient on all but the smallest of arrays.
+"""
+const CONTROLS = """
+If the two highlighted elements are out of order, hit LEFT ARROW to SWAP
+them. Otherwise, hit RIGHT ARROW to continue.
+"""
+
+var _index = 0
+var _swapped = false
 
 func _init(array).(array):
     pass
 
 func check(action):
-    if array.get(index) > array.get(index + 1):
-        return action == "swap"
+    if array.get(_index) > array.get(_index + 1):
+        return action == ACTIONS.SWAP
     else:
-        return action == "no_swap"
+        return action == ACTIONS.NO_SWAP
 
 func next():
-    if array.get(index) > array.get(index + 1):
-        array.swap(index, index + 1)
-        swapped = true
-    index += 1
-    if index == array.size - 1:
-        if not swapped:
+    if array.get(_index) > array.get(_index + 1):
+        array.swap(_index, _index + 1)
+        _swapped = true
+    _index += 1
+    if _index == array.size - 1:
+        if not _swapped:
             emit_signal("done")
-        index = 0
-        swapped = false
+        _index = 0
+        _swapped = false
 
 func emphasized(i):
-    return i == index or i == index + 1
+    return i == _index or i == _index + 1

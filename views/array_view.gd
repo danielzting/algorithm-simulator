@@ -1,16 +1,18 @@
-extends HBoxContainer
-class_name ArrayView
+"""
+Visualization of an array as rectangles of varying heights.
+"""
 
-const GREEN = Color(0.2, 1, 0.2)
-const ORANGE = Color(1, 0.69, 0)
+class_name ArrayView
+extends HBoxContainer
 
 var level: ComparisonSort
 var rects = []
 
 func _init(level):
+    """Add colored rectangles."""
     level.connect("mistake", self, "_on_Level_mistake")
-    add_child(level)
     self.level = level
+    add_child(level) # NOTE: This is necessary for it to read input
     for i in range(level.array.size):
         var rect = ColorRect.new()
         rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -19,11 +21,12 @@ func _init(level):
         add_child(rect)
 
 func _process(delta):
+    """Update heights of rectangles based on array values."""
     for i in range(level.array.size):
-        rects[i].rect_scale.y = -1 # Override parent Control scale
-        rects[i].color = ORANGE if level.emphasized(i) else GREEN
-        var frac = float(level.array.get(i)) / level.array.size
-        rects[i].rect_size.y = rect_size.y * frac
+        rects[i].rect_scale.y = -1 # XXX: Override parent Control scale
+        rects[i].color = GlobalTheme.ORANGE if level.emphasized(i) else GlobalTheme.GREEN
+        rects[i].rect_size.y = rect_size.y * level.array.get(i) / level.array.size
 
 func _on_Level_mistake():
+    """Flash the border red on mistakes."""
     get_parent().flash()

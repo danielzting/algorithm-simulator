@@ -1,42 +1,54 @@
-extends Node
 class_name ComparisonSort
+extends Node
 
 signal done
 signal mistake
 
-const ACTIONS = ["swap", "no_swap"]
+enum ACTIONS {SWAP, NO_SWAP}
+
+const DISABLE_TIME = 1.0
 
 var array: ArrayModel
-var timer = Timer.new()
 var active = true
 
+var _timer = Timer.new()
+
 func _init(array):
+    """Initialize array and timer."""
     self.array = array
-    timer.one_shot = true
-    timer.connect("timeout", self, "_on_Timer_timeout")
-    add_child(timer)
+    _timer.one_shot = true
+    _timer.connect("timeout", self, "_on_Timer_timeout")
+    add_child(_timer)
     self.connect("mistake", self, "_on_ComparisonSort_mistake")
 
-func check(action):
-    pass
-
-func next():
-    pass
-
-func _on_ComparisonSort_mistake():
-    active = false
-    timer.start(1)
-
-func _on_Timer_timeout():
-    active = true
-
 func _input(event):
+    """Pass input events for checking and take appropriate action."""
     if not active:
         return
-
     for action in ACTIONS:
         if event.is_action_pressed(action):
-            if check(action):
+            if check(ACTIONS[action]):
                 next()
             else:
                 emit_signal("mistake")
+
+func check(action):
+    """Determine if the given action enum value is correct."""
+    push_error("NotImplementedError")
+
+func next():
+    """Advance the state by one step and signal done if completed."""
+    push_error("NotImplementedError")
+
+func emphasized(i):
+    """Return whether the given index should be highlighted."""
+    push_error("NotImplementedError")
+
+func _on_ComparisonSort_mistake():
+    """Disable the controls for one second."""
+    active = false
+    _timer.start(DISABLE_TIME)
+
+func _on_Timer_timeout():
+    """Reenable the controls."""
+    active = true

@@ -64,7 +64,8 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-scene="*res://scripts/scene.gd"
+GlobalScene="*res://scripts/scene.gd"
+GlobalTheme="*res://scripts/theme.gd"
 
 [display]
 
@@ -116,12 +117,12 @@ ui_down={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
-swap={
+SWAP={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
  ]
 }
-no_swap={
+NO_SWAP={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
  ]
