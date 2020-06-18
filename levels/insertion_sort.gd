@@ -21,19 +21,17 @@ var _index = 1 # Position of element currently being inserted
 func _init(array).(array):
     pass
 
-func check(action):
+func next(action):
     if array.get(_index - 1) > array.get(_index):
-        return action == ACTIONS.SWAP
-    else:
-        return action == ACTIONS.NO_SWAP
-
-func next():
-    if array.get(_index - 1) > array.get(_index):
+        if action != null and action != ACTIONS.SWAP:
+            return emit_signal("mistake")
         array.swap(_index - 1, _index)
         _index -= 1
         if _index == 0:
             _grow()
     else:
+        if action != null and action != ACTIONS.NO_SWAP:
+            return emit_signal("mistake")
         _grow()
 
 func get_effect(i):

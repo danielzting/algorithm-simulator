@@ -12,10 +12,7 @@ Keep on hitting RIGHT ARROW to CONTINUE and hope for the best!
 func _init(array).(array):
     pass
 
-func check(action):
-    return true
-
-func next():
+func next(action):
     array = ArrayModel.new(array.size)
     if array.is_sorted():
         emit_signal("done")

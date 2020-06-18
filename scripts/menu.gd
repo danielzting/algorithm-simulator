@@ -15,4 +15,4 @@ func _on_Credits_pressed():
     GlobalScene.change_scene("res://scenes/credits.tscn")
 
 func _on_Timer_timeout():
-    level.next()
+    level.next(null)

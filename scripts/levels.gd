@@ -51,7 +51,7 @@ func get_level(name):
             return level
 
 func _on_Timer_timeout():
-    level.next()
+    level.next(null)
 
 func _cleanup(string):
     return string.strip_edges().replace("\n", " ")

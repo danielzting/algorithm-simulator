@@ -21,16 +21,14 @@ var _swapped = false
 func _init(array).(array):
     pass
 
-func check(action):
+func next(action):
     if array.get(_index) > array.get(_index + 1):
-        return action == ACTIONS.SWAP
-    else:
-        return action == ACTIONS.NO_SWAP
-
-func next():
-    if array.get(_index) > array.get(_index + 1):
+        if action != null and action != ACTIONS.SWAP:
+            return emit_signal("mistake")
         array.swap(_index, _index + 1)
         _swapped = true
+    elif action != null and action != ACTIONS.NO_SWAP:
+        return emit_signal("mistake")
     _index += 1
     if _index + 1 == _end:
         if not _swapped:
