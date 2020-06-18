@@ -15,6 +15,7 @@ them. Otherwise, hit RIGHT ARROW to continue.
 """
 
 var _index = 0
+var _end = array.size
 var _swapped = false
 
 func _init(array).(array):
@@ -31,13 +32,16 @@ func next():
         array.swap(_index, _index + 1)
         _swapped = true
     _index += 1
-    if _index == array.size - 1:
+    if _index + 1 == _end:
         if not _swapped:
             emit_signal("done")
         _index = 0
+        _end -= 1
         _swapped = false
 
 func get_effect(i):
+    if i >= _end:
+        return EFFECTS.DIMMED
     if i == _index or i == _index + 1:
         return EFFECTS.HIGHLIGHTED
     return EFFECTS.NONE

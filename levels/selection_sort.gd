@@ -40,4 +40,6 @@ func next():
 func get_effect(i):
     if i == _index or i == _base:
         return EFFECTS.HIGHLIGHTED
+    if i <= _base:
+        return EFFECTS.DIMMED
     return EFFECTS.NONE
