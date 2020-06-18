@@ -10,13 +10,13 @@ one of the faster quadratic algorithms. It is often used to sort smaller
 subarrays in hybrid sorting algorithms.
 """
 const CONTROLS = """
-Hit LEFT ARROW to SWAP the two highlighted elements as long as they are
+Hit LEFT ARROW to swap the two highlighted elements as long as they are
 out of order. When this is no longer the case, hit RIGHT ARROW to
 advance.
 """
 
-var _end = 1
-var _index = _end
+var _end = 1 # Size of the sorted subarray
+var _index = 1 # Position of element currently being inserted
 
 func _init(array).(array):
     pass
@@ -36,11 +36,13 @@ func next():
     else:
         _grow()
 
+func get_effect(i):
+    if i == _index or i == _index - 1:
+        return EFFECTS.HIGHLIGHTED
+    return EFFECTS.NONE
+
 func _grow():
     _end += 1
     if _end == array.size:
         emit_signal("done")
     _index = _end
-
-func emphasized(i):
-    return i == _index or i == _index - 1

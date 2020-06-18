@@ -10,7 +10,7 @@ finished. Though simple to understand, bubble sort is hopelessly
 inefficient on all but the smallest of arrays.
 """
 const CONTROLS = """
-If the two highlighted elements are out of order, hit LEFT ARROW to SWAP
+If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
 
@@ -37,5 +37,7 @@ func next():
         _index = 0
         _swapped = false
 
-func emphasized(i):
-    return i == _index or i == _index + 1
+func get_effect(i):
+    if i == _index or i == _index + 1:
+        return EFFECTS.HIGHLIGHTED
+    return EFFECTS.NONE

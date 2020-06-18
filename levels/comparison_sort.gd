@@ -4,7 +4,20 @@ extends Node
 signal done
 signal mistake
 
-enum ACTIONS {SWAP, NO_SWAP}
+enum ACTIONS {
+    SWAP,
+    NO_SWAP,
+
+    LEFT,
+    RIGHT,
+}
+
+const EFFECTS = {
+    "NONE": GlobalTheme.GREEN,
+    "HIGHLIGHTED": GlobalTheme.ORANGE,
+    "DIMMED": GlobalTheme.DARK_GREEN,
+    "WUT": 0,
+}
 
 const DISABLE_TIME = 1.0
 
@@ -25,12 +38,13 @@ func _input(event):
     """Pass input events for checking and take appropriate action."""
     if not active:
         return
+
     for action in ACTIONS:
         if event.is_action_pressed(action):
             if check(ACTIONS[action]):
-                next()
-            else:
-                emit_signal("mistake")
+                return next()
+    if event.is_pressed():
+        emit_signal("mistake")
 
 func check(action):
     """Determine if the given action enum value is correct."""
@@ -38,10 +52,6 @@ func check(action):
 
 func next():
     """Advance the state by one step and signal done if completed."""
-    push_error("NotImplementedError")
-
-func emphasized(i):
-    """Return whether the given index should be highlighted."""
     push_error("NotImplementedError")
 
 func _on_ComparisonSort_mistake():

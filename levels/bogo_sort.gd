@@ -20,5 +20,5 @@ func next():
     if array.is_sorted():
         emit_signal("done")
 
-func emphasized(i):
-    return false
+func get_effect(i):
+    return EFFECTS.NONE

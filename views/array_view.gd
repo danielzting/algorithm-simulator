@@ -24,7 +24,7 @@ func _process(delta):
     """Update heights of rectangles based on array values."""
     for i in range(level.array.size):
         rects[i].rect_scale.y = -1 # XXX: Override parent Control scale
-        rects[i].color = GlobalTheme.ORANGE if level.emphasized(i) else GlobalTheme.GREEN
+        rects[i].color = level.get_effect(i)
         rects[i].rect_size.y = rect_size.y * level.array.get(i) / level.array.size
 
 func _on_Level_mistake():

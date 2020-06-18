@@ -15,8 +15,8 @@ smaller than the left highlighted element, then hit LEFT ARROW to swap
 the new smallest into place and keep going.
 """
 
-var _base = 0
-var _index = _base + 1
+var _base = 0 # Size of sorted subarray
+var _index = 1 # Index of tentative new smallest
 
 func _init(array).(array):
     pass
@@ -37,5 +37,7 @@ func next():
     if _base == array.size - 1:
         emit_signal("done")
 
-func emphasized(i):
-    return i == _index or i == _base
+func get_effect(i):
+    if i == _index or i == _base:
+        return EFFECTS.HIGHLIGHTED
+    return EFFECTS.NONE
