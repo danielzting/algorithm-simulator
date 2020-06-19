@@ -38,8 +38,8 @@ func next(action):
         _swapped = false
 
 func get_effect(i):
-    if i >= _end:
-        return EFFECTS.DIMMED
     if i == _index or i == _index + 1:
         return EFFECTS.HIGHLIGHTED
+    if i >= _end:
+        return EFFECTS.DIMMED
     return EFFECTS.NONE
