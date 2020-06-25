@@ -25,7 +25,7 @@ func _process(delta):
     for i in range(level.array.size):
         rects[i].rect_scale.y = -1 # HACK: Override scale to bypass weird behavior
         rects[i].color = level.get_effect(i)
-        rects[i].rect_size.y = rect_size.y * level.array.get(i) / level.array.size
+        rects[i].rect_size.y = rect_size.y * level.array.at(i) / level.array.size
 
 func _on_Level_mistake():
     """Flash the border red on mistakes."""

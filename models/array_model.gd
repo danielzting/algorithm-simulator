@@ -1,8 +1,3 @@
-"""
-A plain old one-dimensional random access array wrapper around the
-built-in class.
-"""
-
 class_name ArrayModel
 extends Reference
 
@@ -16,7 +11,7 @@ func _init(size=16):
     array.shuffle()
     self.size = size
 
-func get(i):
+func at(i):
     """Retrieve the value of the element at index i."""
     return array[i]
 

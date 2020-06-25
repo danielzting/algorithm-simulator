@@ -22,7 +22,7 @@ func _init(array).(array):
     pass
 
 func next(action):
-    if array.get(_index - 1) > array.get(_index):
+    if array.at(_index - 1) > array.at(_index):
         if action != null and action != ACTIONS.SWAP:
             return emit_signal("mistake")
         array.swap(_index - 1, _index)

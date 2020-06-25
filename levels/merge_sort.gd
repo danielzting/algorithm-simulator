@@ -32,7 +32,7 @@ func next(action):
         if action != null and action != ACTIONS.LEFT:
             return emit_signal("mistake")
         _left += 1
-    elif array.get(_left) <= array.get(_right):
+    elif array.at(_left) <= array.at(_right):
         if action != null and action != ACTIONS.LEFT:
             return emit_signal("mistake")
         _left += 1

@@ -45,6 +45,11 @@ _global_script_classes=[ {
 "path": "res://levels/merge_sort.gd"
 }, {
 "base": "ComparisonSort",
+"class": "QuickSort",
+"language": "GDScript",
+"path": "res://levels/quick_sort.gd"
+}, {
+"base": "ComparisonSort",
 "class": "SelectionSort",
 "language": "GDScript",
 "path": "res://levels/selection_sort.gd"
@@ -57,6 +62,7 @@ _global_script_class_icons={
 "ComparisonSort": "",
 "InsertionSort": "",
 "MergeSort": "",
+"QuickSort": "",
 "SelectionSort": ""
 }
 

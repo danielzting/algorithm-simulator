@@ -5,6 +5,7 @@ var levels = [
     InsertionSort,
     SelectionSort,
     MergeSort,
+    QuickSort,
 ]
 var level: ComparisonSort
 
@@ -27,7 +28,7 @@ func _ready():
     bottom_button.focus_neighbour_bottom = top_button.get_path()
     # If no last played level, autofocus first level
     if GlobalScene.get_param("level") == null:
-        top_button.grab_focus()
+        bottom_button.grab_focus()
 
 func _on_Button_focus_changed():
     """Initialize the preview section."""
