@@ -32,7 +32,7 @@ func next(action):
     _index += 1
     # Prevent player from having to spam tap through the end
     if _index + 1 == _end:
-        if not _swapped:
+        if not _swapped or _end == 2: # Stop if only one element left
             emit_signal("done")
         _index = 0
         _end -= 1

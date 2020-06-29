@@ -9,7 +9,7 @@ func _init(size=16):
     for i in range(1, size + 1):
         array.append(i)
     array.shuffle()
-    self.size = size
+    self.size = array.size()
 
 func at(i):
     """Retrieve the value of the element at index i."""
