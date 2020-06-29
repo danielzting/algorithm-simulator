@@ -14,8 +14,8 @@ If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
 
-var _index = 0
-var _end = array.size
+var _index = 0 # First of two elements being compared
+var _end = array.size # Beginning of sorted subarray
 var _swapped = false
 
 func _init(array).(array):
@@ -30,6 +30,7 @@ func next(action):
     elif action != null and action != ACTIONS.NO_SWAP:
         return emit_signal("mistake")
     _index += 1
+    # Prevent player from having to spam tap through the end
     if _index + 1 == _end:
         if not _swapped:
             emit_signal("done")

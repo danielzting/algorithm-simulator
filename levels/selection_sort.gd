@@ -11,8 +11,8 @@ slower than insertion sort.
 """
 const CONTROLS = """
 Keep on hitting RIGHT ARROW until you encounter an element that is
-smaller than the left highlighted element, then hit LEFT ARROW to swap
-the new smallest into place and keep going.
+smaller than the left highlighted element, then hit LEFT ARROW and
+repeat.
 """
 
 var _base = 0 # Size of sorted subarray
