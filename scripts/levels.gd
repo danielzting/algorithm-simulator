@@ -5,7 +5,6 @@ const LEVELS = [
     InsertionSort,
     SelectionSort,
     MergeSort,
-    QuickSort,
 ]
 var _level: ComparisonSort
 

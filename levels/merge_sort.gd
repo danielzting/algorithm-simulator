@@ -24,11 +24,11 @@ func _init(array).(array):
     pass
 
 func next(action):
-    if _left == -1:
+    if _left == _get_middle():
         if action != null and action != ACTIONS.RIGHT:
             return emit_signal("mistake")
         _right += 1
-    elif _right == -1:
+    elif _right == _get_end():
         if action != null and action != ACTIONS.LEFT:
             return emit_signal("mistake")
         _left += 1
@@ -40,30 +40,26 @@ func next(action):
         if action != null and action != ACTIONS.RIGHT:
             return emit_signal("mistake")
         _right += 1
-    # Test if end of subarrays have been reached
-    if _left == _get_middle():
-        _left = -1
-    if _right == _get_end():
-        _right = -1
     # If both ends have been reached, merge and advance to next block
-    if _left == -1 and _right == -1:
+    if _left == _get_middle() and _right == _get_end():
         array.sort(_get_begin(), _get_end())
         _sub_no += 1
-        _left = _get_begin()
-        _right = _get_middle()
         # If last block has been completed, go up a level
         if _sub_no == array.size / (_sub_size):
             _sub_size *= 2
             _sub_no = 0
-            _left = _get_begin()
-            _right = _get_middle()
             if _sub_size == array.size * 2:
                 emit_signal("done")
+        # Update pointers
+        _left = _get_begin()
+        _right = _get_middle()
 
 func get_effect(i):
-    if i == _left or i == _right:
+    var is_left = _left != _get_middle() and i == _left
+    var is_right = _right != _get_end() and i == _right
+    if is_left or is_right:
         return EFFECTS.HIGHLIGHTED
-    if i < _sub_no * _sub_size or i >= _sub_no * _sub_size + _sub_size:
+    if i < _left or i >= _get_middle() and i < _right or i >= _get_end():
         return EFFECTS.DIMMED
     return EFFECTS.NONE
 
