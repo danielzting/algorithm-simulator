@@ -16,28 +16,31 @@ repeat.
 """
 
 var _base = 0 # Size of sorted subarray
-var _index = 1 # Index of tentative new smallest
+var _min = 0 # Index of smallest known element
+var _index = 1 # Element currently being compared
 
 func _init(array).(array):
     pass
 
 func next(action):
-    if array.at(_base) > array.at(_index):
+    if array.at(_index) < array.at(_min):
         if action != null and action != ACTIONS.SWAP:
             return emit_signal("mistake")
-        array.swap(_base, _index)
+        _min = _index
     elif action != null and action != ACTIONS.NO_SWAP:
         return emit_signal("mistake")
     _index += 1
     if _index == array.size:
+        array.swap(_base, _min)
         _base += 1
+        _min = _base
         _index = _base + 1
     if _base == array.size - 1:
         emit_signal("done")
 
 func get_effect(i):
-    if i == _index or i == _base:
+    if i == _min or i == _index:
         return EFFECTS.HIGHLIGHTED
-    if i <= _base:
+    if i < _base:
         return EFFECTS.DIMMED
     return EFFECTS.NONE
