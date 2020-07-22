@@ -1,32 +1,39 @@
+"""
+A MarginContainer with a flashable colored border around it.
+"""
+
 extends MarginContainer
 
-const GREEN = Color(0.2, 1, 0.2)
-const RED = Color(1, 0, 0)
 const WIDTH = 5
-var color = GREEN
-var timer = Timer.new()
 const FLASHES = 3
-var color_changes = 0
+const COLOR_CHANGES = FLASHES * 2 - 1
+
+var _color = GlobalTheme.GREEN
+var _timer = Timer.new()
+var _color_changes = 0
 
 func _ready():
-	# Input should be reenabled right after the last red flash
-	timer.wait_time = 1.0 / (FLASHES * 2 - 1)
-	timer.connect("timeout", self, "_on_Timer_timeout")
-	add_child(timer)
+    """Time last return to green with reenabling of controls."""
+    _timer.wait_time = ComparisonSort.DISABLE_TIME / COLOR_CHANGES
+    _timer.connect("timeout", self, "_on_Timer_timeout")
+    add_child(_timer)
 
 func flash():
-	_on_Timer_timeout()
-	timer.start()
+    """Immediately flash red and then start timer."""
+    _on_Timer_timeout()
+    _timer.start()
 
 func _on_Timer_timeout():
-	if color_changes == FLASHES * 2 - 1:
-		timer.stop()
-		color_changes = 0
-		color = GREEN
-	else:
-		color = RED if color_changes % 2 == 0 else GREEN
-		color_changes += 1
-	update()
+    """Switch between green and red."""
+    if _color_changes == COLOR_CHANGES:
+        _timer.stop()
+        _color_changes = 0
+        _color = GlobalTheme.GREEN
+    else:
+        _color = GlobalTheme.RED if _color_changes % 2 == 0 else GlobalTheme.GREEN
+        _color_changes += 1
+    update()
 
 func _draw():
-	draw_rect(Rect2(Vector2(), rect_size), color, false, WIDTH)
+    """Draw the border."""
+    draw_rect(Rect2(Vector2(), rect_size), _color, false, WIDTH)

@@ -1,3 +1,7 @@
+"""
+Global helper class for passing parameters between changing scenes.
+"""
+
 extends Node
 
 var _params = null

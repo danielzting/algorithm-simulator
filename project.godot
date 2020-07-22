@@ -33,13 +33,31 @@ _global_script_classes=[ {
 "class": "ComparisonSort",
 "language": "GDScript",
 "path": "res://levels/comparison_sort.gd"
+}, {
+"base": "ComparisonSort",
+"class": "InsertionSort",
+"language": "GDScript",
+"path": "res://levels/insertion_sort.gd"
+}, {
+"base": "ComparisonSort",
+"class": "MergeSort",
+"language": "GDScript",
+"path": "res://levels/merge_sort.gd"
+}, {
+"base": "ComparisonSort",
+"class": "SelectionSort",
+"language": "GDScript",
+"path": "res://levels/selection_sort.gd"
 } ]
 _global_script_class_icons={
 "ArrayModel": "",
 "ArrayView": "",
 "BogoSort": "",
 "BubbleSort": "",
-"ComparisonSort": ""
+"ComparisonSort": "",
+"InsertionSort": "",
+"MergeSort": "",
+"SelectionSort": ""
 }
 
 [application]
@@ -52,15 +70,18 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-scene="*res://scripts/scene.gd"
+GlobalScene="*res://scripts/scene.gd"
+GlobalTheme="*res://scripts/theme.gd"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
 window/size/fullscreen=true
+window/size/always_on_top=true
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
@@ -104,14 +125,24 @@ ui_down={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
-swap={
+SWAP={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+NO_SWAP={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
  ]
 }
-no_swap={
+LEFT={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+RIGHT={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
  ]
 }
 

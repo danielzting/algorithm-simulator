@@ -10,4 +10,4 @@ func _process(delta):
     rect_position.y -= 1
 
 func _input(event):
-    scene.change_scene("res://scenes/menu.tscn")
+    GlobalScene.change_scene("res://scenes/menu.tscn")

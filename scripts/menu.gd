@@ -1,17 +1,18 @@
 extends VBoxContainer
 
-var level = BogoSort.new(ArrayModel.new(10))
+var _level = BogoSort.new(ArrayModel.new())
 
 func _ready():
     $Buttons/Start.grab_focus()
-    $Display.add_child(ArrayView.new(level))
     randomize()
+    _level.active = false
+    $Display.add_child(ArrayView.new(_level))
 
 func _on_Start_pressed():
-    scene.change_scene("res://scenes/levels.tscn")
+    GlobalScene.change_scene("res://scenes/levels.tscn")
 
 func _on_Credits_pressed():
-    scene.change_scene("res://scenes/credits.tscn")
+    GlobalScene.change_scene("res://scenes/credits.tscn")
 
 func _on_Timer_timeout():
-    level.next()
+    _level.next(null)
