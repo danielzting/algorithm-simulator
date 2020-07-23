@@ -15,6 +15,10 @@ smaller than the left highlighted element, then hit LEFT ARROW and
 repeat.
 """
 
+const ACTIONS = {
+    "SWAP": "Left",
+    "CONTINUE": "Right",
+}
 var _base = 0 # Size of sorted subarray
 var _min = 0 # Index of smallest known element
 var _index = 1 # Element currently being compared
@@ -27,7 +31,7 @@ func next(action):
         if action != null and action != ACTIONS.SWAP:
             return emit_signal("mistake")
         _min = _index
-    elif action != null and action != ACTIONS.NO_SWAP:
+    elif action != null and action != ACTIONS.CONTINUE:
         return emit_signal("mistake")
     _index += 1
     if _index == array.size:

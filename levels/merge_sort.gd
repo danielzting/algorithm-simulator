@@ -15,6 +15,10 @@ highlighted element is on. If you've reached the end of one side, press
 the other side's ARROW KEY.
 """
 
+const ACTIONS = {
+    "LEFT": "Left",
+    "RIGHT": "Right",
+}
 var _left = 0 # Index of left subarray pointer
 var _right = 1 # Index of right subarray pointer
 var _sub_size = 2 # Combined size of left and right subarrays

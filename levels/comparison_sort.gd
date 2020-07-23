@@ -4,14 +4,6 @@ extends Node
 signal done
 signal mistake
 
-const ACTIONS = {
-    "SWAP": "ui_left",
-    "NO_SWAP": "ui_right",
-
-    "LEFT": "ui_left",
-    "RIGHT": "ui_right",
-}
-
 const EFFECTS = {
     "NONE": GlobalTheme.GREEN,
     "HIGHLIGHTED": GlobalTheme.ORANGE,
@@ -37,9 +29,8 @@ func _input(event):
     """Pass input events for checking and take appropriate action."""
     if not active:
         return
-    for action in ACTIONS.values():
-        if event.is_action_pressed(action):
-            return next(action)
+    if event.is_pressed():
+        return next(event.as_text())
 
 func next(action):
     """Check the action and advance state or emit signal as needed."""
