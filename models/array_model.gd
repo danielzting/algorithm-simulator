@@ -1,6 +1,8 @@
 class_name ArrayModel
 extends Reference
 
+signal swapped(i, j) # where i <= j
+
 var array = []
 var size = 0
 
@@ -27,6 +29,7 @@ func swap(i, j):
     var temp = array[i]
     array[i] = array[j]
     array[j] = temp
+    emit_signal("swapped", min(i, j), max(i, j))
 
 func sort(i, j):
     """Sort the subarray starting at i and up to but not including j."""
