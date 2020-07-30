@@ -9,7 +9,6 @@ const LEVELS = [
 var _level: ComparisonSort
 
 func _ready():
-    """Dynamically load level data."""
     for level in LEVELS:
         var button = Button.new()
         button.text = level.NAME
@@ -30,8 +29,7 @@ func _ready():
         top_button.grab_focus()
 
 func _on_Button_focus_changed():
-    """Initialize the preview section."""
-    _level = get_level(get_focus_owner().text).new(ArrayModel.new())
+    _level = _get_level(get_focus_owner().text).new(ArrayModel.new())
     _level.active = false
     $Preview/InfoBorder/Info/About.text = _cleanup(_level.ABOUT)
     $Preview/InfoBorder/Info/Controls.text = _cleanup(_level.CONTROLS)
@@ -43,9 +41,9 @@ func _on_Button_focus_changed():
     $Preview/Display.add_child(ArrayView.new(_level))
 
 func _on_Button_pressed(name):
-    GlobalScene.change_scene("res://scenes/play.tscn", {"level": get_level(name)})
+    GlobalScene.change_scene("res://scenes/play.tscn", {"level": _get_level(name)})
 
-func get_level(name):
+func _get_level(name):
     for level in LEVELS:
         if level.NAME == name:
             return level
