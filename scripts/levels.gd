@@ -6,7 +6,10 @@ const LEVELS = [
     SelectionSort,
     MergeSort,
 ]
-var _level: ComparisonSort
+const MIN_SIZE = 8
+const MAX_SIZE = 256
+
+var _level = LEVELS[0].new(ArrayModel.new())
 
 func _ready():
     for level in LEVELS:
@@ -28,8 +31,8 @@ func _ready():
     if GlobalScene.get_param("level") == null:
         top_button.grab_focus()
 
-func _on_Button_focus_changed():
-    _level = _get_level(get_focus_owner().text).new(ArrayModel.new())
+func _on_Button_focus_changed(model=ArrayModel.new(_level.array.size)):
+    _level = _get_level(get_focus_owner().text).new(model)
     _level.active = false
     $Preview/InfoBorder/Info/About.text = _cleanup(_level.ABOUT)
     $Preview/InfoBorder/Info/Controls.text = _cleanup(_level.CONTROLS)
@@ -39,6 +42,16 @@ func _on_Button_focus_changed():
     for child in $Preview/Display.get_children():
         child.queue_free()
     $Preview/Display.add_child(ArrayView.new(_level))
+
+func _input(event):
+    if event.is_action_pressed("faster"):
+        $Timer.wait_time /= 2
+    elif event.is_action_pressed("slower"):
+        $Timer.wait_time *= 2
+    elif event.is_action_pressed("bigger"):
+        _on_Button_focus_changed(ArrayModel.new(min(MAX_SIZE, _level.array.size * 2)))
+    elif event.is_action_pressed("smaller"):
+        _on_Button_focus_changed(ArrayModel.new(max(MIN_SIZE, _level.array.size / 2)))
 
 func _on_Button_pressed(name):
     GlobalScene.change_scene("res://scenes/play.tscn", {"level": _get_level(name)})

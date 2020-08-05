@@ -6,13 +6,13 @@ class_name ArrayView
 extends HBoxContainer
 
 const SWAP_DURATION = 0.1
-const SEPARATION = 8
 
 var _tween = Tween.new()
 var _level: ComparisonSort
 var _rects = []
 var _unit_width: int
 var _unit_height: int
+onready var _separation = 128 / _level.array.size
 
 func _init(level):
     _level = level
@@ -29,8 +29,8 @@ func _ready():
         rect.polygon = [
             Vector2(0, 0),
             Vector2(0, rect_size.y),
-            Vector2(_unit_width - SEPARATION, rect_size.y),
-            Vector2(_unit_width - SEPARATION, 0),
+            Vector2(_unit_width - _separation, rect_size.y),
+            Vector2(_unit_width - _separation, 0),
         ]
         rect.position = Vector2(i * _unit_width, rect_size.y)
         _rects.append(rect)

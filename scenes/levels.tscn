@@ -35,6 +35,15 @@ margin_top = 20.0
 margin_right = 283.0
 margin_bottom = 640.0
 
+[node name="Label" type="Label" parent="LevelSelect/LevelsBorder"]
+margin_left = 20.0
+margin_top = 577.0
+margin_right = 283.0
+margin_bottom = 640.0
+size_flags_vertical = 8
+text = "Use +/- and </> to adjust the size and speed of the simulation, respectively."
+autowrap = true
+
 [node name="Preview" type="VBoxContainer" parent="LevelSelect"]
 margin_left = 311.0
 margin_right = 1220.0
@@ -81,6 +90,6 @@ size_flags_vertical = 3
 text = "These are the controls for the level. They should be tailored to each level for maximum efficiency and simplicity."
 autowrap = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="LevelSelect"]
 autostart = true
-[connection signal="timeout" from="Timer" to="LevelSelect" method="_on_Timer_timeout"]
+[connection signal="timeout" from="LevelSelect/Timer" to="LevelSelect" method="_on_Timer_timeout"]
