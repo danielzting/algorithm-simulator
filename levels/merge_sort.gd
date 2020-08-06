@@ -31,18 +31,22 @@ func next(action):
     if _left == _get_middle():
         if action != null and action != ACTIONS.RIGHT:
             return emit_signal("mistake")
+        array.emit_signal("removed", _right)
         _right += 1
     elif _right == _get_end():
         if action != null and action != ACTIONS.LEFT:
             return emit_signal("mistake")
+        array.emit_signal("removed", _left)
         _left += 1
     elif array.at(_left) <= array.at(_right):
         if action != null and action != ACTIONS.LEFT:
             return emit_signal("mistake")
+        array.emit_signal("removed", _left)
         _left += 1
     else:
         if action != null and action != ACTIONS.RIGHT:
             return emit_signal("mistake")
+        array.emit_signal("removed", _right)
         _right += 1
     # If both ends have been reached, merge and advance to next block
     if _left == _get_middle() and _right == _get_end():

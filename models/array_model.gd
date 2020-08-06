@@ -1,7 +1,10 @@
 class_name ArrayModel
 extends Reference
 
-signal swapped(i, j) # where i <= j
+# For all parameterized signals, i <= j
+signal removed(i)
+signal swapped(i, j)
+signal sorted(i, j)
 
 var _array = []
 var size = 0 setget , get_size
@@ -38,6 +41,7 @@ func sort(i, j):
     sorted.sort()
     var back = _array.slice(j, size - 1) if j != size else []
     _array = front + sorted + back
+    emit_signal("sorted", i, j)
 
 func get_size():
     return _array.size()
