@@ -7,7 +7,7 @@ const LEVELS = [
     MergeSort,
 ]
 const MIN_SIZE = 8
-const MAX_SIZE = 256
+const MAX_SIZE = 128
 
 var _level = LEVELS[0].new(ArrayModel.new())
 
