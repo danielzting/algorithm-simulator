@@ -6,6 +6,8 @@ const LEVELS = [
     SelectionSort,
     MergeSort,
 ]
+const MIN_WAIT = 1.0 / 32 # Should be greater than maximum frame time
+const MAX_WAIT = 4
 const MIN_SIZE = 8
 const MAX_SIZE = 128
 
@@ -32,6 +34,14 @@ func _ready():
         top_button.grab_focus()
 
 func _on_Button_focus_entered(size=_level.array.size):
+    # Pause a bit to show completely sorted array
+    if _level.array.is_sorted():
+        $Timer.stop()
+        yield(get_tree().create_timer(1), "timeout")
+        $Timer.start()
+        # Prevent race condition caused by switching levels during pause
+        if not _level.array.is_sorted():
+            return
     _level = _get_level(get_focus_owner().text).new(ArrayModel.new(size))
     _level.active = false
     $Preview/InfoBorder/Info/About.text = _cleanup(_level.ABOUT)
@@ -45,9 +55,9 @@ func _on_Button_focus_entered(size=_level.array.size):
 
 func _input(event):
     if event.is_action_pressed("faster"):
-        $Timer.wait_time /= 2
+        $Timer.wait_time = max(MIN_WAIT, $Timer.wait_time / 2)
     elif event.is_action_pressed("slower"):
-        $Timer.wait_time *= 2
+        $Timer.wait_time = min(MAX_WAIT, $Timer.wait_time * 2)
     elif event.is_action_pressed("bigger"):
         _on_Button_focus_entered(min(MAX_SIZE, _level.array.size * 2))
     elif event.is_action_pressed("smaller"):

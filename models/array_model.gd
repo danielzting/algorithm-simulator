@@ -21,7 +21,7 @@ func at(i):
 
 func is_sorted():
     """Check if the array is in monotonically increasing order."""
-    for i in range(size - 1):
+    for i in range(get_size() - 1):
         if _array[i] > _array[i + 1]:
             return false
     return true

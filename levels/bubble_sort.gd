@@ -42,7 +42,7 @@ func next(action):
         _end -= 1
         _swapped = false
 
-func get_effect(i):
+func _get_effect(i):
     if i == _index or i == _index + 1:
         return EFFECTS.HIGHLIGHTED
     if i >= _end:

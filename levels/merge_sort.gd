@@ -62,7 +62,7 @@ func next(action):
         _left = _get_begin()
         _right = _get_middle()
 
-func get_effect(i):
+func _get_effect(i):
     var is_left = _left != _get_middle() and i == _left
     var is_right = _right != _get_end() and i == _right
     if is_left or is_right:

@@ -27,13 +27,21 @@ func _init(array):
 
 func _input(event):
     """Pass input events for checking and take appropriate action."""
-    if not active:
+    if not active or array.is_sorted():
         return
     if event.is_pressed():
         return next(event.as_text())
 
 func next(action):
     """Check the action and advance state or emit signal as needed."""
+    push_error("NotImplementedError")
+
+func get_effect(i):
+    if array.is_sorted():
+        return EFFECTS.NONE
+    return _get_effect(i)
+
+func _get_effect(i):
     push_error("NotImplementedError")
 
 func _on_ComparisonSort_mistake():
