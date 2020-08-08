@@ -42,9 +42,12 @@ func next(action):
     if _base == array.size - 1:
         emit_signal("done")
 
-func _get_effect(i):
+func get_effect(i):
     if i == _min or i == _index:
         return EFFECTS.HIGHLIGHTED
     if i < _base:
         return EFFECTS.DIMMED
     return EFFECTS.NONE
+
+func get_pointer():
+    return _min

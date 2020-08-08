@@ -8,16 +8,22 @@ signal sorted(i, j)
 
 var _array = []
 var size = 0 setget , get_size
+var biggest = null
 
 func _init(size=16):
     """Randomize the array."""
     for i in range(1, size + 1):
         _array.append(i)
     _array.shuffle()
+    biggest = _array.max()
 
 func at(i):
     """Retrieve the value of the element at index i."""
     return _array[i]
+
+func frac(i):
+    """Get the quotient of the element at index i and the biggest."""
+    return float(_array[i]) / biggest
 
 func is_sorted():
     """Check if the array is in monotonically increasing order."""

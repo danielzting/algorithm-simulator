@@ -14,7 +14,7 @@ const DISABLE_TIME = 1.0
 
 var array: ArrayModel
 var active = true
-var _done = false
+var done = false
 
 var _timer = Timer.new()
 
@@ -29,7 +29,7 @@ func _init(array):
 
 func _input(event):
     """Pass input events for checking and take appropriate action."""
-    if _done or not active:
+    if done or not active:
         return
     if event.is_pressed():
         return next(event.as_text())
@@ -39,15 +39,13 @@ func next(action):
     push_error("NotImplementedError")
 
 func get_effect(i):
-    if _done:
-        return EFFECTS.NONE
-    return _get_effect(i)
+    return get_effect(i)
 
 func _get_effect(i):
     push_error("NotImplementedError")
 
 func _on_ComparisonSort_done():
-    _done = true
+    done = true
 
 func _on_ComparisonSort_mistake():
     """Disable the controls for one second."""

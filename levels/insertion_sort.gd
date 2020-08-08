@@ -38,10 +38,10 @@ func next(action):
             return emit_signal("mistake")
         _grow()
 
-func _get_effect(i):
+func get_effect(i):
     if i == _index or i == _index - 1:
         return EFFECTS.HIGHLIGHTED
-    if i < _end:
+    if i <= _end:
         return EFFECTS.DIMMED
     return EFFECTS.NONE
 

@@ -17,5 +17,5 @@ func next(action):
     if array.is_sorted():
         emit_signal("done")
 
-func _get_effect(i):
+func get_effect(i):
     return EFFECTS.NONE
