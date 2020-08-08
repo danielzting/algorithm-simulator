@@ -20,5 +20,27 @@ func get_score():
     return stepify((OS.get_ticks_msec() - _start_time) / 1000.0, 0.001)
 
 func _on_Level_done():
-    GlobalScene.change_scene("res://scenes/end.tscn",
-        {"level": GlobalScene.get_param("level"), "score": get_score()})
+    var restart = Button.new()
+    restart.text = "RESTART LEVEL"
+    restart.connect("pressed", self, "_on_Button_pressed", ["play"])
+    var separator = Label.new()
+    separator.text = " / "
+    var back = Button.new()
+    back.text = "BACK TO LEVEL SELECT"
+    back.connect("pressed", self, "_on_Button_pressed", ["levels"])
+    var result = Label.new()
+    result.text = "%.3f" % get_score()
+    result.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    result.align = Label.ALIGN_RIGHT
+    _start_time = -1
+    $HUDBorder/HUD/Level.queue_free()
+    $HUDBorder/HUD/Score.queue_free()
+    $HUDBorder/HUD.add_child(restart)
+    $HUDBorder/HUD.add_child(separator)
+    $HUDBorder/HUD.add_child(back)
+    $HUDBorder/HUD.add_child(result)
+    restart.grab_focus()
+
+func _on_Button_pressed(scene):
+    GlobalScene.change_scene("res://scenes/" + scene + ".tscn",
+        {"level": GlobalScene.get_param("level")})

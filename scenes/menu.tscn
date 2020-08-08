@@ -58,14 +58,14 @@ custom_constants/separation = 500
 margin_right = 50.0
 margin_bottom = 19.0
 size_flags_horizontal = 4
-text = "start"
+text = "START"
 flat = true
 
 [node name="Credits" type="Button" parent="MainMenu/Buttons"]
 margin_left = 550.0
 margin_right = 620.0
 margin_bottom = 19.0
-text = "credits"
+text = "CREDITS"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
