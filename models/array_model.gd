@@ -6,11 +6,13 @@ signal removed(i)
 signal swapped(i, j)
 signal sorted(i, j)
 
+const DEFAULT_SIZE = 16
+
 var _array = []
 var size = 0 setget , get_size
 var biggest = null
 
-func _init(size=16):
+func _init(size=DEFAULT_SIZE):
     """Randomize the array."""
     for i in range(1, size + 1):
         _array.append(i)

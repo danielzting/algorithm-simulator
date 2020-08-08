@@ -16,3 +16,7 @@ func _on_Credits_pressed():
 
 func _on_Timer_timeout():
     _level.next(null)
+
+func _input(event):
+    if event.is_action_pressed("ui_cancel"):
+        get_tree().quit()

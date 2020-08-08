@@ -1,9 +1,11 @@
 extends VBoxContainer
 
 var _start_time = -1
+var _level = GlobalScene.get_param(
+    "level", preload("res://scripts/levels.gd").LEVELS[0])
 
 func _ready():
-    $HUDBorder/HUD/Level.text = GlobalScene.get_param("level").NAME
+    $HUDBorder/HUD/Level.text = _level.NAME
 
 func _process(delta):
     if _start_time >= 0:
@@ -12,12 +14,17 @@ func _process(delta):
 func _on_Timer_timeout():
     _start_time = OS.get_ticks_msec()
     $DisplayBorder/Label.queue_free() # Delete ready text
-    var level = GlobalScene.get_param("level").new(ArrayModel.new())
+    var level = _level.new(ArrayModel.new(
+        GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)))
     level.connect("done", self, "_on_Level_done")
     $DisplayBorder.add_child(ArrayView.new(level))
 
 func get_score():
     return stepify((OS.get_ticks_msec() - _start_time) / 1000.0, 0.001)
+
+func _input(event):
+    if event.is_action_pressed("ui_cancel"):
+        _on_Button_pressed("levels")
 
 func _on_Level_done():
     var restart = Button.new()
@@ -43,4 +50,4 @@ func _on_Level_done():
 
 func _on_Button_pressed(scene):
     GlobalScene.change_scene("res://scenes/" + scene + ".tscn",
-        {"level": GlobalScene.get_param("level")})
+        {"level": _level, "size": GlobalScene.get_param("size")})

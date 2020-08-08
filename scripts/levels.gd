@@ -11,7 +11,8 @@ const MAX_WAIT = 4
 const MIN_SIZE = 8
 const MAX_SIZE = 128
 
-var _level = LEVELS[0].new(ArrayModel.new())
+var _level = LEVELS[0].new(ArrayModel.new(
+    GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)))
 
 func _ready():
     for level in LEVELS:
@@ -54,7 +55,9 @@ func _on_Button_focus_entered(size=_level.array.size):
     $Preview/Display.add_child(ArrayView.new(_level))
 
 func _input(event):
-    if event.is_action_pressed("faster"):
+    if event.is_action_pressed("ui_cancel"):
+        GlobalScene.change_scene("res://scenes/menu.tscn")
+    elif event.is_action_pressed("faster"):
         $Timer.wait_time = max(MIN_WAIT, $Timer.wait_time / 2)
     elif event.is_action_pressed("slower"):
         $Timer.wait_time = min(MAX_WAIT, $Timer.wait_time * 2)
@@ -64,7 +67,8 @@ func _input(event):
         _on_Button_focus_entered(max(MIN_SIZE, _level.array.size / 2))
 
 func _on_Button_pressed(level):
-    GlobalScene.change_scene("res://scenes/play.tscn", {"level": level})
+    GlobalScene.change_scene("res://scenes/play.tscn",
+        {"level": level, "size": _level.array.size})
 
 func _get_level(name):
     for level in LEVELS:
