@@ -35,6 +35,17 @@ margin_top = 20.0
 margin_right = 283.0
 margin_bottom = 640.0
 
+[node name="LevelsContainer" type="HBoxContainer" parent="LevelSelect/LevelsBorder/Levels"]
+margin_right = 263.0
+
+[node name="Buttons" type="VBoxContainer" parent="LevelSelect/LevelsBorder/Levels/LevelsContainer"]
+margin_right = 255.0
+size_flags_horizontal = 3
+
+[node name="Scores" type="VBoxContainer" parent="LevelSelect/LevelsBorder/Levels/LevelsContainer"]
+margin_left = 263.0
+margin_right = 263.0
+
 [node name="Label" type="Label" parent="LevelSelect/LevelsBorder"]
 margin_left = 20.0
 margin_top = 577.0

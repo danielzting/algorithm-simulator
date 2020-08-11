@@ -47,6 +47,15 @@ func _on_Level_done():
     $HUDBorder/HUD.add_child(back)
     $HUDBorder/HUD.add_child(result)
     restart.grab_focus()
+    var save = GlobalScene.read_save()
+    var name = _level.NAME
+    var size = str(GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE))
+    if not name in save:
+        save[name] = {}
+    if not size in save[name]:
+        save[name][size] = INF
+    save[name][size] = min(float(result.text), save[name][size])
+    GlobalScene.write_save(save)
 
 func _on_Button_pressed(scene):
     GlobalScene.change_scene("res://scenes/" + scene + ".tscn",
