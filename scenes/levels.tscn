@@ -52,7 +52,7 @@ margin_top = 577.0
 margin_right = 283.0
 margin_bottom = 640.0
 size_flags_vertical = 8
-text = "Use +/- and </> to adjust the size and speed of the simulation, respectively."
+text = "Use the WASD keys to adjust the size and speed of the simulation."
 autowrap = true
 
 [node name="Preview" type="VBoxContainer" parent="LevelSelect"]

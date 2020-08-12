@@ -15,6 +15,7 @@ const DISABLE_TIME = 1.0
 var array: ArrayModel
 var active = true
 var done = false
+var moves = 0
 
 var _timer = Timer.new()
 
@@ -32,6 +33,7 @@ func _input(event):
     if done or not active:
         return
     if event.is_pressed():
+        moves += 1
         return next(event.as_text())
 
 func next(action):

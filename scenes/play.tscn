@@ -48,14 +48,14 @@ size_flags_horizontal = 3
 text = "0.000"
 align = 2
 
-[node name="DisplayBorder" type="MarginContainer" parent="GameDisplay"]
+[node name="Display" type="MarginContainer" parent="GameDisplay"]
 margin_top = 67.0
 margin_right = 1220.0
 margin_bottom = 660.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="GameDisplay/DisplayBorder"]
+[node name="Label" type="Label" parent="GameDisplay/Display"]
 margin_left = 20.0
 margin_top = 287.0
 margin_right = 1200.0

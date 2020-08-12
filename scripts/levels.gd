@@ -12,11 +12,12 @@ const MAX_WAIT = 4
 const MIN_SIZE = 8
 const MAX_SIZE = 256
 
-var _level = LEVELS[0].new(ArrayModel.new(
+var _level = GlobalScene.get_param("level", LEVELS[0]).new(ArrayModel.new(
     GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)))
 
 func _ready():
     var buttons = $LevelsBorder/Levels/LevelsContainer/Buttons
+    var scores = $LevelsBorder/Levels/LevelsContainer/Scores
     for level in LEVELS:
         var button = Button.new()
         button.text = level.NAME
@@ -24,9 +25,15 @@ func _ready():
         button.connect("focus_entered", self, "_on_Button_focus_entered")
         button.connect("pressed", self, "_on_Button_pressed", [level])
         buttons.add_child(button)
-        var score = Label.new()
-        score.align = Label.ALIGN_RIGHT
-        $LevelsBorder/Levels/LevelsContainer/Scores.add_child(score)
+        var score = HBoxContainer.new()
+        var time = Label.new()
+        time.align = Label.ALIGN_RIGHT
+        time.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+        var tier = Label.new()
+#        tier.align = Label.ALIGN_RIGHT
+        score.add_child(time)
+        score.add_child(tier)
+        scores.add_child(score)
     # Autofocus last played level
     for button in buttons.get_children():
         if button.text == _level.NAME:
@@ -40,14 +47,22 @@ func _ready():
 func _on_Button_focus_entered(size=_level.array.size):
     # Update high scores
     var buttons = $LevelsBorder/Levels/LevelsContainer/Buttons
-    var scores = $LevelsBorder/Levels/LevelsContainer/Scores
     var save = GlobalScene.read_save()
     for i in range(LEVELS.size()):
+        var score = $LevelsBorder/Levels/LevelsContainer/Scores.get_child(i)
         var name = buttons.get_child(i).text
         if name in save and str(size) in save[name]:
-            scores.get_child(i).text = "%.3f" % save[name][str(size)]
+            var moves = save[name][str(size)][0]
+            var time = save[name][str(size)][1]
+            score.get_child(0).text = "%.3f" % time
+            score.get_child(1).text = Score.get_tier(moves, time)
+            score.get_child(1).add_color_override(
+                "font_color", Score.get_color(moves, time))
         else:
-            scores.get_child(i).text = "INF"
+            score.get_child(0).text = ""
+            score.get_child(1).text = "INF"
+            score.get_child(1).add_color_override(
+                "font_color", GlobalTheme.GREEN)
     # Pause a bit to show completely sorted array
     if _level.array.is_sorted():
         $Timer.stop()
