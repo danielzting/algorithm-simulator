@@ -30,7 +30,6 @@ func _ready():
         time.align = Label.ALIGN_RIGHT
         time.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         var tier = Label.new()
-#        tier.align = Label.ALIGN_RIGHT
         score.add_child(time)
         score.add_child(tier)
         scores.add_child(score)
