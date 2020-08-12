@@ -14,6 +14,10 @@ If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
 
+const ACTIONS = {
+    "SWAP": "Left",
+    "CONTINUE": "Right",
+}
 var _index = 0 # First of two elements being compared
 var _end = array.size # Beginning of sorted subarray
 var _swapped = false
@@ -27,7 +31,7 @@ func next(action):
             return emit_signal("mistake")
         array.swap(_index, _index + 1)
         _swapped = true
-    elif action != null and action != ACTIONS.NO_SWAP:
+    elif action != null and action != ACTIONS.CONTINUE:
         return emit_signal("mistake")
     _index += 1
     # Prevent player from having to spam tap through the end

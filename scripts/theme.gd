@@ -4,7 +4,8 @@ Global constants relating to the GUI.
 
 extends Node
 
-const GREEN = Color(0.2, 1, 0.2)
-const DARK_GREEN = Color(0.2, 1, 0.2, 0.5)
-const ORANGE = Color(1, 0.69, 0)
-const RED = Color(1, 0, 0)
+const GREEN = Color("33ff33")
+const DARK_GREEN = Color("7733ff33")
+const ORANGE = Color("ffb000")
+const RED = Color("f44336")
+const BLUE = Color("2196f3")

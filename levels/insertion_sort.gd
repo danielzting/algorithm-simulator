@@ -15,6 +15,10 @@ out of order. When this is no longer the case, hit RIGHT ARROW to
 advance.
 """
 
+const ACTIONS = {
+    "SWAP": "Left",
+    "CONTINUE": "Right",
+}
 var _end = 1 # Size of the sorted subarray
 var _index = 1 # Position of element currently being inserted
 
@@ -30,14 +34,14 @@ func next(action):
         if _index == 0:
             _grow()
     else:
-        if action != null and action != ACTIONS.NO_SWAP:
+        if action != null and action != ACTIONS.CONTINUE:
             return emit_signal("mistake")
         _grow()
 
 func get_effect(i):
     if i == _index or i == _index - 1:
         return EFFECTS.HIGHLIGHTED
-    if i < _end:
+    if i <= _end:
         return EFFECTS.DIMMED
     return EFFECTS.NONE
 

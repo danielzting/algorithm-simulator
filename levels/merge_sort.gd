@@ -15,6 +15,10 @@ highlighted element is on. If you've reached the end of one side, press
 the other side's ARROW KEY.
 """
 
+const ACTIONS = {
+    "LEFT": "Left",
+    "RIGHT": "Right",
+}
 var _left = 0 # Index of left subarray pointer
 var _right = 1 # Index of right subarray pointer
 var _sub_size = 2 # Combined size of left and right subarrays
@@ -27,18 +31,22 @@ func next(action):
     if _left == _get_middle():
         if action != null and action != ACTIONS.RIGHT:
             return emit_signal("mistake")
+        array.emit_signal("removed", _right)
         _right += 1
     elif _right == _get_end():
         if action != null and action != ACTIONS.LEFT:
             return emit_signal("mistake")
+        array.emit_signal("removed", _left)
         _left += 1
     elif array.at(_left) <= array.at(_right):
         if action != null and action != ACTIONS.LEFT:
             return emit_signal("mistake")
+        array.emit_signal("removed", _left)
         _left += 1
     else:
         if action != null and action != ACTIONS.RIGHT:
             return emit_signal("mistake")
+        array.emit_signal("removed", _right)
         _right += 1
     # If both ends have been reached, merge and advance to next block
     if _left == _get_middle() and _right == _get_end():

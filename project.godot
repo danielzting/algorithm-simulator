@@ -14,10 +14,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://models/array_model.gd"
 }, {
-"base": "HBoxContainer",
+"base": "ViewportContainer",
 "class": "ArrayView",
 "language": "GDScript",
 "path": "res://views/array_view.gd"
+}, {
+"base": "Reference",
+"class": "BinaryTreeModel",
+"language": "GDScript",
+"path": "res://models/binary_tree_model.gd"
 }, {
 "base": "ComparisonSort",
 "class": "BogoSort",
@@ -45,6 +50,16 @@ _global_script_classes=[ {
 "path": "res://levels/merge_sort.gd"
 }, {
 "base": "ComparisonSort",
+"class": "QuickSort",
+"language": "GDScript",
+"path": "res://levels/quick_sort.gd"
+}, {
+"base": "Reference",
+"class": "Score",
+"language": "GDScript",
+"path": "res://scripts/score.gd"
+}, {
+"base": "ComparisonSort",
 "class": "SelectionSort",
 "language": "GDScript",
 "path": "res://levels/selection_sort.gd"
@@ -52,11 +67,14 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "ArrayModel": "",
 "ArrayView": "",
+"BinaryTreeModel": "",
 "BogoSort": "",
 "BubbleSort": "",
 "ComparisonSort": "",
 "InsertionSort": "",
 "MergeSort": "",
+"QuickSort": "",
+"Score": "",
 "SelectionSort": ""
 }
 
@@ -64,7 +82,6 @@ _global_script_class_icons={
 
 config/name="Human Computer Simulator"
 run/main_scene="res://scenes/menu.tscn"
-run/low_processor_mode=true
 boot_splash/image="res://assets/splash.png"
 config/icon="res://assets/icon.png"
 
@@ -75,9 +92,8 @@ GlobalTheme="*res://scripts/theme.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
-window/size/fullscreen=true
+window/size/width=1280
+window/size/height=720
 window/size/always_on_top=true
 window/dpi/allow_hidpi=true
 window/stretch/mode="2d"
@@ -125,24 +141,24 @@ ui_down={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
-SWAP={
+faster={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
  ]
 }
-NO_SWAP={
+slower={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
  ]
 }
-LEFT={
+bigger={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
  ]
 }
-RIGHT={
+smaller={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
  ]
 }
 

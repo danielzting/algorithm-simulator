@@ -4,14 +4,6 @@ extends Node
 signal done
 signal mistake
 
-const ACTIONS = {
-    "SWAP": "ui_left",
-    "NO_SWAP": "ui_right",
-
-    "LEFT": "ui_left",
-    "RIGHT": "ui_right",
-}
-
 const EFFECTS = {
     "NONE": GlobalTheme.GREEN,
     "HIGHLIGHTED": GlobalTheme.ORANGE,
@@ -22,6 +14,8 @@ const DISABLE_TIME = 1.0
 
 var array: ArrayModel
 var active = true
+var done = false
+var moves = 0
 
 var _timer = Timer.new()
 
@@ -32,18 +26,28 @@ func _init(array):
     _timer.connect("timeout", self, "_on_Timer_timeout")
     add_child(_timer)
     self.connect("mistake", self, "_on_ComparisonSort_mistake")
+    self.connect("done", self, "_on_ComparisonSort_done")
 
 func _input(event):
     """Pass input events for checking and take appropriate action."""
-    if not active:
+    if done or not active:
         return
-    for action in ACTIONS.values():
-        if event.is_action_pressed(action):
-            return next(action)
+    if event.is_pressed():
+        moves += 1
+        return next(event.as_text())
 
 func next(action):
     """Check the action and advance state or emit signal as needed."""
     push_error("NotImplementedError")
+
+func get_effect(i):
+    return get_effect(i)
+
+func _get_effect(i):
+    push_error("NotImplementedError")
+
+func _on_ComparisonSort_done():
+    done = true
 
 func _on_ComparisonSort_mistake():
     """Disable the controls for one second."""
