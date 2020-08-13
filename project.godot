@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://levels/bubble_sort.gd"
 }, {
+"base": "ComparisonSort",
+"class": "CocktailSort",
+"language": "GDScript",
+"path": "res://levels/cocktail_sort.gd"
+}, {
 "base": "Node",
 "class": "ComparisonSort",
 "language": "GDScript",
@@ -70,6 +75,7 @@ _global_script_class_icons={
 "BinaryTreeModel": "",
 "BogoSort": "",
 "BubbleSort": "",
+"CocktailSort": "",
 "ComparisonSort": "",
 "InsertionSort": "",
 "MergeSort": "",

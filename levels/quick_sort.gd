@@ -21,8 +21,8 @@ const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",
 }
-var _index = 0
-var _pointer = 0
+var _index = 0 # Index of element being compared with pivot
+var _pointer = 0 # Boundary between partitions
 # Bookkeep simulated recursion with a binary tree of subarray bounds
 var _stack = BinaryTreeModel.new(Vector2(0, array.size - 1))
 
