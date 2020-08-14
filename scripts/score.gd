@@ -15,7 +15,10 @@ const COLORS = [
 ]
 
 static func get_tier(moves, seconds):
-    return TIERS[min(moves / seconds, TIERS.size() - 1)]
+    return TIERS[get_mps_int(moves, seconds)]
+
+static func get_mps_int(moves, seconds):
+    return min(moves / seconds, TIERS.size() - 1)
 
 static func get_color(moves, seconds):
     return COLORS[min(moves / seconds, COLORS.size() - 1)]

@@ -38,7 +38,7 @@ func _on_Level_done(level):
     back.text = "BACK TO LEVEL SELECT"
     back.connect("pressed", self, "_on_Button_pressed", ["levels"])
     var time = Label.new()
-    time.text = "%.3f" % get_score()
+    time.text = "%.3f" % score
     time.align = Label.ALIGN_RIGHT
     time.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     _start_time = -1
@@ -61,7 +61,10 @@ func _on_Level_done(level):
         save[name] = {}
     if not size in save[name]:
         save[name][size] = [-1, INF]
-    save[name][size] = [moves, min(float(time.text), save[name][size][1])]
+    var mps1 = Score.get_mps_int(moves, score)
+    var mps2 = Score.get_mps_int(save[name][size][0], save[name][size][1])
+    if mps1 > mps2 or mps1 == mps2 and score < save[name][size][1]:
+        save[name][size] = [moves, score]
     GlobalScene.write_save(save)
 
 func _on_Button_pressed(scene):
