@@ -3,26 +3,25 @@ Visualization of an array as rectangles of varying heights.
 """
 
 class_name ArrayView
-extends ViewportContainer
+extends HBoxContainer
 
+const MARGIN = 20
+const LINE_COLOR = Color("7f1b5e20")
+const BOX_SIZE = 50
 const ANIM_DURATION = 0.1
 
 var _tween = Tween.new()
 var _level: ComparisonSort
 var _rects = []
 var _positions = []
-var _viewport = Viewport.new()
 var _pointer = null
 var _pointer_size: int
 onready var _separation = 128 / _level.array.size
 
 func _init(level):
     _level = level
-    stretch = true
-    _viewport.usage = Viewport.USAGE_2D
     add_child(_level) # NOTE: This is necessary for it to read input
     add_child(_tween) # NOTE: This is necessary for it to animate
-    add_child(_viewport)
 
 func _ready():
     yield(get_tree(), "idle_frame")
@@ -51,9 +50,8 @@ func _ready():
         _positions.append(x)
         x += unit_width
         _rects.append(rect)
-        _viewport.add_child(rect)
+        add_child(rect)
     _level.array.connect("swapped", self, "_on_ArrayModel_swapped")
-    _level.array.connect("sorted", self, "_on_ArrayModel_sorted")
     if _level.has_method("get_pointer"):
         _pointer = Polygon2D.new()
         _pointer.polygon = [
@@ -62,7 +60,7 @@ func _ready():
             Vector2(width / 2 + _pointer_size, 0),
         ]
         _pointer.color = GlobalTheme.BLUE
-        _viewport.add_child(_pointer)
+        add_child(_pointer)
 
 func _process(delta):
     if _pointer != null:
@@ -90,10 +88,10 @@ func _on_ArrayModel_swapped(i, j):
     _rects[j] = temp
     _tween.start()
 
-func _on_ArrayModel_sorted(i, j):
-    for x in range(i, j):
-        _rects[x].position.y = 0
-    for x in range(i, j):
-        _tween.interpolate_property(
-            _rects[x], "position:y", null, rect_size.y, ANIM_DURATION)
-    _tween.start()
+func _draw():
+    var width = rect_size.x + MARGIN
+    var height = rect_size.y + MARGIN
+    for i in range(-MARGIN + BOX_SIZE, width, BOX_SIZE):
+        draw_line(Vector2(i, -MARGIN), Vector2(i, height), LINE_COLOR)
+    for i in range(-MARGIN + BOX_SIZE, height, BOX_SIZE):
+        draw_line(Vector2(-MARGIN, i), Vector2(width, i), LINE_COLOR)

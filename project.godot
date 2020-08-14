@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://models/array_model.gd"
 }, {
-"base": "ViewportContainer",
+"base": "HBoxContainer",
 "class": "ArrayView",
 "language": "GDScript",
 "path": "res://views/array_view.gd"

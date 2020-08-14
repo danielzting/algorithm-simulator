@@ -18,7 +18,7 @@ static func get_tier(moves, seconds):
     return TIERS[get_mps_int(moves, seconds)]
 
 static func get_mps_int(moves, seconds):
-    return min(moves / seconds, TIERS.size() - 1)
+    return int(min(moves / seconds, TIERS.size() - 1))
 
 static func get_color(moves, seconds):
     return COLORS[min(moves / seconds, COLORS.size() - 1)]
