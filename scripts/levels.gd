@@ -8,6 +8,7 @@ const LEVELS = [
     QuickSort,
     CocktailSort,
     ShellSort,
+    CombSort,
 ]
 const MIN_WAIT = 1.0 / 32 # Should be greater than maximum frame time
 const MAX_WAIT = 4
