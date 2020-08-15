@@ -68,6 +68,11 @@ _global_script_classes=[ {
 "class": "SelectionSort",
 "language": "GDScript",
 "path": "res://levels/selection_sort.gd"
+}, {
+"base": "ComparisonSort",
+"class": "ShellSort",
+"language": "GDScript",
+"path": "res://levels/shell_sort.gd"
 } ]
 _global_script_class_icons={
 "ArrayModel": "",
@@ -81,7 +86,8 @@ _global_script_class_icons={
 "MergeSort": "",
 "QuickSort": "",
 "Score": "",
-"SelectionSort": ""
+"SelectionSort": "",
+"ShellSort": ""
 }
 
 [application]

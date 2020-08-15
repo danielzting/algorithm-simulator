@@ -89,9 +89,14 @@ func _on_ArrayModel_swapped(i, j):
     _tween.start()
 
 func _draw():
-    var width = rect_size.x + MARGIN
-    var height = rect_size.y + MARGIN
+    # Prevent lines from "sticking" into border
+    var margin = preload("res://scripts/border.gd").WIDTH / 2
+    var width = rect_size.x + MARGIN - margin
+    var height = rect_size.y + MARGIN - margin
+    var start = -MARGIN + margin
+    # Vertical lines
     for i in range(-MARGIN + BOX_SIZE, width, BOX_SIZE):
-        draw_line(Vector2(i, -MARGIN), Vector2(i, height), LINE_COLOR)
+        draw_line(Vector2(i, start), Vector2(i, height - 1), LINE_COLOR)
+    # Horizontal lines
     for i in range(-MARGIN + BOX_SIZE, height, BOX_SIZE):
-        draw_line(Vector2(-MARGIN, i), Vector2(width, i), LINE_COLOR)
+        draw_line(Vector2(start, i), Vector2(width - 1, i), LINE_COLOR)
