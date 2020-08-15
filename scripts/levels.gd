@@ -67,12 +67,12 @@ func _on_Button_focus_entered(size=_level.array.size):
                 "font_color", GlobalTheme.GREEN)
     # Pause a bit to show completely sorted array
     if _level.array.is_sorted():
+        # Prevent race condition caused by keyboard input during pause
+        set_process_input(false)
         $Timer.stop()
         yield(get_tree().create_timer(1), "timeout")
         $Timer.start()
-        # Prevent race condition caused by switching levels during pause
-        if not _level.array.is_sorted():
-            return
+        set_process_input(true)
     _level = _get_level(get_focus_owner().text).new(ArrayModel.new(size))
     _level.active = false
     $Preview/InfoBorder/Info/About.text = _cleanup(_level.ABOUT)
