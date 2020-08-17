@@ -17,5 +17,6 @@ func _on_Timer_timeout():
     _level.next(null)
 
 func _input(event):
-    if event.is_action_pressed("ui_cancel"):
+    # If not in a browser, close the app
+    if event.is_action_pressed("ui_cancel") and OS.get_name() != "HTML5":
         get_tree().quit()
