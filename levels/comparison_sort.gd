@@ -13,8 +13,6 @@ const EFFECTS = {
 const DISABLE_TIME = 1.0
 
 var array: ArrayModel
-var active = true
-var done = false
 var moves = 0
 
 var _timer = Timer.new()
@@ -28,10 +26,11 @@ func _init(array):
     self.connect("mistake", self, "_on_ComparisonSort_mistake")
     self.connect("done", self, "_on_ComparisonSort_done")
 
+func _ready():
+    set_process_input(false)
+
 func _input(event):
     """Pass input events for checking and take appropriate action."""
-    if done or not active:
-        return
     if event.is_pressed():
         moves += 1
         return next(event.as_text())
@@ -40,20 +39,14 @@ func next(action):
     """Check the action and advance state or emit signal as needed."""
     push_error("NotImplementedError")
 
-func get_effect(i):
-    return get_effect(i)
-
-func _get_effect(i):
-    push_error("NotImplementedError")
-
 func _on_ComparisonSort_done():
-    done = true
+    set_process_input(false)
 
 func _on_ComparisonSort_mistake():
     """Disable the controls for one second."""
-    active = false
+    set_process_input(false)
     _timer.start(DISABLE_TIME)
 
 func _on_Timer_timeout():
     """Reenable the controls."""
-    active = true
+    set_process_input(true)

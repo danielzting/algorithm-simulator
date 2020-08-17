@@ -14,7 +14,7 @@ var _tween = Tween.new()
 var _level: ComparisonSort
 var _rects = []
 var _positions = []
-var _pointer = null
+var _pointer = Polygon2D.new()
 var _pointer_size: int
 onready var _separation = 128 / _level.array.size
 
@@ -22,6 +22,8 @@ func _init(level):
     _level = level
     add_child(_level) # NOTE: This is necessary for it to read input
     add_child(_tween) # NOTE: This is necessary for it to animate
+    add_child(_pointer)
+    _pointer.hide()
 
 func _ready():
     yield(get_tree(), "idle_frame")
@@ -32,6 +34,7 @@ func _ready():
     var accumulated = 0
     var x = 0
     _level.connect("mistake", get_parent(), "flash")
+    _level.connect("done", self, "_on_ComparisonSort_done")
     var width = unit_width - _separation
     var height = rect_size.y - _pointer_size * 2
     for i in range(_level.array.size):
@@ -53,28 +56,29 @@ func _ready():
         add_child(rect)
     _level.array.connect("swapped", self, "_on_ArrayModel_swapped")
     if _level.has_method("get_pointer"):
-        _pointer = Polygon2D.new()
         _pointer.polygon = [
             Vector2(width / 2, _pointer_size),
             Vector2(width / 2 - _pointer_size, 0),
             Vector2(width / 2 + _pointer_size, 0),
         ]
         _pointer.color = GlobalTheme.BLUE
-        add_child(_pointer)
+        _pointer.show()
 
 func _process(delta):
-    if _pointer != null:
+    if _pointer.visible:
         var pointed = _level.get_pointer()
         var height = rect_size.y - _pointer_size * 2
         _pointer.position = Vector2(_rects[pointed].position.x,
             height - _level.array.frac(pointed) * height)
-        if _level.done:
-            _pointer.queue_free()
     for i in range(_rects.size()):
-        if _level.done:
-            _rects[i].color = ComparisonSort.EFFECTS.NONE
-        else:
-            _rects[i].color = _level.get_effect(i)
+        _rects[i].color = _level.get_effect(i)
+        _rects[i].scale.y = -_level.array.frac(i)
+
+func _on_ComparisonSort_done():
+    set_process(false)
+    _pointer.hide()
+    for i in range(_rects.size()):
+        _rects[i].color = ComparisonSort.EFFECTS.NONE
         _rects[i].scale.y = -_level.array.frac(i)
 
 func _on_ArrayModel_swapped(i, j):

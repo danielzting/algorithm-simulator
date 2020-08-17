@@ -18,6 +18,7 @@ func _on_Timer_timeout():
         GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)))
     level.connect("done", self, "_on_Level_done", [level])
     $Display.add_child(ArrayView.new(level))
+    level.set_process_input(true)
 
 func get_score():
     return stepify((OS.get_ticks_msec() - _start_time) / 1000.0, 0.001)

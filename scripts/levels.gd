@@ -74,7 +74,6 @@ func _on_Button_focus_entered(size=_level.array.size):
         $Timer.start()
         set_process_input(true)
     _level = _get_level(get_focus_owner().text).new(ArrayModel.new(size))
-    _level.active = false
     $Preview/InfoBorder/Info/About.text = _cleanup(_level.ABOUT)
     $Preview/InfoBorder/Info/Controls.text = _cleanup(_level.CONTROLS)
     # Start over when simulation is finished

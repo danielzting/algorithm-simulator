@@ -5,7 +5,6 @@ var _level = BogoSort.new(ArrayModel.new())
 func _ready():
     $Buttons/Start.grab_focus()
     randomize()
-    _level.active = false
     $Display.add_child(ArrayView.new(_level))
 
 func _on_Start_pressed():
