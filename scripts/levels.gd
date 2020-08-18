@@ -23,7 +23,7 @@ func _ready():
     var scores = $LevelsBorder/Levels/LevelsContainer/Scores
     for level in LEVELS:
         var button = Button.new()
-        button.text = level.NAME
+        button.text = level.new(ArrayModel.new()).NAME
         button.align = Button.ALIGN_LEFT
         button.connect("focus_entered", self, "_on_Button_focus_entered")
         button.connect("pressed", self, "_on_Button_pressed", [level])
@@ -74,8 +74,8 @@ func _on_Button_focus_entered(size=_level.array.size):
         $Timer.start()
         set_process_input(true)
     _level = _get_level(get_focus_owner().text).new(ArrayModel.new(size))
-    $Preview/InfoBorder/Info/About.text = _cleanup(_level.ABOUT)
-    $Preview/InfoBorder/Info/Controls.text = _cleanup(_level.CONTROLS)
+    $Preview/InfoBorder/Info/Description.text = _level.DESCRIPTION
+    $Preview/InfoBorder/Info/Controls.text = _level.CONTROLS
     # Start over when simulation is finished
     _level.connect("done", self, "_on_Button_focus_entered")
     # Replace old display with new
@@ -101,11 +101,8 @@ func _on_Button_pressed(level):
 
 func _get_level(name):
     for level in LEVELS:
-        if level.NAME == name:
+        if level.new(ArrayModel.new()).NAME == name:
             return level
 
 func _on_Timer_timeout():
     _level.next(null)
-
-func _cleanup(string):
-    return string.strip_edges().replace("\n", " ")

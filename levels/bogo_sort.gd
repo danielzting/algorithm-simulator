@@ -1,13 +1,13 @@
-class_name BogoSort
-extends ComparisonSort
-
-const NAME = "BOGOSORT"
-const ABOUT = """
-Generates random permutations until the array is sorted.
 """
-const CONTROLS = """
+BOGOSORT
+
+Generates random permutations until the array is sorted.
+
 Keep on hitting RIGHT ARROW to CONTINUE and hope for the best!
 """
+
+class_name BogoSort
+extends ComparisonSort
 
 func _init(array).(array):
     pass

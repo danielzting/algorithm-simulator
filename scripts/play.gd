@@ -5,7 +5,7 @@ var _level = GlobalScene.get_param(
     "level", preload("res://scripts/levels.gd").LEVELS[0])
 
 func _ready():
-    $HUDBorder/HUD/Level.text = _level.NAME
+    $HUDBorder/HUD/Level.text = _level.new(ArrayModel.new()).NAME
 
 func _process(delta):
     if _start_time >= 0:
@@ -56,7 +56,7 @@ func _on_Level_done(level):
     $HUDBorder/HUD.add_child(tier)
     restart.grab_focus()
     var save = GlobalScene.read_save()
-    var name = _level.NAME
+    var name = level.NAME
     var size = str(GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE))
     if not name in save:
         save[name] = {}

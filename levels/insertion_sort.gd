@@ -1,19 +1,19 @@
-class_name InsertionSort
-extends ComparisonSort
+"""
+INSERTION SORT
 
-const NAME = "INSERTION SORT"
-const ABOUT = """
 Insertion sort goes through the array and inserts each
 element into its correct position. It is most similar to how most people
 would sort a deck of cards. It is also slow on large arrays but it is
 one of the faster quadratic algorithms. It is often used to sort smaller
 subarrays in hybrid sorting algorithms.
-"""
-const CONTROLS = """
+
 Hit LEFT ARROW to swap the two highlighted elements as long as they are
 out of order. When this is no longer the case, hit RIGHT ARROW to
 advance.
 """
+
+class_name InsertionSort
+extends ComparisonSort
 
 const ACTIONS = {
     "SWAP": "Left",

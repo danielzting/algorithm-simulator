@@ -83,7 +83,7 @@ margin_right = 889.0
 margin_bottom = 198.0
 custom_constants/separation = 50
 
-[node name="About" type="Label" parent="LevelSelect/Preview/InfoBorder/Info"]
+[node name="Description" type="Label" parent="LevelSelect/Preview/InfoBorder/Info"]
 margin_right = 546.0
 margin_bottom = 178.0
 size_flags_horizontal = 3
