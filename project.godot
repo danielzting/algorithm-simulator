@@ -64,11 +64,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://levels/quick_sort.gd"
 }, {
-"base": "Reference",
-"class": "Score",
-"language": "GDScript",
-"path": "res://scripts/score.gd"
-}, {
 "base": "ComparisonSort",
 "class": "SelectionSort",
 "language": "GDScript",
@@ -91,7 +86,6 @@ _global_script_class_icons={
 "InsertionSort": "",
 "MergeSort": "",
 "QuickSort": "",
-"Score": "",
 "SelectionSort": "",
 "ShellSort": ""
 }
@@ -107,6 +101,7 @@ config/icon="res://assets/icon.png"
 
 GlobalScene="*res://scripts/scene.gd"
 GlobalTheme="*res://scripts/theme.gd"
+GlobalScore="*res://scripts/score.gd"
 
 [display]
 

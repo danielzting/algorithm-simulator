@@ -1,5 +1,4 @@
 class_name BinaryTreeModel
-extends Reference
 
 var left: BinaryTreeModel setget set_left
 var right: BinaryTreeModel setget set_right

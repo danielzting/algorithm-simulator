@@ -49,22 +49,20 @@ func _ready():
 func _on_Button_focus_entered(size=_level.array.size):
     # Update high scores
     var buttons = $LevelsBorder/Levels/LevelsContainer/Buttons
-    var save = GlobalScene.read_save()
     for i in range(LEVELS.size()):
         var score = $LevelsBorder/Levels/LevelsContainer/Scores.get_child(i)
         var name = buttons.get_child(i).text
-        if name in save and str(size) in save[name]:
-            var moves = save[name][str(size)][0]
-            var time = save[name][str(size)][1]
-            score.get_child(0).text = "%.3f" % time
-            score.get_child(1).text = Score.get_tier(moves, time)
-            score.get_child(1).add_color_override(
-                "font_color", Score.get_color(moves, time))
-        else:
+        var time = GlobalScore.get_time(name, size)
+        if time == INF:
             score.get_child(0).text = ""
             score.get_child(1).text = "INF"
             score.get_child(1).add_color_override(
                 "font_color", GlobalTheme.GREEN)
+        else:
+            score.get_child(0).text = "%.3f" % time
+            score.get_child(1).text = GlobalScore.get_tier(name, size)
+            score.get_child(1).add_color_override(
+                "font_color", GlobalScore.get_color(name, size))
     # Pause a bit to show completely sorted array
     if _level.array.is_sorted():
         # Prevent race condition caused by keyboard input during pause
