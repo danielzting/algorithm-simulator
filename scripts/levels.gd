@@ -69,6 +69,8 @@ func _on_Button_focus_entered(size=_level.array.size):
         set_process_input(false)
         $Timer.stop()
         yield(get_tree().create_timer(1), "timeout")
+        if not _level.array.is_sorted():
+            return
         $Timer.start()
         set_process_input(true)
     _level = _get_level(get_focus_owner().text).new(ArrayModel.new(size))
