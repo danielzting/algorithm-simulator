@@ -50,6 +50,11 @@ _global_script_classes=[ {
 "path": "res://levels/comparison_sort.gd"
 }, {
 "base": "ComparisonSort",
+"class": "CycleSort",
+"language": "GDScript",
+"path": "res://levels/cycle_sort.gd"
+}, {
+"base": "ComparisonSort",
 "class": "InsertionSort",
 "language": "GDScript",
 "path": "res://levels/insertion_sort.gd"
@@ -83,6 +88,7 @@ _global_script_class_icons={
 "CocktailSort": "",
 "CombSort": "",
 "ComparisonSort": "",
+"CycleSort": "",
 "InsertionSort": "",
 "MergeSort": "",
 "QuickSort": "",
