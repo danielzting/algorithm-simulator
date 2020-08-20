@@ -22,7 +22,7 @@
 
 ![Level select screen](assets/levels.png)
 
-You may have come across the famous [15 Sorting Algorithms in 6 Minutes](https://www.youtube.com/watch?v=kPRA0W1kECg) video by [Timo Bingoman](https://github.com/bingmann) at some point in your computer science career. There is currently no shortage of neat visualizations of all kinds of algorithms, but what if you could become the algorithm itself?
+You may have come across the famous [15 Sorting Algorithms in 6 Minutes](https://www.youtube.com/watch?v=kPRA0W1kECg) video by [Timo Bingmann](https://github.com/bingmann) at some point in your computer science career. There is currently no shortage of neat visualizations of all kinds of algorithms, but what if you could become the algorithm itself?
 
 In *Human Computer Simulator*, you control an algorithm operating on some data structure. Right now, the game is limited to sorting arrays. The end vision is to have a library of interactive, playable levels on anything from a search on a binary tree to Dijkstra's shortest path on a graph.
 

@@ -5,7 +5,6 @@ var _level = BogoSort.new(ArrayModel.new())
 func _ready():
     $Buttons/Start.grab_focus()
     randomize()
-    _level.active = false
     $Display.add_child(ArrayView.new(_level))
 
 func _on_Start_pressed():
@@ -18,5 +17,6 @@ func _on_Timer_timeout():
     _level.next(null)
 
 func _input(event):
-    if event.is_action_pressed("ui_cancel"):
+    # If not in a browser, close the app
+    if event.is_action_pressed("ui_cancel") and OS.get_name() != "HTML5":
         get_tree().quit()

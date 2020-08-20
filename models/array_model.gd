@@ -1,5 +1,4 @@
 class_name ArrayModel
-extends Reference
 
 # For all parameterized signals, i <= j
 signal removed(i)

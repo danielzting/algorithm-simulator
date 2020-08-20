@@ -1,19 +1,20 @@
-class_name SelectionSort
-extends ComparisonSort
+"""
+SELECTION SORT
 
-const NAME = "SELECTION SORT"
-const ABOUT = """
 Selection sort incrementally builds a sorted array by repeatedly looking
 for the smallest element and swapping it onto the end of the sorted
 portion of the array, which initially starts with size zero but grows
 after each round. It is faster than an unoptimized bubble sort but
 slower than insertion sort.
-"""
-const CONTROLS = """
+
 Keep on hitting RIGHT ARROW until you encounter an element that is
 smaller than the left highlighted element, then hit LEFT ARROW and
 repeat.
 """
+
+
+class_name SelectionSort
+extends ComparisonSort
 
 const ACTIONS = {
     "SWAP": "Left",

@@ -1,19 +1,19 @@
-class_name MergeSort
-extends ComparisonSort
+"""
+MERGE SORT
 
-const NAME = "MERGE SORT"
-const ABOUT =  """
 Merge sort is an efficient sorting algorithm that splits the array into
 single-element chunks. Then it merges each pair of chunks until only one
 sorted chunk is left by repeatedly choosing the smaller element at the
 head of each chunk and moving the head back. However, it needs an entire
 array's worth of auxiliary memory.
-"""
-const CONTROLS = """
+
 Press the ARROW KEY corresponding to the side that the smaller
 highlighted element is on. If you've reached the end of one side, press
 the other side's ARROW KEY.
 """
+
+class_name MergeSort
+extends ComparisonSort
 
 const ACTIONS = {
     "LEFT": "Left",

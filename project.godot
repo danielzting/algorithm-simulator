@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://models/array_model.gd"
 }, {
-"base": "ViewportContainer",
+"base": "HBoxContainer",
 "class": "ArrayView",
 "language": "GDScript",
 "path": "res://views/array_view.gd"
@@ -34,10 +34,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://levels/bubble_sort.gd"
 }, {
+"base": "ComparisonSort",
+"class": "CocktailSort",
+"language": "GDScript",
+"path": "res://levels/cocktail_sort.gd"
+}, {
+"base": "ComparisonSort",
+"class": "CombSort",
+"language": "GDScript",
+"path": "res://levels/comb_sort.gd"
+}, {
 "base": "Node",
 "class": "ComparisonSort",
 "language": "GDScript",
 "path": "res://levels/comparison_sort.gd"
+}, {
+"base": "ComparisonSort",
+"class": "CycleSort",
+"language": "GDScript",
+"path": "res://levels/cycle_sort.gd"
 }, {
 "base": "ComparisonSort",
 "class": "InsertionSort",
@@ -50,19 +65,24 @@ _global_script_classes=[ {
 "path": "res://levels/merge_sort.gd"
 }, {
 "base": "ComparisonSort",
+"class": "OddEvenSort",
+"language": "GDScript",
+"path": "res://levels/odd_even_sort.gd"
+}, {
+"base": "ComparisonSort",
 "class": "QuickSort",
 "language": "GDScript",
 "path": "res://levels/quick_sort.gd"
-}, {
-"base": "Reference",
-"class": "Score",
-"language": "GDScript",
-"path": "res://scripts/score.gd"
 }, {
 "base": "ComparisonSort",
 "class": "SelectionSort",
 "language": "GDScript",
 "path": "res://levels/selection_sort.gd"
+}, {
+"base": "ComparisonSort",
+"class": "ShellSort",
+"language": "GDScript",
+"path": "res://levels/shell_sort.gd"
 } ]
 _global_script_class_icons={
 "ArrayModel": "",
@@ -70,12 +90,16 @@ _global_script_class_icons={
 "BinaryTreeModel": "",
 "BogoSort": "",
 "BubbleSort": "",
+"CocktailSort": "",
+"CombSort": "",
 "ComparisonSort": "",
+"CycleSort": "",
 "InsertionSort": "",
 "MergeSort": "",
+"OddEvenSort": "",
 "QuickSort": "",
-"Score": "",
-"SelectionSort": ""
+"SelectionSort": "",
+"ShellSort": ""
 }
 
 [application]
@@ -89,6 +113,7 @@ config/icon="res://assets/icon.png"
 
 GlobalScene="*res://scripts/scene.gd"
 GlobalTheme="*res://scripts/theme.gd"
+GlobalScore="*res://scripts/score.gd"
 
 [display]
 

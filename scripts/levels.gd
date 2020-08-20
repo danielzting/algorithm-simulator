@@ -6,6 +6,11 @@ const LEVELS = [
     SelectionSort,
     MergeSort,
     QuickSort,
+    CocktailSort,
+    ShellSort,
+    CombSort,
+    CycleSort,
+    OddEvenSort,
 ]
 const MIN_WAIT = 1.0 / 32 # Should be greater than maximum frame time
 const MAX_WAIT = 4
@@ -20,7 +25,7 @@ func _ready():
     var scores = $LevelsBorder/Levels/LevelsContainer/Scores
     for level in LEVELS:
         var button = Button.new()
-        button.text = level.NAME
+        button.text = level.new(ArrayModel.new()).NAME
         button.align = Button.ALIGN_LEFT
         button.connect("focus_entered", self, "_on_Button_focus_entered")
         button.connect("pressed", self, "_on_Button_pressed", [level])
@@ -30,7 +35,6 @@ func _ready():
         time.align = Label.ALIGN_RIGHT
         time.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         var tier = Label.new()
-#        tier.align = Label.ALIGN_RIGHT
         score.add_child(time)
         score.add_child(tier)
         scores.add_child(score)
@@ -47,34 +51,33 @@ func _ready():
 func _on_Button_focus_entered(size=_level.array.size):
     # Update high scores
     var buttons = $LevelsBorder/Levels/LevelsContainer/Buttons
-    var save = GlobalScene.read_save()
     for i in range(LEVELS.size()):
         var score = $LevelsBorder/Levels/LevelsContainer/Scores.get_child(i)
         var name = buttons.get_child(i).text
-        if name in save and str(size) in save[name]:
-            var moves = save[name][str(size)][0]
-            var time = save[name][str(size)][1]
-            score.get_child(0).text = "%.3f" % time
-            score.get_child(1).text = Score.get_tier(moves, time)
-            score.get_child(1).add_color_override(
-                "font_color", Score.get_color(moves, time))
-        else:
+        var time = GlobalScore.get_time(name, size)
+        if time == INF:
             score.get_child(0).text = ""
             score.get_child(1).text = "INF"
             score.get_child(1).add_color_override(
                 "font_color", GlobalTheme.GREEN)
+        else:
+            score.get_child(0).text = "%.3f" % time
+            score.get_child(1).text = GlobalScore.get_tier(name, size)
+            score.get_child(1).add_color_override(
+                "font_color", GlobalScore.get_color(name, size))
     # Pause a bit to show completely sorted array
     if _level.array.is_sorted():
+        # Prevent race condition caused by keyboard input during pause
+        set_process_input(false)
         $Timer.stop()
         yield(get_tree().create_timer(1), "timeout")
-        $Timer.start()
-        # Prevent race condition caused by switching levels during pause
         if not _level.array.is_sorted():
             return
+        $Timer.start()
+        set_process_input(true)
     _level = _get_level(get_focus_owner().text).new(ArrayModel.new(size))
-    _level.active = false
-    $Preview/InfoBorder/Info/About.text = _cleanup(_level.ABOUT)
-    $Preview/InfoBorder/Info/Controls.text = _cleanup(_level.CONTROLS)
+    $Preview/InfoBorder/Info/Description.text = _level.DESCRIPTION
+    $Preview/InfoBorder/Info/Controls.text = _level.CONTROLS
     # Start over when simulation is finished
     _level.connect("done", self, "_on_Button_focus_entered")
     # Replace old display with new
@@ -100,11 +103,8 @@ func _on_Button_pressed(level):
 
 func _get_level(name):
     for level in LEVELS:
-        if level.NAME == name:
+        if level.new(ArrayModel.new()).NAME == name:
             return level
 
 func _on_Timer_timeout():
     _level.next(null)
-
-func _cleanup(string):
-    return string.strip_edges().replace("\n", " ")

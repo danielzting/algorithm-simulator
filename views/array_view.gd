@@ -3,26 +3,27 @@ Visualization of an array as rectangles of varying heights.
 """
 
 class_name ArrayView
-extends ViewportContainer
+extends HBoxContainer
 
+const MARGIN = 20
+const LINE_COLOR = Color("7f1b5e20")
+const BOX_SIZE = 50
 const ANIM_DURATION = 0.1
 
 var _tween = Tween.new()
 var _level: ComparisonSort
 var _rects = []
 var _positions = []
-var _viewport = Viewport.new()
-var _pointer = null
+var _pointer = Polygon2D.new()
 var _pointer_size: int
 onready var _separation = 128 / _level.array.size
 
 func _init(level):
     _level = level
-    stretch = true
-    _viewport.usage = Viewport.USAGE_2D
     add_child(_level) # NOTE: This is necessary for it to read input
     add_child(_tween) # NOTE: This is necessary for it to animate
-    add_child(_viewport)
+    add_child(_pointer)
+    _pointer.hide()
 
 func _ready():
     yield(get_tree(), "idle_frame")
@@ -33,6 +34,7 @@ func _ready():
     var accumulated = 0
     var x = 0
     _level.connect("mistake", get_parent(), "flash")
+    _level.connect("done", self, "_on_ComparisonSort_done")
     var width = unit_width - _separation
     var height = rect_size.y - _pointer_size * 2
     for i in range(_level.array.size):
@@ -51,32 +53,32 @@ func _ready():
         _positions.append(x)
         x += unit_width
         _rects.append(rect)
-        _viewport.add_child(rect)
+        add_child(rect)
     _level.array.connect("swapped", self, "_on_ArrayModel_swapped")
-    _level.array.connect("sorted", self, "_on_ArrayModel_sorted")
     if _level.has_method("get_pointer"):
-        _pointer = Polygon2D.new()
         _pointer.polygon = [
             Vector2(width / 2, _pointer_size),
             Vector2(width / 2 - _pointer_size, 0),
             Vector2(width / 2 + _pointer_size, 0),
         ]
         _pointer.color = GlobalTheme.BLUE
-        _viewport.add_child(_pointer)
+        _pointer.show()
 
 func _process(delta):
-    if _pointer != null:
+    if _pointer.visible:
         var pointed = _level.get_pointer()
         var height = rect_size.y - _pointer_size * 2
         _pointer.position = Vector2(_rects[pointed].position.x,
             height - _level.array.frac(pointed) * height)
-        if _level.done:
-            _pointer.queue_free()
     for i in range(_rects.size()):
-        if _level.done:
-            _rects[i].color = ComparisonSort.EFFECTS.NONE
-        else:
-            _rects[i].color = _level.get_effect(i)
+        _rects[i].color = _level.get_effect(i)
+        _rects[i].scale.y = -_level.array.frac(i)
+
+func _on_ComparisonSort_done():
+    set_process(false)
+    _pointer.hide()
+    for i in range(_rects.size()):
+        _rects[i].color = ComparisonSort.EFFECTS.NONE
         _rects[i].scale.y = -_level.array.frac(i)
 
 func _on_ArrayModel_swapped(i, j):
@@ -90,10 +92,15 @@ func _on_ArrayModel_swapped(i, j):
     _rects[j] = temp
     _tween.start()
 
-func _on_ArrayModel_sorted(i, j):
-    for x in range(i, j):
-        _rects[x].position.y = 0
-    for x in range(i, j):
-        _tween.interpolate_property(
-            _rects[x], "position:y", null, rect_size.y, ANIM_DURATION)
-    _tween.start()
+func _draw():
+    # Prevent lines from "sticking" into border
+    var margin = preload("res://scripts/border.gd").WIDTH / 2
+    var width = rect_size.x + MARGIN - margin
+    var height = rect_size.y + MARGIN - margin
+    var start = -MARGIN + margin
+    # Vertical lines
+    for i in range(-MARGIN + BOX_SIZE, width, BOX_SIZE):
+        draw_line(Vector2(i, start), Vector2(i, height - 1), LINE_COLOR)
+    # Horizontal lines
+    for i in range(-MARGIN + BOX_SIZE, height, BOX_SIZE):
+        draw_line(Vector2(start, i), Vector2(width - 1, i), LINE_COLOR)
