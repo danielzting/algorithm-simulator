@@ -65,6 +65,11 @@ _global_script_classes=[ {
 "path": "res://levels/merge_sort.gd"
 }, {
 "base": "ComparisonSort",
+"class": "OddEvenSort",
+"language": "GDScript",
+"path": "res://levels/odd_even_sort.gd"
+}, {
+"base": "ComparisonSort",
 "class": "QuickSort",
 "language": "GDScript",
 "path": "res://levels/quick_sort.gd"
@@ -91,6 +96,7 @@ _global_script_class_icons={
 "CycleSort": "",
 "InsertionSort": "",
 "MergeSort": "",
+"OddEvenSort": "",
 "QuickSort": "",
 "SelectionSort": "",
 "ShellSort": ""
