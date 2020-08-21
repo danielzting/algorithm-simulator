@@ -77,3 +77,6 @@ func get_effect(i):
 
 func get_pointer():
     return _pointer
+
+func get_frac():
+    return array.frac(_index)

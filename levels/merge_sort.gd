@@ -82,3 +82,10 @@ func _get_middle():
 func _get_end():
     """Get the index of one past the right subarray's tail."""
     return _sub_no * _sub_size + _sub_size
+
+func get_frac():
+    if _left == _get_middle():
+        return array.frac(_right)
+    if _right == _get_end():
+        return array.frac(_left)
+    return (array.frac(_left) + array.frac(_right)) / 2.0

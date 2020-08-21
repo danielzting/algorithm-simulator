@@ -46,3 +46,6 @@ func get_effect(i):
     if i >= _end:
         return EFFECTS.DIMMED
     return EFFECTS.NONE
+
+func get_frac():
+    return (array.frac(_index) + array.frac(_index + _gap)) / 2.0

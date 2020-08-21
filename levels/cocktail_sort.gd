@@ -56,3 +56,6 @@ func get_effect(i):
     if i < _sorted and _forwards == true or i < _sorted - 1 or i >= array.size - _sorted:
         return EFFECTS.DIMMED
     return EFFECTS.NONE
+
+func get_frac():
+    return (array.frac(_index) + array.frac(_index + 1)) / 2.0
