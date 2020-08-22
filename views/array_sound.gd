@@ -3,7 +3,7 @@ extends Node
 
 const SAMPLE_HZ = 44100
 const MIN_HZ = 110
-const MAX_HZ = 440
+const MAX_HZ = 880
 
 var frac: float
 var player = AudioStreamPlayer.new()
@@ -13,7 +13,7 @@ var _playback: AudioStreamGeneratorPlayback
 func _fill_buffer(pulse_hz):
     var increment = pulse_hz / SAMPLE_HZ
     for i in range(_playback.get_frames_available()):
-        _playback.push_frame(Vector2.ONE * sin(_phase * TAU))
+        _playback.push_frame(Vector2.ONE * triangle(_phase))
         _phase = fmod(_phase + increment, 1.0)
 
 func _process(delta):
@@ -26,3 +26,7 @@ func _init():
     player.stream.mix_rate = SAMPLE_HZ
     _playback = player.get_stream_playback()
     player.play()
+
+func triangle(x):
+    """Generate a triangle wave from the given phase."""
+    return 2 / PI * asin(sin(PI * x))
