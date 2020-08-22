@@ -52,3 +52,6 @@ func get_effect(i):
 
 func get_pointer():
     return _min
+
+func get_frac():
+    return array.frac(_index)

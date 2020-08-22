@@ -19,3 +19,6 @@ func next(action):
 
 func get_effect(i):
     return EFFECTS.NONE
+
+func get_frac():
+    return array.frac(0)

@@ -58,3 +58,6 @@ func _grow():
             _begin = 0
         _end = _gap + _begin
         _index = _gap + _begin
+
+func get_frac():
+    return (array.frac(_index - _gap) + array.frac(_index)) / 2.0

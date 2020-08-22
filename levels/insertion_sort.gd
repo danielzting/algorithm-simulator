@@ -50,3 +50,6 @@ func _grow():
     if _end == array.size:
         emit_signal("done")
     _index = _end
+
+func get_frac():
+    return (array.frac(_index - 1) + array.frac(_index)) / 2.0

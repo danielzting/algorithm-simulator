@@ -48,11 +48,11 @@ margin_right = 263.0
 
 [node name="Label" type="Label" parent="LevelSelect/LevelsBorder"]
 margin_left = 20.0
-margin_top = 577.0
+margin_top = 555.0
 margin_right = 283.0
 margin_bottom = 640.0
 size_flags_vertical = 8
-text = "Use the WASD keys to adjust the size and speed of the simulation."
+text = "Use the WASD keys to adjust the size and speed of the simulation, and M to toggle sound."
 autowrap = true
 
 [node name="Preview" type="VBoxContainer" parent="LevelSelect"]

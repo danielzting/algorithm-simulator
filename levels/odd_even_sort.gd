@@ -40,3 +40,6 @@ func get_effect(i):
     if i == _index or i == _index + 1:
         return EFFECTS.HIGHLIGHTED
     return EFFECTS.NONE
+
+func get_frac():
+    return (array.frac(_index) + array.frac(_index + 1)) / 2.0
