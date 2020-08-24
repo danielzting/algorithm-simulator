@@ -16,8 +16,6 @@ var DESCRIPTION = _get_header().split("  ")[1]
 var CONTROLS = _get_header().split("  ")[2]
 
 var array: ArrayModel
-var moves = 0
-var test = _get_header().split("  ")[0]
 
 var _timer = Timer.new()
 
@@ -39,7 +37,6 @@ func _ready():
 func _input(event):
     """Pass input events for checking and take appropriate action."""
     if event.is_pressed():
-        moves += 1
         return next(event.as_text())
 
 func next(action):

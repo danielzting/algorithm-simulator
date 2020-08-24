@@ -30,13 +30,9 @@ func _ready():
         button.connect("focus_entered", self, "_on_Button_focus_entered")
         button.connect("pressed", self, "_on_Button_pressed", [level])
         buttons.add_child(button)
-        var score = HBoxContainer.new()
-        var time = Label.new()
-        time.align = Label.ALIGN_RIGHT
-        time.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-        var tier = Label.new()
-        score.add_child(time)
-        score.add_child(tier)
+        var score = Label.new()
+        score.align = Label.ALIGN_RIGHT
+        score.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         scores.add_child(score)
     # Autofocus last played level
     for button in buttons.get_children():
@@ -50,21 +46,11 @@ func _ready():
 
 func _on_Button_focus_entered(size=_level.array.size):
     # Update high scores
-    var buttons = $LevelsBorder/Levels/LevelsContainer/Buttons
+    var container = $LevelsBorder/Levels/LevelsContainer
     for i in range(LEVELS.size()):
-        var score = $LevelsBorder/Levels/LevelsContainer/Scores.get_child(i)
-        var name = buttons.get_child(i).text
+        var name = container.get_node("Buttons").get_child(i).text
         var time = GlobalScore.get_time(name, size)
-        if time == INF:
-            score.get_child(0).text = ""
-            score.get_child(1).text = "INF"
-            score.get_child(1).add_color_override(
-                "font_color", GlobalTheme.GREEN)
-        else:
-            score.get_child(0).text = "%.3f" % time
-            score.get_child(1).text = GlobalScore.get_tier(name, size)
-            score.get_child(1).add_color_override(
-                "font_color", GlobalScore.get_color(name, size))
+        container.get_node("Scores").get_child(i).text = "INF" if time == INF else "%.3f" % time
     # Pause a bit to show completely sorted array
     if _level.array.is_sorted():
         # Prevent race condition caused by keyboard input during pause

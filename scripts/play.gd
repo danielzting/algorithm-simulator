@@ -30,9 +30,7 @@ func _input(event):
 
 func _on_Level_done(level):
     set_process(false)
-    var name = level.NAME
-    var size = level.array.size
-    var score = get_score()
+    var time = get_score()
     var moves = level.moves
     var restart = Button.new()
     restart.text = "RESTART LEVEL"
@@ -42,24 +40,18 @@ func _on_Level_done(level):
     var back = Button.new()
     back.text = "BACK TO LEVEL SELECT"
     back.connect("pressed", self, "_on_Button_pressed", ["levels"])
-    var time = Label.new()
-    time.text = "%.3f" % score
-    time.align = Label.ALIGN_RIGHT
-    time.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-    var tier = Label.new()
-    tier.text = GlobalScore.calculate_tier(score, moves)
-    tier.align = Label.ALIGN_RIGHT
-    tier.add_color_override(
-        "font_color", GlobalScore.calculate_color(score, moves))
+    var score = Label.new()
+    score.text = "%.3f" % time
+    score.align = Label.ALIGN_RIGHT
+    score.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     $HUDBorder/HUD/Level.queue_free()
     $HUDBorder/HUD/Score.queue_free()
     $HUDBorder/HUD.add_child(restart)
     $HUDBorder/HUD.add_child(separator)
     $HUDBorder/HUD.add_child(back)
-    $HUDBorder/HUD.add_child(time)
-    $HUDBorder/HUD.add_child(tier)
+    $HUDBorder/HUD.add_child(score)
     restart.grab_focus()
-    GlobalScore.save_score(name, size, score, moves)
+    GlobalScore.save_score(level.NAME, level.array.size, time)
 
 func _on_Button_pressed(scene):
     GlobalScene.change_scene("res://scenes/" + scene + ".tscn",
