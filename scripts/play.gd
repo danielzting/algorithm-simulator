@@ -26,7 +26,7 @@ func get_score():
 
 func _input(event):
     if event.is_action_pressed("ui_cancel"):
-        _on_Button_pressed("levels")
+        _on_Button_pressed("levels_redesign")
 
 func _on_Level_done(level):
     set_process(false)
@@ -39,7 +39,7 @@ func _on_Level_done(level):
     separator.text = " / "
     var back = Button.new()
     back.text = "BACK TO LEVEL SELECT"
-    back.connect("pressed", self, "_on_Button_pressed", ["levels"])
+    back.connect("pressed", self, "_on_Button_pressed", ["levels_redesign"])
     var score = Label.new()
     score.text = "%.3f" % time
     score.align = Label.ALIGN_RIGHT

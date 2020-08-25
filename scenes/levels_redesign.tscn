@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/theme.theme" type="Theme" id=1]
-[ext_resource path="res://scenes/levels_redesign.gd" type="Script" id=2]
+[ext_resource path="res://scripts/levels_redesign.gd" type="Script" id=2]
+[ext_resource path="res://scripts/border.gd" type="Script" id=3]
 
 [node name="Viewport" type="MarginContainer"]
 anchor_right = 1.0
@@ -18,84 +19,116 @@ margin_right = 1260.0
 margin_bottom = 700.0
 script = ExtResource( 2 )
 
-[node name="Names" type="HBoxContainer" parent="Levels"]
+[node name="NamesContainer" type="MarginContainer" parent="Levels"]
 margin_right = 1240.0
-margin_bottom = 19.0
+margin_bottom = 59.0
+script = ExtResource( 3 )
 
-[node name="Current" type="Label" parent="Levels/Names"]
-margin_right = 1240.0
+[node name="Names" type="HBoxContainer" parent="Levels/NamesContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1220.0
+margin_bottom = 39.0
+
+[node name="Previous" type="Label" parent="Levels/NamesContainer/Names"]
+margin_right = 557.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
-text = "< CURRENT >"
+text = "<"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Current" type="Label" parent="Levels/NamesContainer/Names"]
+margin_left = 565.0
+margin_right = 635.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 1, 0.690196, 0, 1 )
+text = "CURRENT"
 align = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Levels"]
-margin_top = 27.0
-margin_right = 1240.0
-margin_bottom = 134.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Levels/HBoxContainer"]
-margin_right = 616.0
-margin_bottom = 107.0
+[node name="Next" type="Label" parent="Levels/NamesContainer/Names"]
+margin_left = 643.0
+margin_right = 1200.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
+text = ">"
 
-[node name="Label" type="Label" parent="Levels/HBoxContainer/MarginContainer"]
+[node name="Info" type="HBoxContainer" parent="Levels"]
+margin_top = 67.0
+margin_right = 1240.0
+margin_bottom = 680.0
+size_flags_vertical = 3
+
+[node name="CodeContainer" type="MarginContainer" parent="Levels/Info"]
+margin_right = 616.0
+margin_bottom = 613.0
+size_flags_horizontal = 3
+script = ExtResource( 3 )
+
+[node name="Code" type="Label" parent="Levels/Info/CodeContainer"]
 margin_left = 20.0
-margin_top = 44.0
+margin_top = 20.0
 margin_right = 596.0
-margin_bottom = 63.0
+margin_bottom = 593.0
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Levels/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Levels/Info"]
 margin_left = 624.0
 margin_right = 1240.0
-margin_bottom = 107.0
+margin_bottom = 613.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Levels/HBoxContainer/VBoxContainer"]
+[node name="Display" type="MarginContainer" parent="Levels/Info/VBoxContainer"]
 margin_right = 616.0
-margin_bottom = 40.0
+margin_bottom = 302.0
+size_flags_vertical = 3
+script = ExtResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Levels/Info/VBoxContainer"]
+margin_top = 310.0
+margin_right = 616.0
+margin_bottom = 613.0
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Levels/HBoxContainer/VBoxContainer"]
-margin_top = 48.0
-margin_right = 616.0
-margin_bottom = 107.0
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Levels/Info/VBoxContainer/HBoxContainer"]
 margin_right = 200.0
-margin_bottom = 59.0
+margin_bottom = 303.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="Levels/Info/VBoxContainer/HBoxContainer/MarginContainer"]
 margin_left = 20.0
-margin_top = 20.0
+margin_top = 142.0
 margin_right = 180.0
-margin_bottom = 39.0
+margin_bottom = 161.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="Levels/Info/VBoxContainer/HBoxContainer"]
 margin_left = 208.0
 margin_right = 408.0
-margin_bottom = 59.0
+margin_bottom = 303.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+[node name="Label" type="Label" parent="Levels/Info/VBoxContainer/HBoxContainer/MarginContainer2"]
 margin_left = 20.0
-margin_top = 20.0
+margin_top = 142.0
 margin_right = 180.0
-margin_bottom = 39.0
+margin_bottom = 161.0
 size_flags_horizontal = 3
 
-[node name="MarginContainer3" type="MarginContainer" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="Levels/Info/VBoxContainer/HBoxContainer"]
 margin_left = 416.0
 margin_right = 616.0
-margin_bottom = 59.0
+margin_bottom = 303.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer3"]
+[node name="Label" type="Label" parent="Levels/Info/VBoxContainer/HBoxContainer/MarginContainer3"]
 margin_left = 20.0
-margin_top = 20.0
+margin_top = 142.0
 margin_right = 180.0
-margin_bottom = 39.0
+margin_bottom = 161.0
 size_flags_horizontal = 3
+
+[node name="Timer" type="Timer" parent="Levels"]
+[connection signal="timeout" from="Levels/Timer" to="Levels" method="_on_Timer_timeout"]

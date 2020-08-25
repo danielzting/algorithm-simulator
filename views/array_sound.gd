@@ -22,7 +22,7 @@ func _process(delta):
 func _init():
     add_child(player)
     player.stream = AudioStreamGenerator.new()
-    player.stream.buffer_length = 0.05
+    player.stream.buffer_length = 0.1
     player.stream.mix_rate = SAMPLE_HZ
     _playback = player.get_stream_playback()
     player.play()

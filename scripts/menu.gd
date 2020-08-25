@@ -8,7 +8,7 @@ func _ready():
     $Display.add_child(ArrayView.new(_level))
 
 func _on_Start_pressed():
-    GlobalScene.change_scene("res://scenes/levels.tscn")
+    GlobalScene.change_scene("res://scenes/levels_redesign.tscn")
 
 func _on_Credits_pressed():
     GlobalScene.change_scene("res://scenes/credits.tscn")
