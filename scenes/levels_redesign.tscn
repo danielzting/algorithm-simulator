@@ -1,0 +1,101 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/theme.theme" type="Theme" id=1]
+[ext_resource path="res://scenes/levels_redesign.gd" type="Script" id=2]
+
+[node name="Viewport" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Levels" type="VBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1260.0
+margin_bottom = 700.0
+script = ExtResource( 2 )
+
+[node name="Names" type="HBoxContainer" parent="Levels"]
+margin_right = 1240.0
+margin_bottom = 19.0
+
+[node name="Current" type="Label" parent="Levels/Names"]
+margin_right = 1240.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "< CURRENT >"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Levels"]
+margin_top = 27.0
+margin_right = 1240.0
+margin_bottom = 134.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Levels/HBoxContainer"]
+margin_right = 616.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Levels/HBoxContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 44.0
+margin_right = 596.0
+margin_bottom = 63.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Levels/HBoxContainer"]
+margin_left = 624.0
+margin_right = 1240.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Levels/HBoxContainer/VBoxContainer"]
+margin_right = 616.0
+margin_bottom = 40.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Levels/HBoxContainer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 616.0
+margin_bottom = 107.0
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 180.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 208.0
+margin_right = 408.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 180.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 416.0
+margin_right = 616.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Levels/HBoxContainer/VBoxContainer/HBoxContainer/MarginContainer3"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 180.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
