@@ -16,7 +16,7 @@ const LEVELS = [
 const MIN_WAIT = 1.0 / 32 # Should be greater than maximum frame time
 const MAX_WAIT = 4
 const MIN_SIZE = 8
-const MAX_SIZE = 256
+const MAX_SIZE = 128
 
 var _index = 0
 var _level: ComparisonSort
@@ -26,9 +26,9 @@ func _ready():
     _level = LEVELS[_index].new(ArrayModel.new(_size))
     _level.connect("done", self, "_on_ComparisonSort_done")
     $NamesContainer/Names/Current.text = _level.NAME
-    for child in $Info/VBoxContainer/Display.get_children():
+    for child in $Level/Info/Display.get_children():
         child.queue_free()
-    $Info/VBoxContainer/Display.add_child(ArrayView.new(_level))
+    $Level/Info/Display.add_child(ArrayView.new(_level))
     $Timer.start()
 
 func _switch_level(index):

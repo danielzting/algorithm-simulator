@@ -55,78 +55,111 @@ margin_bottom = 19.0
 size_flags_horizontal = 3
 text = ">"
 
-[node name="Info" type="HBoxContainer" parent="Levels"]
+[node name="Level" type="HBoxContainer" parent="Levels"]
 margin_top = 67.0
 margin_right = 1240.0
 margin_bottom = 680.0
 size_flags_vertical = 3
 
-[node name="CodeContainer" type="MarginContainer" parent="Levels/Info"]
+[node name="CodeContainer" type="MarginContainer" parent="Levels/Level"]
 margin_right = 616.0
 margin_bottom = 613.0
 size_flags_horizontal = 3
 script = ExtResource( 3 )
 
-[node name="Code" type="Label" parent="Levels/Info/CodeContainer"]
+[node name="Code" type="Label" parent="Levels/Level/CodeContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 596.0
 margin_bottom = 593.0
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Levels/Info"]
+[node name="Info" type="VBoxContainer" parent="Levels/Level"]
 margin_left = 624.0
 margin_right = 1240.0
 margin_bottom = 613.0
 size_flags_horizontal = 3
 
-[node name="Display" type="MarginContainer" parent="Levels/Info/VBoxContainer"]
+[node name="Display" type="MarginContainer" parent="Levels/Level/Info"]
 margin_right = 616.0
 margin_bottom = 302.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Levels/Info/VBoxContainer"]
+[node name="Footer" type="HBoxContainer" parent="Levels/Level/Info"]
 margin_top = 310.0
 margin_right = 616.0
 margin_bottom = 613.0
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Levels/Info/VBoxContainer/HBoxContainer"]
-margin_right = 200.0
+[node name="Meta" type="VBoxContainer" parent="Levels/Level/Info/Footer"]
+margin_right = 304.0
 margin_bottom = 303.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Levels/Info/VBoxContainer/HBoxContainer/MarginContainer"]
-margin_left = 20.0
-margin_top = 142.0
-margin_right = 180.0
-margin_bottom = 161.0
-size_flags_horizontal = 3
+[node name="StatsContainer" type="MarginContainer" parent="Levels/Level/Info/Footer/Meta"]
+margin_right = 304.0
+margin_bottom = 125.0
+script = ExtResource( 3 )
 
-[node name="MarginContainer2" type="MarginContainer" parent="Levels/Info/VBoxContainer/HBoxContainer"]
-margin_left = 208.0
-margin_right = 408.0
+[node name="Stats" type="Label" parent="Levels/Level/Info/Footer/Meta/StatsContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 284.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+text = "Best-case time:
+Average-case time:
+Worst-case time:
+Worst-case space:"
+
+[node name="ScoresContainer" type="MarginContainer" parent="Levels/Level/Info/Footer/Meta"]
+margin_top = 133.0
+margin_right = 304.0
 margin_bottom = 303.0
-size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="Levels/Info/VBoxContainer/HBoxContainer/MarginContainer2"]
+[node name="Scores" type="HBoxContainer" parent="Levels/Level/Info/Footer/Meta/ScoresContainer"]
 margin_left = 20.0
-margin_top = 142.0
-margin_right = 180.0
-margin_bottom = 161.0
-size_flags_horizontal = 3
+margin_top = 20.0
+margin_right = 284.0
+margin_bottom = 150.0
 
-[node name="MarginContainer3" type="MarginContainer" parent="Levels/Info/VBoxContainer/HBoxContainer"]
-margin_left = 416.0
+[node name="Sizes" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores"]
+margin_right = 30.0
+margin_bottom = 129.0
+text = "
+8
+16
+32
+64
+128"
+
+[node name="Times" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores"]
+margin_left = 38.0
+margin_right = 264.0
+margin_bottom = 129.0
+size_flags_horizontal = 3
+text = "HIGH SCORES
+INF
+INF
+INF
+INF
+INF"
+align = 1
+
+[node name="ControlsContainer" type="MarginContainer" parent="Levels/Level/Info/Footer"]
+margin_left = 312.0
 margin_right = 616.0
 margin_bottom = 303.0
 size_flags_horizontal = 3
+script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="Levels/Info/VBoxContainer/HBoxContainer/MarginContainer3"]
+[node name="Controls" type="Label" parent="Levels/Level/Info/Footer/ControlsContainer"]
 margin_left = 20.0
 margin_top = 142.0
-margin_right = 180.0
+margin_right = 284.0
 margin_bottom = 161.0
 size_flags_horizontal = 3
 

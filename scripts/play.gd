@@ -31,7 +31,6 @@ func _input(event):
 func _on_Level_done(level):
     set_process(false)
     var time = get_score()
-    var moves = level.moves
     var restart = Button.new()
     restart.text = "RESTART LEVEL"
     restart.connect("pressed", self, "_on_Button_pressed", ["play"])
