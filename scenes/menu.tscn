@@ -5,8 +5,10 @@
 [ext_resource path="res://scripts/border.gd" type="Script" id=3]
 
 [node name="Viewport" type="MarginContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.00078125
+anchor_top = 0.00138889
+anchor_right = 1.00078
+anchor_bottom = 1.00139
 theme = ExtResource( 2 )
 custom_constants/margin_right = 40
 custom_constants/margin_top = 30
@@ -39,35 +41,76 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Instructions" type="MarginContainer" parent="MainMenu/Display"]
+visible = false
+margin_left = 480.0
+margin_top = 201.0
+margin_right = 720.0
+margin_bottom = 397.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Display/Instructions"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 220.0
+margin_bottom = 176.0
+
+[node name="Label" type="Label" parent="MainMenu/Display/Instructions/VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 129.0
+size_flags_horizontal = 4
+text = "W - bigger
+A - slower
+S - smaller
+D - faster
+M - toggle sound
+F - big preview mode"
+
+[node name="Button" type="Button" parent="MainMenu/Display/Instructions/VBoxContainer"]
+margin_top = 137.0
+margin_right = 200.0
+margin_bottom = 156.0
+text = "OK"
+
 [node name="Spacing" type="Control" parent="MainMenu"]
 margin_top = 633.0
 margin_right = 1200.0
 margin_bottom = 633.0
 
 [node name="Buttons" type="HBoxContainer" parent="MainMenu"]
-margin_left = 290.0
+margin_left = 20.0
 margin_top = 641.0
-margin_right = 910.0
+margin_right = 1180.0
 margin_bottom = 660.0
 size_flags_horizontal = 4
 custom_constants/separation = 500
 
+[node name="Help" type="Button" parent="MainMenu/Buttons"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "HELP"
+
 [node name="Start" type="Button" parent="MainMenu/Buttons"]
-margin_right = 50.0
+margin_left = 540.0
+margin_right = 590.0
 margin_bottom = 19.0
 size_flags_horizontal = 4
 text = "START"
 flat = true
 
 [node name="Credits" type="Button" parent="MainMenu/Buttons"]
-margin_left = 550.0
-margin_right = 620.0
+margin_left = 1090.0
+margin_right = 1160.0
 margin_bottom = 19.0
 text = "CREDITS"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+[connection signal="pressed" from="MainMenu/Display/Instructions/VBoxContainer/Button" to="MainMenu" method="_on_Button_pressed"]
+[connection signal="pressed" from="MainMenu/Buttons/Help" to="MainMenu" method="_on_Help_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Start" to="MainMenu" method="_on_Start_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Credits" to="MainMenu" method="_on_Credits_pressed"]
 [connection signal="timeout" from="Timer" to="MainMenu" method="_on_Timer_timeout"]
