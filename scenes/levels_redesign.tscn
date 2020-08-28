@@ -82,19 +82,19 @@ size_flags_horizontal = 3
 
 [node name="Display" type="MarginContainer" parent="Levels/Level/Info"]
 margin_right = 616.0
-margin_bottom = 302.0
+margin_bottom = 276.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
 [node name="Footer" type="HBoxContainer" parent="Levels/Level/Info"]
-margin_top = 310.0
+margin_top = 284.0
 margin_right = 616.0
 margin_bottom = 613.0
 size_flags_vertical = 3
 
 [node name="Meta" type="VBoxContainer" parent="Levels/Level/Info/Footer"]
 margin_right = 304.0
-margin_bottom = 303.0
+margin_bottom = 329.0
 size_flags_horizontal = 3
 
 [node name="StatsContainer" type="MarginContainer" parent="Levels/Level/Info/Footer/Meta"]
@@ -116,51 +116,74 @@ Worst-case space:"
 [node name="ScoresContainer" type="MarginContainer" parent="Levels/Level/Info/Footer/Meta"]
 margin_top = 133.0
 margin_right = 304.0
-margin_bottom = 303.0
+margin_bottom = 329.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
-[node name="Scores" type="HBoxContainer" parent="Levels/Level/Info/Footer/Meta/ScoresContainer"]
+[node name="Scores" type="VBoxContainer" parent="Levels/Level/Info/Footer/Meta/ScoresContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 284.0
-margin_bottom = 150.0
+margin_bottom = 176.0
 
-[node name="Sizes" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores"]
+[node name="Header" type="HBoxContainer" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores"]
+margin_right = 264.0
+margin_bottom = 41.0
+
+[node name="Size" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores/Header"]
+margin_right = 40.0
+margin_bottom = 41.0
+text = "SIZE
+----"
+
+[node name="Time" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores/Header"]
+margin_left = 48.0
+margin_right = 264.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+text = "HIGH SCORE
+----------"
+align = 2
+
+[node name="Data" type="HBoxContainer" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores"]
+margin_top = 49.0
+margin_right = 264.0
+margin_bottom = 156.0
+
+[node name="Sizes" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores/Data"]
 margin_right = 30.0
-margin_bottom = 129.0
-text = "
-8
+margin_bottom = 107.0
+text = "8
 16
 32
 64
 128"
 
-[node name="Times" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores"]
+[node name="Times" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores/Data"]
 margin_left = 38.0
 margin_right = 264.0
-margin_bottom = 129.0
+margin_bottom = 107.0
 size_flags_horizontal = 3
-text = "HIGH SCORES
-INF
+text = "INF
 INF
 INF
 INF
 INF"
-align = 1
+align = 2
+uppercase = true
 
 [node name="ControlsContainer" type="MarginContainer" parent="Levels/Level/Info/Footer"]
 margin_left = 312.0
 margin_right = 616.0
-margin_bottom = 303.0
+margin_bottom = 329.0
 size_flags_horizontal = 3
 script = ExtResource( 3 )
 
 [node name="Controls" type="Label" parent="Levels/Level/Info/Footer/ControlsContainer"]
 margin_left = 20.0
-margin_top = 142.0
+margin_top = 155.0
 margin_right = 284.0
-margin_bottom = 161.0
+margin_bottom = 174.0
 size_flags_horizontal = 3
 
 [node name="Timer" type="Timer" parent="Levels"]

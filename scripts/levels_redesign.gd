@@ -30,6 +30,16 @@ func _ready():
         child.queue_free()
     $Level/Info/Display.add_child(ArrayView.new(_level))
     $Timer.start()
+    _load_scores(_level)
+
+func _load_scores(level):
+    var data = $Level/Info/Footer/Meta/ScoresContainer/Scores/Data
+    data.get_node("Times").text = ""
+    for i in data.get_node("Sizes").text.split("\n"):
+        var time = str(GlobalScore.get_time(level.NAME, int(i)))
+        data.get_node("Times").text += time
+        if int(i) != MAX_SIZE:
+            data.get_node("Times").text += "\n"
 
 func _switch_level(index):
     if index == -1:
