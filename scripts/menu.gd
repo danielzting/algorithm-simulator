@@ -14,9 +14,9 @@ func _on_Credits_pressed():
     GlobalScene.change_scene("res://scenes/credits.tscn")
 
 func _on_Help_pressed():
-    $Display/Instructions.show()
+    $Display/InstructionsContainer.show()
     $Display/HBoxContainer.hide()
-    $Display/Instructions/VBoxContainer/Button.grab_focus()
+    $Display/InstructionsContainer/Instructions/Button.grab_focus()
 
 func _on_Timer_timeout():
     _level.next(null)
@@ -27,6 +27,6 @@ func _input(event):
         get_tree().quit()
 
 func _on_Button_pressed():
-    $Display/Instructions.hide()
+    $Display/InstructionsContainer.hide()
     $Display/HBoxContainer.show()
     $Buttons/Start.grab_focus()

@@ -26,14 +26,14 @@ func _ready():
     _level = LEVELS[_index].new(ArrayModel.new(_size))
     _level.connect("done", self, "_on_ComparisonSort_done")
     $NamesContainer/Names/Current.text = _level.NAME
-    for child in $Level/Info/Display.get_children():
+    for child in $Level/Right/Display.get_children():
         child.queue_free()
-    $Level/Info/Display.add_child(ArrayView.new(_level))
+    $Level/Right/Display.add_child(ArrayView.new(_level))
     $Timer.start()
     _load_scores(_level)
 
 func _load_scores(level):
-    var data = $Level/Info/Footer/Meta/ScoresContainer/Scores/Data
+    var data = $Level/Right/Info/ScoresContainer/Scores/Data
     data.get_node("Times").text = ""
     for i in data.get_node("Sizes").text.split("\n"):
         var time = str(GlobalScore.get_time(level.NAME, int(i)))

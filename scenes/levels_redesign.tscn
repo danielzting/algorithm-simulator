@@ -61,96 +61,95 @@ margin_right = 1240.0
 margin_bottom = 680.0
 size_flags_vertical = 3
 
-[node name="CodeContainer" type="MarginContainer" parent="Levels/Level"]
+[node name="Left" type="MarginContainer" parent="Levels/Level"]
 margin_right = 616.0
 margin_bottom = 613.0
 size_flags_horizontal = 3
 script = ExtResource( 3 )
 
-[node name="Code" type="Label" parent="Levels/Level/CodeContainer"]
+[node name="Code" type="Label" parent="Levels/Level/Left"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 596.0
 margin_bottom = 593.0
 size_flags_vertical = 3
+text = "\"\"\"
+This is a description for the level in the form of psuedocode.
+\"\"\"
 
-[node name="Info" type="VBoxContainer" parent="Levels/Level"]
+def algorithm(parameter):
+    return result"
+autowrap = true
+
+[node name="Right" type="VBoxContainer" parent="Levels/Level"]
 margin_left = 624.0
 margin_right = 1240.0
 margin_bottom = 613.0
 size_flags_horizontal = 3
 
-[node name="Display" type="MarginContainer" parent="Levels/Level/Info"]
+[node name="Display" type="MarginContainer" parent="Levels/Level/Right"]
 margin_right = 616.0
-margin_bottom = 276.0
+margin_bottom = 431.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
-[node name="Footer" type="HBoxContainer" parent="Levels/Level/Info"]
-margin_top = 284.0
+[node name="Info" type="HBoxContainer" parent="Levels/Level/Right"]
+margin_top = 439.0
 margin_right = 616.0
 margin_bottom = 613.0
-size_flags_vertical = 3
 
-[node name="Meta" type="VBoxContainer" parent="Levels/Level/Info/Footer"]
-margin_right = 304.0
-margin_bottom = 329.0
+[node name="ControlsContainer" type="MarginContainer" parent="Levels/Level/Right/Info"]
+margin_right = 405.0
+margin_bottom = 174.0
 size_flags_horizontal = 3
-
-[node name="StatsContainer" type="MarginContainer" parent="Levels/Level/Info/Footer/Meta"]
-margin_right = 304.0
-margin_bottom = 125.0
+size_flags_stretch_ratio = 2.0
 script = ExtResource( 3 )
 
-[node name="Stats" type="Label" parent="Levels/Level/Info/Footer/Meta/StatsContainer"]
+[node name="Controls" type="Label" parent="Levels/Level/Right/Info/ControlsContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 284.0
-margin_bottom = 105.0
-size_flags_horizontal = 3
-text = "Best-case time:
-Average-case time:
-Worst-case time:
-Worst-case space:"
+margin_right = 385.0
+margin_bottom = 154.0
+size_flags_vertical = 1
+text = "These are the controls for the level."
+autowrap = true
 
-[node name="ScoresContainer" type="MarginContainer" parent="Levels/Level/Info/Footer/Meta"]
-margin_top = 133.0
-margin_right = 304.0
-margin_bottom = 329.0
-size_flags_vertical = 3
+[node name="ScoresContainer" type="MarginContainer" parent="Levels/Level/Right/Info"]
+margin_left = 413.0
+margin_right = 616.0
+margin_bottom = 174.0
+size_flags_horizontal = 3
 script = ExtResource( 3 )
 
-[node name="Scores" type="VBoxContainer" parent="Levels/Level/Info/Footer/Meta/ScoresContainer"]
+[node name="Scores" type="VBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 284.0
-margin_bottom = 176.0
+margin_right = 183.0
+margin_bottom = 154.0
 
-[node name="Header" type="HBoxContainer" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores"]
-margin_right = 264.0
-margin_bottom = 41.0
+[node name="Header" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
+margin_right = 163.0
+margin_bottom = 19.0
 
-[node name="Size" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores/Header"]
+[node name="Size" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Header"]
 margin_right = 40.0
-margin_bottom = 41.0
-text = "SIZE
-----"
+margin_bottom = 19.0
+text = "SIZE"
 
-[node name="Time" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores/Header"]
+[node name="Time" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Header"]
 margin_left = 48.0
-margin_right = 264.0
-margin_bottom = 41.0
+margin_right = 163.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
-text = "HIGH SCORE
-----------"
+text = "HIGH SCORE"
 align = 2
 
-[node name="Data" type="HBoxContainer" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores"]
-margin_top = 49.0
-margin_right = 264.0
-margin_bottom = 156.0
+[node name="Data" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
+margin_top = 27.0
+margin_right = 163.0
+margin_bottom = 134.0
 
-[node name="Sizes" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores/Data"]
+[node name="Sizes" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Data"]
 margin_right = 30.0
 margin_bottom = 107.0
 text = "8
@@ -159,9 +158,9 @@ text = "8
 64
 128"
 
-[node name="Times" type="Label" parent="Levels/Level/Info/Footer/Meta/ScoresContainer/Scores/Data"]
+[node name="Times" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Data"]
 margin_left = 38.0
-margin_right = 264.0
+margin_right = 163.0
 margin_bottom = 107.0
 size_flags_horizontal = 3
 text = "INF
@@ -171,20 +170,6 @@ INF
 INF"
 align = 2
 uppercase = true
-
-[node name="ControlsContainer" type="MarginContainer" parent="Levels/Level/Info/Footer"]
-margin_left = 312.0
-margin_right = 616.0
-margin_bottom = 329.0
-size_flags_horizontal = 3
-script = ExtResource( 3 )
-
-[node name="Controls" type="Label" parent="Levels/Level/Info/Footer/ControlsContainer"]
-margin_left = 20.0
-margin_top = 155.0
-margin_right = 284.0
-margin_bottom = 174.0
-size_flags_horizontal = 3
 
 [node name="Timer" type="Timer" parent="Levels"]
 [connection signal="timeout" from="Levels/Timer" to="Levels" method="_on_Timer_timeout"]
