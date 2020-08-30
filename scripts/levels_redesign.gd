@@ -18,11 +18,13 @@ const MAX_WAIT = 4
 const MIN_SIZE = 8
 const MAX_SIZE = 128
 
-var _index = 0
+var _index = LEVELS.find(GlobalScene.get_param("level"))
 var _level: ComparisonSort
-var _size = ArrayModel.DEFAULT_SIZE
+var _size = GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)
 
 func _ready():
+    if _index == -1:
+        _index = 0
     _level = LEVELS[_index].new(ArrayModel.new(_size))
     _level.connect("done", self, "_on_ComparisonSort_done")
     $NamesContainer/Names/Current.text = _level.NAME

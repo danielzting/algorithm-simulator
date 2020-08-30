@@ -73,9 +73,7 @@ margin_top = 20.0
 margin_right = 596.0
 margin_bottom = 593.0
 size_flags_vertical = 3
-text = "\"\"\"
-This is a description for the level in the form of psuedocode.
-\"\"\"
+text = "This is a description for the level in the form of psuedocode.
 
 def algorithm(parameter):
     return result"
