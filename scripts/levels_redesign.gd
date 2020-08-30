@@ -32,6 +32,8 @@ func _ready():
         child.queue_free()
     $Level/Right/Display.add_child(ArrayView.new(_level))
     $Timer.start()
+    $Level/Left/Code.text = _level.DESCRIPTION
+    $Level/Right/Info/ControlsContainer/Controls.text = _level.CONTROLS
     _load_scores(_level)
 
 func _load_scores(level):

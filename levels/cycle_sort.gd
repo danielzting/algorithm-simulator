@@ -1,9 +1,11 @@
 """
 CYCLE SORT
 
+
 Cycle sort repeatedly counts the number of elements less than the first
 and swaps it with that index until the smallest element is reached. Then
 it does this process starting at the next out-of-place element.
+
 
 If the highlighted element is less than the pointer, hit LEFT ARROW.
 Otherwise, hit RIGHT ARROW.

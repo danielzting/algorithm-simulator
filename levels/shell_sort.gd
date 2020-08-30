@@ -1,8 +1,10 @@
 """
 SHELL SORT
 
+
 Shell sort is a variation of insertion sort that sorts arrays separated
 by gaps.
+
 
 Hit LEFT ARROW to swap the two highlighted elements as long as they are
 out of order. When this is no longer the case, hit RIGHT ARROW to
