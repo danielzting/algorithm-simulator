@@ -1,7 +1,9 @@
 """
 COMB SORT
 
+
 Comb sort is a variant of bubble sort that operates on gapped arrays.
+
 
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.

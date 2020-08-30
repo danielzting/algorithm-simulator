@@ -1,8 +1,10 @@
 """
 COCKTAIL SORT
 
+
 Cocktail shaker sort is a variation of bubble sort that
 alternates going backwards and forwards.
+
 
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.

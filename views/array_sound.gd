@@ -22,7 +22,7 @@ func _process(delta):
 func _init():
     add_child(player)
     player.stream = AudioStreamGenerator.new()
-    player.stream.buffer_length = 0.05
+    player.stream.buffer_length = 0.1
     player.stream.mix_rate = SAMPLE_HZ
     _playback = player.get_stream_playback()
     player.play()
@@ -32,7 +32,7 @@ func triangle(x):
     return 2 / PI * asin(sin(PI * x))
 
 func _input(event):
-    if event.is_action_pressed("sound_toggle"):
+    if event.is_action_pressed("sound"):
         # Prevent event from propagating to ComparisonSort trigger
         get_tree().set_input_as_handled()
         var bus = AudioServer.get_bus_index("Master")

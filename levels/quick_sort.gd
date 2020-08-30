@@ -1,6 +1,7 @@
 """
 QUICKSORT
 
+
 Quicksort designates the last element as the pivot and puts everything
 less than the pivot before it and everything greater after it. This
 partitioning is done by iterating through the array while keeping track
@@ -8,6 +9,7 @@ of a pointer initially set to the first element. Every time an element
 less than the pivot is encountered, it is swapped with the pointed
 element and the pointer moves forward. At the end, the pointer and pivot
 are swapped, and the process is repeated on the left and right halves.
+
 
 If the highlighted element is less than the pivot or the pivot has been
 reached, press LEFT ARROW to swap it with the pointer. Otherwise, press

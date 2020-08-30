@@ -1,7 +1,9 @@
 """
 BOGOSORT
 
+
 Generates random permutations until the array is sorted.
+
 
 Keep on hitting RIGHT ARROW to CONTINUE and hope for the best!
 """

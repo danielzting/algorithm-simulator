@@ -1,8 +1,10 @@
 """
 ODD-EVEN SORT
 
+
 Odd-even sort is a variant of bubble sort that alternates on elements at
 odd and even indices.
+
 
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
