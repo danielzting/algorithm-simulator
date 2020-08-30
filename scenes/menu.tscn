@@ -42,6 +42,7 @@ __meta__ = {
 }
 
 [node name="InstructionsContainer" type="MarginContainer" parent="MainMenu/Display"]
+visible = false
 margin_left = 509.0
 margin_top = 186.0
 margin_right = 689.0
@@ -71,8 +72,8 @@ A
 S
 D
 M
-space
-esc"
+esc
+space"
 
 [node name="Actions" type="Label" parent="MainMenu/Display/InstructionsContainer/Instructions/Controls"]
 margin_left = 70.0
@@ -83,8 +84,8 @@ slower
 smaller
 faster
 sound
-confirm
-back"
+back
+confirm"
 align = 2
 
 [node name="Button" type="Button" parent="MainMenu/Display/InstructionsContainer/Instructions"]
