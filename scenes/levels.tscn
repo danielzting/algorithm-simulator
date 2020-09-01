@@ -91,10 +91,10 @@ script = ExtResource( 3 )
 
 [node name="TypesContainer" type="MarginContainer" parent="Levels/Level/Right/Display"]
 visible = false
-margin_left = 218.0
-margin_top = 105.0
-margin_right = 398.0
-margin_bottom = 326.0
+margin_left = 288.0
+margin_top = 195.0
+margin_right = 328.0
+margin_bottom = 235.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource( 3 )
@@ -102,8 +102,8 @@ script = ExtResource( 3 )
 [node name="Types" type="VBoxContainer" parent="Levels/Level/Right/Display/TypesContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 160.0
-margin_bottom = 201.0
+margin_right = 20.0
+margin_bottom = 20.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 

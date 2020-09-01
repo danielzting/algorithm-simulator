@@ -21,7 +21,8 @@ const MAX_SIZE = 128
 var _index = LEVELS.find(GlobalScene.get_param("level"))
 var _level: ComparisonSort
 var _size = GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)
-var _data_type = ArrayModel.DATA_TYPES.RANDOM_UNIQUE
+var _data_type = GlobalScene.get_param(
+    "data_type", ArrayModel.DATA_TYPES.RANDOM_UNIQUE)
 
 func _ready():
     var types = $Level/Right/Display/TypesContainer/Types
@@ -108,7 +109,7 @@ func _on_Timer_timeout():
 
 func _on_Current_pressed():
     GlobalScene.change_scene("res://scenes/play.tscn",
-        {"level": LEVELS[_index], "size": _size})
+        {"level": LEVELS[_index], "size": _size, "data_type": _data_type})
 
 func _on_Button_pressed(data_type):
     AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
