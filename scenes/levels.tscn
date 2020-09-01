@@ -40,13 +40,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Current" type="Label" parent="Levels/NamesContainer/Names"]
+[node name="Current" type="Button" parent="Levels/NamesContainer/Names"]
 margin_left = 565.0
 margin_right = 635.0
 margin_bottom = 19.0
-custom_colors/font_color = Color( 1, 0.690196, 0, 1 )
 text = "CURRENT"
-align = 1
 
 [node name="Next" type="Label" parent="Levels/NamesContainer/Names"]
 margin_left = 643.0
@@ -90,6 +88,30 @@ margin_right = 616.0
 margin_bottom = 431.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
+
+[node name="TypesContainer" type="MarginContainer" parent="Levels/Level/Right/Display"]
+visible = false
+margin_left = 218.0
+margin_top = 105.0
+margin_right = 398.0
+margin_bottom = 326.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource( 3 )
+
+[node name="Types" type="VBoxContainer" parent="Levels/Level/Right/Display/TypesContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 160.0
+margin_bottom = 201.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ArrayView" type="HBoxContainer" parent="Levels/Level/Right/Display"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 596.0
+margin_bottom = 411.0
 
 [node name="Info" type="HBoxContainer" parent="Levels/Level/Right"]
 margin_top = 439.0
@@ -170,4 +192,5 @@ align = 2
 uppercase = true
 
 [node name="Timer" type="Timer" parent="Levels"]
+[connection signal="pressed" from="Levels/NamesContainer/Names/Current" to="Levels" method="_on_Current_pressed"]
 [connection signal="timeout" from="Levels/Timer" to="Levels" method="_on_Timer_timeout"]

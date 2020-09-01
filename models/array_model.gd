@@ -6,17 +6,54 @@ signal swapped(i, j)
 signal sorted(i, j)
 
 const DEFAULT_SIZE = 16
+enum DATA_TYPES {
+    RANDOM_UNIQUE,
+    TRUE_RANDOM,
+    REVERSED,
+    FEW_UNIQUE,
+    ALL_THE_SAME,
+    NEARLY_SORTED,
+    ALREADY_SORTED,
+}
 
 var _array = []
 var size = 0 setget , get_size
 var biggest = null
 
-func _init(size=DEFAULT_SIZE):
+func _init(size=DEFAULT_SIZE, data_type=DATA_TYPES.RANDOM_UNIQUE):
     """Randomize the array."""
-    for i in range(1, size + 1):
-        _array.append(i)
-    _array.shuffle()
-    biggest = _array.max()
+    match data_type:
+        DATA_TYPES.RANDOM_UNIQUE:
+            for i in range(1, size + 1):
+                _array.append(i)
+            _array.shuffle()
+        DATA_TYPES.TRUE_RANDOM:
+            for i in range(size):
+                _array.append(randi() % size + 1)
+        DATA_TYPES.REVERSED:
+            for i in range(size, 0, -1):
+                _array.append(i)
+        DATA_TYPES.FEW_UNIQUE:
+            var values = []
+            for i in range(sqrt(size)):
+                values.append(randi() % size + 1)
+            for i in range(size):
+                _array.append(values[randi() % values.size()])
+        DATA_TYPES.ALL_THE_SAME:
+            for i in range(size):
+                _array.append(1)
+        DATA_TYPES.NEARLY_SORTED:
+            # We interpret nearly sorted as every element being K or
+            # less places away from its sorted position, where K is a
+            # small number relative to the size of the array.
+            for i in range(1, size + 1):
+                _array.append(i)
+            _array.shuffle()
+            _nearly_sort(0, size - 1, ceil(sqrt(size)))
+        DATA_TYPES.ALREADY_SORTED:
+            for i in range(1, size + 1):
+                _array.append(i)
+    biggest = _array.max() if data_type != DATA_TYPES.ALL_THE_SAME else 0
 
 func at(i):
     """Retrieve the value of the element at index i."""
@@ -24,7 +61,7 @@ func at(i):
 
 func frac(i):
     """Get the quotient of the element at index i and the biggest."""
-    return float(_array[i]) / biggest
+    return float(_array[i]) / biggest if biggest != 0 else 0.5
 
 func is_sorted():
     """Check if the array is in monotonically increasing order."""
@@ -52,3 +89,16 @@ func sort(i, j):
 
 func get_size():
     return _array.size()
+
+func _nearly_sort(start, end, k):
+    # If false, then no element in this subarray is more than K places
+    # away from its sorted position, and we can exit
+    if end - start > k:
+        var pointer = start
+        for i in range(start, end):
+            if _array[i] < _array[end]:
+                swap(i, pointer)
+                pointer += 1
+        swap(pointer, end)
+        _nearly_sort(start, pointer - 1, k)
+        _nearly_sort(pointer + 1, end, k)

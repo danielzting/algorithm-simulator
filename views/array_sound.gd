@@ -3,7 +3,7 @@ extends Node
 
 const SAMPLE_HZ = 44100
 const MIN_HZ = 110
-const MAX_HZ = 880
+const MAX_HZ = 440
 
 var frac: float
 var player = AudioStreamPlayer.new()
@@ -32,7 +32,7 @@ func triangle(x):
     return 2 / PI * asin(sin(PI * x))
 
 func _input(event):
-    if event.is_action_pressed("sound"):
+    if event.is_action_pressed("toggle_sound"):
         # Prevent event from propagating to ComparisonSort trigger
         get_tree().set_input_as_handled()
         var bus = AudioServer.get_bus_index("Master")

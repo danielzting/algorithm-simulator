@@ -21,20 +21,39 @@ const MAX_SIZE = 128
 var _index = LEVELS.find(GlobalScene.get_param("level"))
 var _level: ComparisonSort
 var _size = GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)
+var _data_type = ArrayModel.DATA_TYPES.RANDOM_UNIQUE
 
 func _ready():
+    var types = $Level/Right/Display/TypesContainer/Types
+    for type in ArrayModel.DATA_TYPES:
+        var button = Button.new()
+        button.text = type.replace("_", " ")
+        button.connect("pressed", self, "_on_Button_pressed", [type])
+        types.add_child(button)
+    var top = types.get_child(0)
+    var bottom = types.get_child(types.get_child_count() - 1)
+    top.focus_neighbour_top = bottom.get_path()
+    bottom.focus_neighbour_bottom = top.get_path()
+    _reload()
+
+func _reload():
+    $NamesContainer/Names/Current.grab_focus()
     if _index == -1:
         _index = 0
-    _level = LEVELS[_index].new(ArrayModel.new(_size))
+    _level = LEVELS[_index].new(ArrayModel.new(_size, _data_type))
     _level.connect("done", self, "_on_ComparisonSort_done")
+    _load_scores(_level)
+    # Load level information
     $NamesContainer/Names/Current.text = _level.NAME
-    for child in $Level/Right/Display.get_children():
-        child.queue_free()
-    $Level/Right/Display.add_child(ArrayView.new(_level))
-    $Timer.start()
     $Level/Left/Code.text = _level.DESCRIPTION
     $Level/Right/Info/ControlsContainer/Controls.text = _level.CONTROLS
-    _load_scores(_level)
+    var view = $Level/Right/Display/ArrayView
+    $Level/Right/Display.remove_child(view)
+    view.queue_free()
+    view = ArrayView.new(_level)
+    view.name = "ArrayView"
+    $Level/Right/Display.add_child(view)
+    $Timer.start()
 
 func _load_scores(level):
     var data = $Level/Right/Info/ScoresContainer/Scores/Data
@@ -52,7 +71,7 @@ func _switch_level(index):
         _index = 0
     else:
         _index = index
-    _ready()
+    _reload()
 
 func _input(event):
     if event.is_action_pressed("ui_cancel"):
@@ -63,23 +82,38 @@ func _input(event):
         _switch_level(_index + 1)
     if event.is_action_pressed("bigger"):
         _size = min(_size * 2, MAX_SIZE)
-        _ready()
+        _reload()
     if event.is_action_pressed("smaller"):
         _size = max(_size / 2, MIN_SIZE)
-        _ready()
+        _reload()
     if event.is_action_pressed("faster"):
         $Timer.wait_time = max($Timer.wait_time / 2, MIN_WAIT)
     if event.is_action_pressed("slower"):
         $Timer.wait_time = min($Timer.wait_time * 2, MAX_WAIT)
-    if event.is_action_pressed("ui_accept"):
-        GlobalScene.change_scene("res://scenes/play.tscn",
-            {"level": LEVELS[_index], "size": _size})
+    if event.is_action_pressed("change_data"):
+        AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+        $Level/Right/Display/ArrayView.hide()
+        $Level/Right/Display/TypesContainer.show()
+        $Timer.stop()
+        $Level/Right/Display/TypesContainer/Types.get_child(0).grab_focus()
 
 func _on_ComparisonSort_done():
     $Timer.stop()
     yield(get_tree().create_timer(1), "timeout")
     if _level.array.is_sorted():
-        _ready()
+        _reload()
 
 func _on_Timer_timeout():
     _level.next(null)
+
+func _on_Current_pressed():
+    GlobalScene.change_scene("res://scenes/play.tscn",
+        {"level": LEVELS[_index], "size": _size})
+
+func _on_Button_pressed(data_type):
+    AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+    $Level/Right/Display/TypesContainer.hide()
+    $Level/Right/Display/ArrayView.show()
+    $Timer.start()
+    _data_type = ArrayModel.DATA_TYPES[data_type]
+    _reload()
