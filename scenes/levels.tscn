@@ -85,16 +85,16 @@ size_flags_horizontal = 3
 
 [node name="Display" type="MarginContainer" parent="Levels/Level/Right"]
 margin_right = 616.0
-margin_bottom = 431.0
+margin_bottom = 475.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
 [node name="TypesContainer" type="MarginContainer" parent="Levels/Level/Right/Display"]
 visible = false
 margin_left = 288.0
-margin_top = 195.0
+margin_top = 217.0
 margin_right = 328.0
-margin_bottom = 235.0
+margin_bottom = 257.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource( 3 )
@@ -111,16 +111,16 @@ size_flags_vertical = 4
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 596.0
-margin_bottom = 411.0
+margin_bottom = 455.0
 
 [node name="Info" type="HBoxContainer" parent="Levels/Level/Right"]
-margin_top = 439.0
+margin_top = 483.0
 margin_right = 616.0
 margin_bottom = 613.0
 
 [node name="ControlsContainer" type="MarginContainer" parent="Levels/Level/Right/Info"]
 margin_right = 405.0
-margin_bottom = 174.0
+margin_bottom = 130.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 script = ExtResource( 3 )
@@ -129,7 +129,7 @@ script = ExtResource( 3 )
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 385.0
-margin_bottom = 154.0
+margin_bottom = 110.0
 size_flags_vertical = 1
 text = "These are the controls for the level."
 autowrap = true
@@ -137,7 +137,7 @@ autowrap = true
 [node name="ScoresContainer" type="MarginContainer" parent="Levels/Level/Right/Info"]
 margin_left = 413.0
 margin_right = 616.0
-margin_bottom = 174.0
+margin_bottom = 130.0
 size_flags_horizontal = 3
 script = ExtResource( 3 )
 
@@ -145,7 +145,7 @@ script = ExtResource( 3 )
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 183.0
-margin_bottom = 154.0
+margin_bottom = 110.0
 
 [node name="Header" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
 margin_right = 163.0
@@ -167,25 +167,21 @@ align = 2
 [node name="Data" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
 margin_top = 27.0
 margin_right = 163.0
-margin_bottom = 134.0
+margin_bottom = 90.0
 
 [node name="Sizes" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Data"]
 margin_right = 30.0
-margin_bottom = 107.0
+margin_bottom = 63.0
 text = "8
-16
 32
-64
 128"
 
 [node name="Times" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Data"]
 margin_left = 38.0
 margin_right = 163.0
-margin_bottom = 107.0
+margin_bottom = 63.0
 size_flags_horizontal = 3
 text = "INF
-INF
-INF
 INF
 INF"
 align = 2

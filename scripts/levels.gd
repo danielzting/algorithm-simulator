@@ -13,7 +13,7 @@ const LEVELS = [
     OddEvenSort,
 ]
 
-const MIN_WAIT = 1.0 / 32 # Should be greater than maximum frame time
+const MIN_WAIT = 1.0 / 64
 const MAX_WAIT = 4
 const MIN_SIZE = 8
 const MAX_SIZE = 128
@@ -82,15 +82,15 @@ func _input(event):
     if event.is_action_pressed("ui_right", true):
         _switch_level(_index + 1)
     if event.is_action_pressed("bigger"):
-        _size = min(_size * 2, MAX_SIZE)
+        _size = min(_size * 4, MAX_SIZE)
         _reload()
     if event.is_action_pressed("smaller"):
-        _size = max(_size / 2, MIN_SIZE)
+        _size = max(_size / 4, MIN_SIZE)
         _reload()
     if event.is_action_pressed("faster"):
-        $Timer.wait_time = max($Timer.wait_time / 2, MIN_WAIT)
+        $Timer.wait_time = max($Timer.wait_time / 4, MIN_WAIT)
     if event.is_action_pressed("slower"):
-        $Timer.wait_time = min($Timer.wait_time * 2, MAX_WAIT)
+        $Timer.wait_time = min($Timer.wait_time * 4, MAX_WAIT)
     if event.is_action_pressed("change_data"):
         AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
         $Level/Right/Display/ArrayView.hide()
