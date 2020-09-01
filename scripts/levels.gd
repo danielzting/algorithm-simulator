@@ -48,12 +48,10 @@ func _reload():
     $NamesContainer/Names/Current.text = _level.NAME
     $Level/Left/Code.text = _level.DESCRIPTION
     $Level/Right/Info/ControlsContainer/Controls.text = _level.CONTROLS
-    var view = $Level/Right/Display/ArrayView
-    $Level/Right/Display.remove_child(view)
+    var view = $Level/Right/Display/HBoxContainer
+    view.get_parent().remove_child(view)
     view.queue_free()
-    view = ArrayView.new(_level)
-    view.name = "ArrayView"
-    $Level/Right/Display.add_child(view)
+    $Level/Right/Display.add_child(ArrayView.new(_level), true)
     $Timer.start()
 
 func _load_scores(level):
@@ -93,7 +91,7 @@ func _input(event):
         $Timer.wait_time = min($Timer.wait_time * 4, MAX_WAIT)
     if event.is_action_pressed("change_data"):
         AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
-        $Level/Right/Display/ArrayView.hide()
+        $Level/Right/Display/HBoxContainer.hide()
         $Level/Right/Display/TypesContainer.show()
         $Timer.stop()
         $Level/Right/Display/TypesContainer/Types.get_child(0).grab_focus()
@@ -114,7 +112,7 @@ func _on_Current_pressed():
 func _on_Button_pressed(data_type):
     AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
     $Level/Right/Display/TypesContainer.hide()
-    $Level/Right/Display/ArrayView.show()
+    $Level/Right/Display/HBoxContainer.show()
     $Timer.start()
     _data_type = ArrayModel.DATA_TYPES[data_type]
     _reload()

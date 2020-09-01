@@ -107,7 +107,7 @@ margin_bottom = 20.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="ArrayView" type="HBoxContainer" parent="Levels/Level/Right/Display"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Levels/Level/Right/Display"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 596.0
