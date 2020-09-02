@@ -99,14 +99,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource( 3 )
 
-[node name="Types" type="VBoxContainer" parent="Levels/Level/Right/Display/TypesContainer"]
-margin_left = 20.0
-margin_top = 20.0
-margin_right = 20.0
-margin_bottom = 20.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Levels/Level/Right/Display"]
 margin_left = 20.0
 margin_top = 20.0
@@ -186,6 +178,29 @@ INF
 INF"
 align = 2
 uppercase = true
+
+[node name="BigDisplay" type="MarginContainer" parent="Levels"]
+visible = false
+margin_top = 640.0
+margin_right = 1240.0
+margin_bottom = 680.0
+size_flags_vertical = 3
+script = ExtResource( 3 )
+
+[node name="TypesContainer" type="MarginContainer" parent="Levels/BigDisplay"]
+visible = false
+margin_left = 600.0
+margin_right = 640.0
+margin_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Levels/BigDisplay"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1220.0
+margin_bottom = 20.0
 
 [node name="Timer" type="Timer" parent="Levels"]
 [connection signal="pressed" from="Levels/NamesContainer/Names/Current" to="Levels" method="_on_Current_pressed"]

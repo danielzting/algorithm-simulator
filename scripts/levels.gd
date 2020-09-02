@@ -18,14 +18,21 @@ const MAX_WAIT = 4
 const MIN_SIZE = 8
 const MAX_SIZE = 128
 
-var _index = LEVELS.find(GlobalScene.get_param("level"))
+var _index = LEVELS.find(GlobalScene.get_param("level", LEVELS[0]))
 var _level: ComparisonSort
 var _size = GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)
 var _data_type = GlobalScene.get_param(
     "data_type", ArrayModel.DATA_TYPES.RANDOM_UNIQUE)
 
 func _ready():
-    var types = $Level/Right/Display/TypesContainer/Types
+    _load_types($Level/Right/Display/TypesContainer)
+    _load_types($BigDisplay/TypesContainer)
+    _reload()
+
+func _load_types(node):
+    var types = VBoxContainer.new()
+    types.name = "Types"
+    node.add_child(types)
     for type in ArrayModel.DATA_TYPES:
         var button = Button.new()
         button.text = type.replace("_", " ")
@@ -35,23 +42,34 @@ func _ready():
     var bottom = types.get_child(types.get_child_count() - 1)
     top.focus_neighbour_top = bottom.get_path()
     bottom.focus_neighbour_bottom = top.get_path()
-    _reload()
 
 func _reload():
-    $NamesContainer/Names/Current.grab_focus()
-    if _index == -1:
-        _index = 0
-    _level = LEVELS[_index].new(ArrayModel.new(_size, _data_type))
-    _level.connect("done", self, "_on_ComparisonSort_done")
+    # Load everything from scratch
+    _restart()
     _load_scores(_level)
-    # Load level information
     $NamesContainer/Names/Current.text = _level.NAME
     $Level/Left/Code.text = _level.DESCRIPTION
     $Level/Right/Info/ControlsContainer/Controls.text = _level.CONTROLS
-    var view = $Level/Right/Display/HBoxContainer
-    view.get_parent().remove_child(view)
-    view.queue_free()
-    $Level/Right/Display.add_child(ArrayView.new(_level), true)
+
+func _restart():
+    set_process_input(true)
+    # Only load in a restarted simulation
+    $NamesContainer/Names/Current.grab_focus()
+    _level = LEVELS[_index].new(ArrayModel.new(_size, _data_type))
+    _level.connect("done", self, "_on_ComparisonSort_done")
+    var view = $Level/Right/Display if $Level.visible else $BigDisplay
+    var other = $BigDisplay if $Level.visible else $Level/Right/Display
+    # Delete both ArrayViews if they exist
+    if other.get_node_or_null("HBoxContainer") != null:
+        other.get_node("HBoxContainer").queue_free()
+    var array_view = view.get_node_or_null("HBoxContainer")
+    if array_view != null:
+        # XXX: remove_child is needed in order to ensure that the added
+        # child will be named "HBoxContainer" and not "HBoxContainer2"
+        # because the other ArrayView hasn't been queue_free'd yet
+        view.remove_child(array_view)
+        array_view.queue_free()
+    view.add_child(ArrayView.new(_level), true)
     $Timer.start()
 
 func _load_scores(level):
@@ -91,16 +109,21 @@ func _input(event):
         $Timer.wait_time = min($Timer.wait_time * 4, MAX_WAIT)
     if event.is_action_pressed("change_data"):
         AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
-        $Level/Right/Display/HBoxContainer.hide()
-        $Level/Right/Display/TypesContainer.show()
+        var display = $Level/Right/Display if $Level.visible else $BigDisplay
+        display.get_node("HBoxContainer").hide()
+        display.get_node("TypesContainer").show()
         $Timer.stop()
-        $Level/Right/Display/TypesContainer/Types.get_child(0).grab_focus()
+        display.get_node("TypesContainer/Types").get_child(0).grab_focus()
+    if event.is_action_pressed("big_preview"):
+        $Level.visible = not $Level.visible
+        $BigDisplay.visible = not $BigDisplay.visible
+        _restart()
 
 func _on_ComparisonSort_done():
+    set_process_input(false)
     $Timer.stop()
     yield(get_tree().create_timer(1), "timeout")
-    if _level.array.is_sorted():
-        _reload()
+    _restart()
 
 func _on_Timer_timeout():
     _level.next(null)
@@ -111,8 +134,9 @@ func _on_Current_pressed():
 
 func _on_Button_pressed(data_type):
     AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
-    $Level/Right/Display/TypesContainer.hide()
-    $Level/Right/Display/HBoxContainer.show()
+    var display = $Level/Right/Display if $Level.visible else $BigDisplay
+    display.get_node("TypesContainer").hide()
+    display.get_node("HBoxContainer").show()
     $Timer.start()
     _data_type = ArrayModel.DATA_TYPES[data_type]
-    _reload()
+    _restart()

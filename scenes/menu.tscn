@@ -44,9 +44,9 @@ __meta__ = {
 [node name="InstructionsContainer" type="MarginContainer" parent="MainMenu/Display"]
 visible = false
 margin_left = 484.0
-margin_top = 175.0
+margin_top = 164.0
 margin_right = 714.0
-margin_bottom = 423.0
+margin_bottom = 434.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource( 3 )
@@ -55,17 +55,17 @@ script = ExtResource( 3 )
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 210.0
-margin_bottom = 228.0
+margin_bottom = 250.0
 custom_constants/separation = 16
 
 [node name="Controls" type="HBoxContainer" parent="MainMenu/Display/InstructionsContainer/Instructions"]
 margin_right = 190.0
-margin_bottom = 173.0
+margin_bottom = 195.0
 custom_constants/separation = 20
 
 [node name="Keys" type="Label" parent="MainMenu/Display/InstructionsContainer/Instructions/Controls"]
 margin_right = 50.0
-margin_bottom = 173.0
+margin_bottom = 195.0
 size_flags_horizontal = 4
 text = "W
 A
@@ -73,27 +73,29 @@ S
 D
 M
 C
+B
 esc
 space"
 
 [node name="Actions" type="Label" parent="MainMenu/Display/InstructionsContainer/Instructions/Controls"]
 margin_left = 70.0
 margin_right = 190.0
-margin_bottom = 173.0
+margin_bottom = 195.0
 text = "bigger
 slower
 smaller
 faster
 toggle sound
 change data
+big preview
 back
 confirm"
 align = 2
 
 [node name="Button" type="Button" parent="MainMenu/Display/InstructionsContainer/Instructions"]
-margin_top = 189.0
+margin_top = 211.0
 margin_right = 190.0
-margin_bottom = 208.0
+margin_bottom = 230.0
 text = "OK"
 
 [node name="Spacing" type="Control" parent="MainMenu"]
