@@ -108,9 +108,9 @@ func _input(event):
     if event.is_action_pressed("slower"):
         $Timer.wait_time = min($Timer.wait_time * 4, MAX_WAIT)
     if event.is_action_pressed("change_data"):
-        AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
         var display = $Level/Right/Display if $Level.visible else $BigDisplay
         display.get_node("HBoxContainer").hide()
+        display.get_node("HBoxContainer").sound.set_process(false)
         display.get_node("TypesContainer").show()
         $Timer.stop()
         display.get_node("TypesContainer/Types").get_child(0).grab_focus()
@@ -133,7 +133,6 @@ func _on_Current_pressed():
         {"level": LEVELS[_index], "size": _size, "data_type": _data_type})
 
 func _on_Button_pressed(data_type):
-    AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
     var display = $Level/Right/Display if $Level.visible else $BigDisplay
     display.get_node("TypesContainer").hide()
     display.get_node("HBoxContainer").show()

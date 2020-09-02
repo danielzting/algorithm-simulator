@@ -16,7 +16,7 @@ var _rects = []
 var _positions = []
 var _pointer = Polygon2D.new()
 var _pointer_size: int
-var _sound = ArraySound.new()
+var sound = ArraySound.new()
 onready var _separation = 128 / _level.array.size
 
 func _init(level):
@@ -24,7 +24,7 @@ func _init(level):
     add_child(_level) # NOTE: This is necessary for it to read input
     add_child(_tween) # NOTE: This is necessary for it to animate
     add_child(_pointer)
-    add_child(_sound)
+    add_child(sound)
     _pointer.hide()
 
 func _ready():
@@ -67,7 +67,7 @@ func _ready():
         _pointer.show()
 
 func _process(delta):
-    _sound.frac = _level.get_frac()
+    sound.frac = _level.get_frac()
     if _pointer.visible:
         var pointed = _level.get_pointer()
         var height = rect_size.y - _pointer_size * 2
@@ -79,7 +79,7 @@ func _process(delta):
 
 func _on_ComparisonSort_done():
     set_process(false)
-    _sound.player.stop()
+    sound.player.stop()
     _pointer.hide()
     for i in range(_rects.size()):
         _rects[i].color = ComparisonSort.EFFECTS.NONE
