@@ -18,6 +18,15 @@ repeat.
 class_name SelectionSort
 extends ComparisonSort
 
+const CODE = """
+def selection_sort(a):
+    for i in range(len(a)):
+        smallest = i
+        for j in range(i, len(a)):
+            if a[j] < a[smallest]:
+                smallest = j
+        a.swap(i, smallest)
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",

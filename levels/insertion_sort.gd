@@ -17,6 +17,14 @@ advance.
 class_name InsertionSort
 extends ComparisonSort
 
+const CODE = """
+def insertion_sort(a):
+    for i in range(len(a)):
+        j = i
+        while j > 0 and a[j - 1] > a[j]:
+            a.swap(j - 1, j)
+            j -= 1
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",

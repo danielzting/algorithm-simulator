@@ -6,6 +6,7 @@ func _ready():
     $Buttons/Start.grab_focus()
     randomize()
     $Display.add_child(ArrayView.new(_level), true)
+    AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 
 func _on_Start_pressed():
     GlobalScene.change_scene("res://scenes/levels.tscn")

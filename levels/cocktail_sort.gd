@@ -13,6 +13,25 @@ them. Otherwise, hit RIGHT ARROW to continue.
 class_name CocktailSort
 extends ComparisonSort
 
+const CODE = """
+def cocktail_sort(a):
+    swapped = true
+    while swapped:
+        swapped = false
+        for i in range(len(a) - 1):
+            if array[i] > array[i + 1]:
+                a.swap(i, i + 1)
+                swapped = true
+
+        if not swapped:
+            break
+
+        swapped = false
+        for i in range(len(a) - 1, 0, -1)
+            if a[i - 1] > a[i]:
+                a.swap(i - 1, i)
+                swapped = true
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",

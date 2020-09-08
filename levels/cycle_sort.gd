@@ -14,6 +14,18 @@ Otherwise, hit RIGHT ARROW.
 class_name CycleSort
 extends ComparisonSort
 
+const CODE = """
+def cycle_sort(a):
+    for i in range(len(a)):
+        while True:
+            position = 0
+            for j in a:
+                if a[j] > a[i]:
+                    position += 1
+            if i == position:
+                break
+            a.swap(i, position)
+"""
 const ACTIONS = {
     "SMALLER": "Left",
     "BIGGER": "Right",

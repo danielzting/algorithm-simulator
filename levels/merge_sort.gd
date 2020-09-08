@@ -17,6 +17,24 @@ the other side's ARROW KEY.
 class_name MergeSort
 extends ComparisonSort
 
+const CODE = """
+def merge_sort(a):
+    size = 1
+    while size < len(array):
+        for block in range(len(array) / size / 2):
+            merged = []
+            begin = size * 2 * block
+            i = begin
+            j = begin + size
+            while len(merged) != size * 2:
+                if i >= begin + size or a[j] < a[i]:
+                    merged.append(a[j])
+                    j += 1
+                else:
+                    merged.append(a[i])
+                    i += 1
+            a[begin:begin + size] = merged
+"""
 const ACTIONS = {
     "LEFT": "Left",
     "RIGHT": "Right",

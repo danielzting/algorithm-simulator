@@ -11,6 +11,12 @@ Keep on hitting RIGHT ARROW to CONTINUE and hope for the best!
 class_name BogoSort
 extends ComparisonSort
 
+const CODE = """
+def bogosort(a):
+    while not a.sorted():
+        a.shuffle()
+"""
+
 func _init(array).(array):
     pass
 

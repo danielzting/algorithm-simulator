@@ -48,7 +48,7 @@ func _reload():
     _restart()
     _load_scores(_level)
     $NamesContainer/Names/Current.text = _level.NAME
-    $Level/Left/Code.text = _level.DESCRIPTION
+    $Level/Left/Code.text = _level.DESCRIPTION + "\n" + _level.CODE
     $Level/Right/Info/ControlsContainer/Controls.text = _level.CONTROLS
 
 func _restart():
@@ -77,7 +77,7 @@ func _load_scores(level):
     data.get_node("Times").text = ""
     for i in data.get_node("Sizes").text.split("\n"):
         var time = str(GlobalScore.get_time(level.NAME, int(i)))
-        data.get_node("Times").text += time
+        data.get_node("Times").text += "%.3f" % float(time)
         if int(i) != MAX_SIZE:
             data.get_node("Times").text += "\n"
 

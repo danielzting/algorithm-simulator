@@ -13,6 +13,20 @@ them. Otherwise, hit RIGHT ARROW to continue.
 class_name OddEvenSort
 extends ComparisonSort
 
+const CODE = """
+def odd_even_sort(a):
+    swapped = true
+    while swapped:
+        swapped = false
+        for i in range(1, len(a) - 1, 2):
+            if a[i] > a[i + 1]:
+                a.swap(i, i + 1)
+                swapped = true
+        for i in range(0, len(a) - 1, 2):
+            if a[i] > a[i + 1]:
+                a.swap(i, i + 1)
+                swapped = true
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",

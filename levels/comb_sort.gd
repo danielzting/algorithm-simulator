@@ -12,6 +12,17 @@ them. Otherwise, hit RIGHT ARROW to continue.
 class_name CombSort
 extends ComparisonSort
 
+const CODE = """
+def comb_sort(a):
+    gap = len(a)
+    swapped = true
+    while gap != 1 or swapped:
+        gap = max(gap / 1.3, 1)
+        for i in range(len(a) - gap):
+            if a[i] > a[i + gap]:
+                a.swap(i, i + gap)
+                swapped = true
+"""
 const SHRINK_FACTOR = 1.3
 const ACTIONS = {
     "SWAP": "Left",

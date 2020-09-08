@@ -8,11 +8,24 @@ by gaps.
 
 Hit LEFT ARROW to swap the two highlighted elements as long as they are
 out of order. When this is no longer the case, hit RIGHT ARROW to
+advance.
 """
 
 class_name ShellSort
 extends ComparisonSort
 
+const CODE = """
+def shell_sort(a):
+    gap = len(a)
+    while gap != 1:
+        gap = max(gap / 2, 1)
+        for i in range(gap):
+            for j in range(i, len(a) - gap, gap):
+                k = j
+                while k > gap and a[k - gap] > a[k]:
+                    a.swap(k - gap, k)
+                    k -= gap
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",
