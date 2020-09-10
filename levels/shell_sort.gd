@@ -2,13 +2,18 @@
 SHELL SORT
 
 
-Shell sort is a variation of insertion sort that sorts arrays separated
-by gaps.
+Shell sort is a variant of insertion sort that compares elements a
+certain gap apart instead of consecutive elements. This gap is divided
+by 2 after every pass. Once the gap becomes 1, shell sort becomes a
+regular insertion sort.
+
+This allows the final pass of insertion sort to avoid having to move
+elements long distances. However, it still has a quadratic worst case,
+which can be reduced with more complex gap sequences.
 
 
-Hit LEFT ARROW to swap the two highlighted elements as long as they are
-out of order. When this is no longer the case, hit RIGHT ARROW to
-advance.
+If the two highlighted elements are out of order, hit LEFT ARROW to swap
+them. Otherwise, hit RIGHT ARROW to continue.
 """
 
 class_name ShellSort

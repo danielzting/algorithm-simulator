@@ -2,7 +2,14 @@
 COMB SORT
 
 
-Comb sort is a variant of bubble sort that operates on gapped arrays.
+Comb sort is a variant of bubble sort that compares elements a certain
+gap apart instead of consecutive elements. This gap is divided after
+every pass by an experimentally determined optimal factor of about 1.3.
+Once the gap becomes 1, comb sort becomes a regular bubble sort.
+
+This allows comb sort to get rid of small values near the end more
+quickly, which turns out to be the bottleneck in bubble sort, but still
+has a quadratic worst case.
 
 
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
@@ -17,6 +24,7 @@ def comb_sort(a):
     gap = len(a)
     swapped = true
     while gap != 1 or swapped:
+        swapped = false
         gap = max(gap / 1.3, 1)
         for i in range(len(a) - gap):
             if a[i] > a[i + gap]:

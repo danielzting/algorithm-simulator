@@ -2,8 +2,12 @@
 COCKTAIL SORT
 
 
-Cocktail shaker sort is a variation of bubble sort that
-alternates going backwards and forwards.
+Cocktail sort is a variation of bubble sort that alternates going
+backwards and forwards. The actual level contains an optimization that
+skips over elements guaranteed to be already in place.
+
+Because it is bidirectional, it is slightly faster than bubble sort, but
+is still quadratic and therefore not used on large data.
 
 
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
@@ -22,10 +26,8 @@ def cocktail_sort(a):
             if array[i] > array[i + 1]:
                 a.swap(i, i + 1)
                 swapped = true
-
         if not swapped:
             break
-
         swapped = false
         for i in range(len(a) - 1, 0, -1)
             if a[i - 1] > a[i]:

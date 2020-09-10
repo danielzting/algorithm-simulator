@@ -2,8 +2,12 @@
 ODD-EVEN SORT
 
 
-Odd-even sort is a variant of bubble sort that alternates on elements at
-odd and even indices.
+Odd-even sort is a variant of bubble sort that alternates between
+comparing consecutive odd-even and even-odd indexed pairs.
+
+It is not of much use on a single processor as it is designed for
+parallel processors, which can perform every comparison in a single pass
+at the same time, thus making the algorithm much more efficient.
 
 
 If the two highlighted elements are out of order, hit LEFT ARROW to swap

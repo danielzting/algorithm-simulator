@@ -2,11 +2,16 @@
 BUBBLE SORT
 
 
-Bubble sort iterates through the array and looks at each pair of
-elements, swapping them if they are out of order. When it has gone
-through the entire array without swapping a single pair, it has
-finished. Though simple to understand, bubble sort is hopelessly
-inefficient on all but the smallest of arrays.
+Bubble sort looks at consecutive pairs of elements and swaps them if
+they are out of order, finishing when it has gone through the whole
+array from beginning to end without a single swap. The actual level
+contains an optimization that skips over elements guaranteed to be
+already in place.
+
+Due to its simplicity, it is commonly taught as the first sorting
+algorithm students learn in computer science classes, but is rarely used
+in real life because it is slow on large data and other simple quadratic
+algorithms like insertion sort perform better.
 
 
 If the two highlighted elements are out of order, hit LEFT ARROW to swap

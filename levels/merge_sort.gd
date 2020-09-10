@@ -2,16 +2,15 @@
 MERGE SORT
 
 
-Merge sort is an efficient sorting algorithm that splits the array into
-single-element chunks. Then it merges each pair of chunks until only one
-sorted chunk is left by repeatedly choosing the smaller element at the
-head of each chunk and moving the head back. However, it needs an entire
-array's worth of auxiliary memory.
+Merge sort merges subarrays of increasing size by setting a pointer to
+the head of each half. Then it repeatedly copies the smaller pointed
+element and increments that side's pointer. When one side is exhausted,
+it copies the rest of the other side and overwrites the two halves with
+the merged copy.
 
 
 Press the ARROW KEY corresponding to the side that the smaller
-highlighted element is on. If you've reached the end of one side, press
-the other side's ARROW KEY.
+highlighted element is on or the non-exhausted side.
 """
 
 class_name MergeSort
@@ -34,6 +33,7 @@ def merge_sort(a):
                     merged.append(a[i])
                     i += 1
             a[begin:begin + size] = merged
+        size *= 2
 """
 const ACTIONS = {
     "LEFT": "Left",

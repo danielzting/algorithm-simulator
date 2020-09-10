@@ -12,8 +12,8 @@ const EFFECTS = {
 
 const DISABLE_TIME = 1.0
 var NAME = _get_header().split("   ")[0]
-var DESCRIPTION = _get_header().split("   ")[1]
-var CONTROLS = _get_header().split("   ")[2]
+var DESCRIPTION = _get_header().split("   ")[1].replace("  ", "\n\n")
+var CONTROLS = _get_header().split("   ")[-1]
 
 var array: ArrayModel
 

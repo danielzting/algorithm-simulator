@@ -2,16 +2,17 @@
 INSERTION SORT
 
 
-Insertion sort goes through the array and inserts each
-element into its correct position. It is most similar to how most people
-would sort a deck of cards. It is also slow on large arrays but it is
-one of the faster quadratic algorithms. It is often used to sort smaller
-subarrays in hybrid sorting algorithms.
+Insertion sort goes through the array and inserts each element into its
+correct place, like how most people would sort a hand of playing cards.
+
+It is one of the fastest quadratic algorithms in practice and is
+efficient on small or almost sorted data. It is also simple, stable, and
+in-place. For these reasons it is sometimes used within faster divide
+and conquer algorithms when the array has been divided to a small size.
 
 
-Hit LEFT ARROW to swap the two highlighted elements as long as they are
-out of order. When this is no longer the case, hit RIGHT ARROW to
-advance.
+If the two highlighted elements are out of order, hit LEFT ARROW to swap
+them. Otherwise, hit RIGHT ARROW to continue.
 """
 
 class_name InsertionSort
