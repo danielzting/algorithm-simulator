@@ -22,7 +22,7 @@ const CODE = """
 def selection_sort(a):
     for i in range(len(a)):
         smallest = i
-        for j in range(i, len(a)):
+        for j in range(i + 1, len(a)):
             if a[j] < a[smallest]:
                 smallest = j
         a.swap(i, smallest)

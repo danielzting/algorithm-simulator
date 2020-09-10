@@ -10,8 +10,7 @@ demonstration, in the actual level, swaps are used instead.
 
 This results in a quadratic runtime but gives it the special property
 of being optimal in the number of writes to the array. This makes cycle
-sort useful in storage types where writes are very expensive or reduce
-its lifespan.
+sort useful in situations where writes are very expensive.
 
 
 If the highlighted element is less than the element below the blue
@@ -25,13 +24,17 @@ const CODE = """
 def cycle_sort(a):
     for i in range(len(a)):
         while True:
-            position = 0
-            for j in a:
-                if a[j] > a[i]:
-                    position += 1
-            if i == position:
+            less = equal = 0
+            for element in a:
+                if element < a[i]:
+                    less += 1
+                elif element == a[i]:
+                    equal += 1
+            if less <= i and i < less + equal:
                 break
-            a.swap(i, position)
+            while a[i] == a[less]:
+                less += 1
+            a.swap(i, less)
 """
 const ACTIONS = {
     "SMALLER": "Left",

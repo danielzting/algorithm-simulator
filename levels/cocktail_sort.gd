@@ -23,7 +23,7 @@ def cocktail_sort(a):
     while swapped:
         swapped = false
         for i in range(len(a) - 1):
-            if array[i] > array[i + 1]:
+            if a[i] > a[i + 1]:
                 a.swap(i, i + 1)
                 swapped = true
         if not swapped:
