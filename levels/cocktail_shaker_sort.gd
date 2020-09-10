@@ -1,24 +1,21 @@
-"""
-COCKTAIL SORT
+class_name CocktailSort
+extends ComparisonSort
 
-
-Cocktail sort is a variation of bubble sort that alternates going
+const NAME = "COCKTAIL SHAKER SORT"
+const DESCRIPTION = """
+Cocktail shaker sort is a variation of bubble sort that alternates going
 backwards and forwards. The actual level contains an optimization that
 skips over elements guaranteed to be already in place.
 
 Because it is bidirectional, it is slightly faster than bubble sort, but
 is still quadratic and therefore not used on large data.
-
-
+"""
+const CONTROLS = """
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
-
-class_name CocktailSort
-extends ComparisonSort
-
 const CODE = """
-def cocktail_sort(a):
+def cocktail_shaker_sort(a):
     swapped = true
     while swapped:
         swapped = false

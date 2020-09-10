@@ -11,9 +11,6 @@ const EFFECTS = {
 }
 
 const DISABLE_TIME = 1.0
-var NAME = _get_header().split("   ")[0]
-var DESCRIPTION = _get_header().split("   ")[1].replace("  ", "\n\n")
-var CONTROLS = _get_header().split("   ")[-1]
 
 var array: ArrayModel
 
@@ -27,9 +24,6 @@ func _init(array):
     add_child(_timer)
     self.connect("mistake", self, "_on_ComparisonSort_mistake")
     self.connect("done", self, "_on_ComparisonSort_done")
-
-func _get_header():
-    return get_script().source_code.replace("\n", " ").split('"""')[1].strip_edges()
 
 func _ready():
     set_process_input(false)

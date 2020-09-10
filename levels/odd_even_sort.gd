@@ -1,22 +1,19 @@
-"""
-ODD-EVEN SORT
+class_name OddEvenSort
+extends ComparisonSort
 
-
+const NAME = "ODD-EVEN SORT"
+const DESCRIPTION = """
 Odd-even sort is a variant of bubble sort that alternates between
 comparing consecutive odd-even and even-odd indexed pairs.
 
 It is not of much use on a single processor as it is designed for
 parallel processors, which can perform every comparison in a single pass
 at the same time, thus making the algorithm much more efficient.
-
-
+"""
+const CONTROLS = """
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
-
-class_name OddEvenSort
-extends ComparisonSort
-
 const CODE = """
 def odd_even_sort(a):
     swapped = true

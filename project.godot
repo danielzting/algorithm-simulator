@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "ComparisonSort",
 "class": "CocktailSort",
 "language": "GDScript",
-"path": "res://levels/cocktail_sort.gd"
+"path": "res://levels/cocktail_shaker_sort.gd"
 }, {
 "base": "ComparisonSort",
 "class": "CombSort",

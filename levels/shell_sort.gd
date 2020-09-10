@@ -1,7 +1,8 @@
-"""
-SHELL SORT
+class_name ShellSort
+extends ComparisonSort
 
-
+const NAME = "SHELL SORT"
+const DESCRIPTION = """
 Shell sort is a variant of insertion sort that compares elements a
 certain gap apart instead of consecutive elements. This gap is divided
 by 2 after every pass. Once the gap becomes 1, shell sort becomes a
@@ -10,15 +11,11 @@ regular insertion sort.
 This allows the final pass of insertion sort to avoid having to move
 elements long distances. However, it still has a quadratic worst case,
 which can be reduced with more complex gap sequences.
-
-
+"""
+const CONTROLS = """
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
-
-class_name ShellSort
-extends ComparisonSort
-
 const CODE = """
 def shell_sort(a):
     gap = len(a)

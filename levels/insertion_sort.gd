@@ -1,7 +1,8 @@
-"""
-INSERTION SORT
+class_name InsertionSort
+extends ComparisonSort
 
-
+const NAME = "INSERTION SORT"
+const DESCRIPTION = """
 Insertion sort goes through the array and inserts each element into its
 correct place, like how most people would sort a hand of playing cards.
 
@@ -9,15 +10,11 @@ It is one of the fastest quadratic algorithms in practice and is
 efficient on small or almost sorted data. It is also simple, stable, and
 in-place. For these reasons it is sometimes used within faster divide
 and conquer algorithms when the array has been divided to a small size.
-
-
+"""
+const CONTROLS = """
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
-
-class_name InsertionSort
-extends ComparisonSort
-
 const CODE = """
 def insertion_sort(a):
     for i in range(len(a)):
