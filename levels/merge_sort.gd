@@ -1,20 +1,39 @@
-"""
-MERGE SORT
-
-Merge sort is an efficient sorting algorithm that splits the array into
-single-element chunks. Then it merges each pair of chunks until only one
-sorted chunk is left by repeatedly choosing the smaller element at the
-head of each chunk and moving the head back. However, it needs an entire
-array's worth of auxiliary memory.
-
-Press the ARROW KEY corresponding to the side that the smaller
-highlighted element is on. If you've reached the end of one side, press
-the other side's ARROW KEY.
-"""
-
 class_name MergeSort
 extends ComparisonSort
 
+const NAME = "MERGE SORT"
+const DESCRIPTION = """
+Merge sort merges subarrays of increasing size by setting a pointer to
+the head of each half. Then it repeatedly copies the smaller pointed
+element and increments that side's pointer. When one side is exhausted,
+it copies the rest of the other side and overwrites the two halves with
+the merged copy.
+"""
+const CONTROLS = """
+Press the ARROW KEY corresponding to the side that the smaller
+highlighted element is on or the non-exhausted side.
+"""
+const CODE = """
+def merge_sort(a):
+    size = 1
+    while size < len(array):
+        for block in range(len(array) / size / 2):
+            merged = []
+            begin = size * 2 * block
+            i = begin
+            j = begin + size
+            while len(merged) != size * 2:
+                if i >= begin + size:
+                    merged += a[j:begin + size * 2]
+                elif j >= begin + size * 2:
+                    merged += a[i:begin + size]
+                elif a[i] < a[j]:
+                    merged.append(a[i++])
+                else:
+                    merged.append(a[j++])
+            a[begin:begin + size * 2] = merged
+        size *= 2
+"""
 const ACTIONS = {
     "LEFT": "Left",
     "RIGHT": "Right",
@@ -82,3 +101,10 @@ func _get_middle():
 func _get_end():
     """Get the index of one past the right subarray's tail."""
     return _sub_no * _sub_size + _sub_size
+
+func get_frac():
+    if _left == _get_middle():
+        return array.frac(_right)
+    if _right == _get_end():
+        return array.frac(_left)
+    return (array.frac(_left) + array.frac(_right)) / 2.0

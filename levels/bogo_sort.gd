@@ -1,13 +1,18 @@
-"""
-BOGOSORT
-
-Generates random permutations until the array is sorted.
-
-Keep on hitting RIGHT ARROW to CONTINUE and hope for the best!
-"""
-
 class_name BogoSort
 extends ComparisonSort
+
+const NAME = "BOGOSORT"
+const DESCRIPTION = """
+Generates random permutations until the array is sorted.
+"""
+const CONTROLS = """
+Keep on hitting RIGHT ARROW to CONTINUE and hope for the best!
+"""
+const CODE = """
+def bogosort(a):
+    while not a.sorted():
+        a.shuffle()
+"""
 
 func _init(array).(array):
     pass
@@ -19,3 +24,6 @@ func next(action):
 
 func get_effect(i):
     return EFFECTS.NONE
+
+func get_frac():
+    return array.frac(0)

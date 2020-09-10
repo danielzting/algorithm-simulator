@@ -1,22 +1,34 @@
-"""
-QUICKSORT
-
-Quicksort designates the last element as the pivot and puts everything
-less than the pivot before it and everything greater after it. This
-partitioning is done by iterating through the array while keeping track
-of a pointer initially set to the first element. Every time an element
-less than the pivot is encountered, it is swapped with the pointed
-element and the pointer moves forward. At the end, the pointer and pivot
-are swapped, and the process is repeated on the left and right halves.
-
-If the highlighted element is less than the pivot or the pivot has been
-reached, press LEFT ARROW to swap it with the pointer. Otherwise, press
-RIGHT ARROW to move on.
-"""
-
 class_name QuickSort
 extends ComparisonSort
 
+const NAME = "QUICKSORT"
+const DESCRIPTION = """
+Quicksort designates the last element as the pivot and sets a pointer to
+the first element. Then it iterates through the array. Every time an
+element smaller than the pivot is encountered, that element is swapped
+with the pointed element and the pointer is incremented. Once the pivot
+is reached, it is swapped with the pointed element and this process is
+recursively repeated on the left and right halves.
+
+Quicksort competes with other linearithmic algorithms like merge sort,
+which it is faster than at the tradeoff of stability.
+"""
+const CONTROLS = """
+If the highlighted element is less than the pivot or the pivot has been
+reached, press LEFT ARROW. Otherwise, press RIGHT ARROW.
+"""
+const CODE = """
+def quicksort(array, low=0, high=len(a) - 1):
+    if low < high:
+        pointer = low
+        for i in range(low, high):
+            if a[i] < a[high]:
+                a.swap(i, pointer)
+                pointer += 1
+        a.swap(pointer, high)
+        quicksort(a, low, pointer - 1)
+        quicksort(a, pointer + 1, high)
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",
@@ -77,3 +89,6 @@ func get_effect(i):
 
 func get_pointer():
     return _pointer
+
+func get_frac():
+    return array.frac(_index)

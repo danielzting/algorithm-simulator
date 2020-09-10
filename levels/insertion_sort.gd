@@ -1,20 +1,28 @@
-"""
-INSERTION SORT
-
-Insertion sort goes through the array and inserts each
-element into its correct position. It is most similar to how most people
-would sort a deck of cards. It is also slow on large arrays but it is
-one of the faster quadratic algorithms. It is often used to sort smaller
-subarrays in hybrid sorting algorithms.
-
-Hit LEFT ARROW to swap the two highlighted elements as long as they are
-out of order. When this is no longer the case, hit RIGHT ARROW to
-advance.
-"""
-
 class_name InsertionSort
 extends ComparisonSort
 
+const NAME = "INSERTION SORT"
+const DESCRIPTION = """
+Insertion sort goes through the array and inserts each element into its
+correct place, like how most people would sort a hand of playing cards.
+
+It is one of the fastest quadratic algorithms in practice and is
+efficient on small or almost sorted data. It is also simple, stable, and
+in-place. For these reasons it is sometimes used within faster divide
+and conquer algorithms when the array has been divided to a small size.
+"""
+const CONTROLS = """
+If the two highlighted elements are out of order, hit LEFT ARROW to swap
+them. Otherwise, hit RIGHT ARROW to continue.
+"""
+const CODE = """
+def insertion_sort(a):
+    for i in range(len(a)):
+        j = i
+        while j > 0 and a[j - 1] > a[j]:
+            a.swap(j - 1, j)
+            j -= 1
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",
@@ -50,3 +58,6 @@ func _grow():
     if _end == array.size:
         emit_signal("done")
     _index = _end
+
+func get_frac():
+    return (array.frac(_index - 1) + array.frac(_index)) / 2.0
