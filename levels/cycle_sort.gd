@@ -54,8 +54,11 @@ func next(action):
             return emit_signal("mistake")
     _index += 1
     if _index == array.size:
+        # Skip over duplicates to avoid infinite cycling
+        while _smaller != _pointer and array.at(_pointer) == array.at(_smaller):
+            _smaller += 1
         array.swap(_pointer, _smaller)
-        while array.at(_pointer) == _pointer + 1:
+        while array.is_in_place(_pointer):
             _pointer += 1
             if _pointer == array.size:
                 return emit_signal("done")

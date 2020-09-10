@@ -87,6 +87,17 @@ func sort(i, j):
     _array = front + sorted + back
     emit_signal("sorted", i, j)
 
+func is_in_place(i):
+    """Check if the element at index i is in its correct place."""
+    var less = 0
+    var equal = 0
+    for element in _array:
+        if element < _array[i]:
+            less += 1
+        elif element == _array[i]:
+            equal += 1
+    return less <= i and i < less + equal
+
 func get_size():
     return _array.size()
 
