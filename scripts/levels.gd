@@ -15,8 +15,8 @@ const LEVELS = [
 
 const MIN_WAIT = 1.0 / 64
 const MAX_WAIT = 4
-const MIN_SIZE = 8
-const MAX_SIZE = 128
+const MIN_SIZE = 16
+const MAX_SIZE = 64
 
 var _index = LEVELS.find(GlobalScene.get_param("level", LEVELS[0]))
 var _level: ComparisonSort
@@ -98,10 +98,10 @@ func _input(event):
     if event.is_action_pressed("ui_right", true):
         _switch_level(_index + 1)
     if event.is_action_pressed("bigger"):
-        _size = min(_size * 4, MAX_SIZE)
+        _size = min(_size * 2, MAX_SIZE)
         _reload()
     if event.is_action_pressed("smaller"):
-        _size = max(_size / 4, MIN_SIZE)
+        _size = max(_size / 2, MIN_SIZE)
         _reload()
     if event.is_action_pressed("faster"):
         $Timer.wait_time = max($Timer.wait_time / 4, MIN_WAIT)
