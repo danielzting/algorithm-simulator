@@ -164,14 +164,14 @@ margin_right = 163.0
 margin_bottom = 90.0
 
 [node name="Sizes" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Data"]
-margin_right = 30.0
+margin_right = 20.0
 margin_bottom = 63.0
-text = "8
+text = "16
 32
-128"
+64"
 
 [node name="Times" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Data"]
-margin_left = 38.0
+margin_left = 28.0
 margin_right = 163.0
 margin_bottom = 63.0
 size_flags_horizontal = 3

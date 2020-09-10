@@ -5,7 +5,7 @@ signal removed(i)
 signal swapped(i, j)
 signal sorted(i, j)
 
-const DEFAULT_SIZE = 32
+const DEFAULT_SIZE = 16
 enum DATA_TYPES {
     RANDOM_UNIQUE,
     TRUE_RANDOM,
