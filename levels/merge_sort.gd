@@ -1,21 +1,18 @@
-"""
-MERGE SORT
+class_name MergeSort
+extends ComparisonSort
 
-
+const NAME = "MERGE SORT"
+const DESCRIPTION = """
 Merge sort merges subarrays of increasing size by setting a pointer to
 the head of each half. Then it repeatedly copies the smaller pointed
 element and increments that side's pointer. When one side is exhausted,
 it copies the rest of the other side and overwrites the two halves with
 the merged copy.
-
-
+"""
+const CONTROLS = """
 Press the ARROW KEY corresponding to the side that the smaller
 highlighted element is on or the non-exhausted side.
 """
-
-class_name MergeSort
-extends ComparisonSort
-
 const CODE = """
 def merge_sort(a):
     size = 1

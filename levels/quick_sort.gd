@@ -1,7 +1,8 @@
-"""
-QUICKSORT
+class_name QuickSort
+extends ComparisonSort
 
-
+const NAME = "QUICKSORT"
+const DESCRIPTION = """
 Quicksort designates the last element as the pivot and sets a pointer to
 the first element. Then it iterates through the array. Every time an
 element smaller than the pivot is encountered, that element is swapped
@@ -11,15 +12,11 @@ recursively repeated on the left and right halves.
 
 Quicksort competes with other linearithmic algorithms like merge sort,
 which it is faster than at the tradeoff of stability.
-
-
+"""
+const CONTROLS = """
 If the highlighted element is less than the pivot or the pivot has been
 reached, press LEFT ARROW. Otherwise, press RIGHT ARROW.
 """
-
-class_name QuickSort
-extends ComparisonSort
-
 const CODE = """
 def quicksort(a, low=0, high=len(a) - 1):
     if low < high:

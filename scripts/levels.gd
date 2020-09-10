@@ -48,8 +48,12 @@ func _reload():
     _restart()
     _load_scores(_level)
     $NamesContainer/Names/Current.text = _level.NAME
-    $Level/Left/Code.text = _level.DESCRIPTION + "\n\n" + _level.CODE.strip_edges()
-    $Level/Right/Info/ControlsContainer/Controls.text = _level.CONTROLS
+    $Level/Left/Code.text = _format(_level.DESCRIPTION) + "\n\n" + _level.CODE.strip_edges()
+    $Level/Right/Info/ControlsContainer/Controls.text = _format(_level.CONTROLS)
+
+func _format(text):
+    # Helper method to format text
+    return text.strip_edges().replace("\n", " ").replace("  ", "\n\n")
 
 func _restart():
     set_process_input(true)

@@ -1,7 +1,8 @@
-"""
-COMB SORT
+class_name CombSort
+extends ComparisonSort
 
-
+const NAME = "COMB SORT"
+const DESCRIPTION = """
 Comb sort is a variant of bubble sort that compares elements a certain
 gap apart instead of consecutive elements. This gap is divided after
 every pass by an experimentally determined optimal factor of about 1.3.
@@ -10,15 +11,11 @@ Once the gap becomes 1, comb sort becomes a regular bubble sort.
 This allows comb sort to get rid of small values near the end more
 quickly, which turns out to be the bottleneck in bubble sort, but still
 has a quadratic worst case.
-
-
+"""
+const CONTROLS = """
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
-
-class_name CombSort
-extends ComparisonSort
-
 const CODE = """
 def comb_sort(a):
     gap = len(a)

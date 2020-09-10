@@ -1,7 +1,8 @@
-"""
-BUBBLE SORT
+class_name BubbleSort
+extends ComparisonSort
 
-
+const NAME = "BUBBLE SORT"
+const DESCRIPTION = """
 Bubble sort looks at consecutive pairs of elements and swaps them if
 they are out of order, finishing when it has gone through the whole
 array from beginning to end without a single swap. The actual level
@@ -12,15 +13,11 @@ Due to its simplicity, it is commonly taught as the first sorting
 algorithm students learn in computer science classes, but is rarely used
 in real life because it is slow on large data and other simple quadratic
 algorithms like insertion sort perform better.
-
-
+"""
+const CONTROLS = """
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
-
-class_name BubbleSort
-extends ComparisonSort
-
 const CODE = """
 def bubble_sort(a):
     swapped = true

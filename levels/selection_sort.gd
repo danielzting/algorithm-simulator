@@ -1,23 +1,19 @@
-"""
-SELECTION SORT
+class_name SelectionSort
+extends ComparisonSort
 
-
+const NAME = "SELECTION SORT"
+const DESCRIPTION = """
 Selection sort incrementally builds a sorted subarray by finding the
 smallest unprocessed element and putting it in place.
 
 It is not very useful in real life as it is beat by insertion sort.
 However, it has the distinguishing feature of making the least number
 of swaps in the worst case.
-
-
+"""
+const CONTROLS = """
 If the two highlighted elements are out of order, hit LEFT ARROW to swap
 them. Otherwise, hit RIGHT ARROW to continue.
 """
-
-
-class_name SelectionSort
-extends ComparisonSort
-
 const CODE = """
 def selection_sort(a):
     for i in range(len(a)):
