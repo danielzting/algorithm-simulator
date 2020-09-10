@@ -48,7 +48,7 @@ func _reload():
     _restart()
     _load_scores(_level)
     $NamesContainer/Names/Current.text = _level.NAME
-    $Level/Left/Code.text = _level.DESCRIPTION + "\n" + _level.CODE
+    $Level/Left/Code.text = _level.DESCRIPTION + "\n\n" + _level.CODE.strip_edges()
     $Level/Right/Info/ControlsContainer/Controls.text = _level.CONTROLS
 
 func _restart():

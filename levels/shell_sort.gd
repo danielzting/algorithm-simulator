@@ -27,7 +27,7 @@ def shell_sort(a):
         for i in range(gap):
             for j in range(i, len(a) - gap, gap):
                 k = j
-                while k > gap and a[k - gap] > a[k]:
+                while k > i and a[k - gap] > a[k]:
                     a.swap(k - gap, k)
                     k -= gap
 """

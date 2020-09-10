@@ -26,13 +26,15 @@ def merge_sort(a):
             i = begin
             j = begin + size
             while len(merged) != size * 2:
-                if i >= begin + size or a[j] < a[i]:
-                    merged.append(a[j])
-                    j += 1
+                if i >= begin + size:
+                    merged += a[j:begin + size * 2]
+                elif j >= begin + size * 2:
+                    merged += a[i:begin + size]
+                elif a[i] < a[j]:
+                    merged.append(a[i++])
                 else:
-                    merged.append(a[i])
-                    i += 1
-            a[begin:begin + size] = merged
+                    merged.append(a[j++])
+            a[begin:begin + size * 2] = merged
         size *= 2
 """
 const ACTIONS = {

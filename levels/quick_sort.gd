@@ -23,10 +23,9 @@ extends ComparisonSort
 const CODE = """
 def quicksort(array, low=0, high=len(a) - 1):
     if low < high:
-        pivot = a[high]
         pointer = low
         for i in range(low, high):
-            if a[i] < pivot:
+            if a[i] < a[high]:
                 a.swap(i, pointer)
                 pointer += 1
         a.swap(pointer, high)
