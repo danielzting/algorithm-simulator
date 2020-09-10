@@ -1,16 +1,33 @@
-"""
-SHELL SORT
-
-Shell sort is a variation of insertion sort that sorts arrays separated
-by gaps.
-
-Hit LEFT ARROW to swap the two highlighted elements as long as they are
-out of order. When this is no longer the case, hit RIGHT ARROW to
-"""
-
 class_name ShellSort
 extends ComparisonSort
 
+const NAME = "SHELL SORT"
+const DESCRIPTION = """
+Shell sort is a variant of insertion sort that compares elements a
+certain gap apart instead of consecutive elements. This gap is divided
+by 2 after every pass. Once the gap becomes 1, shell sort becomes a
+regular insertion sort.
+
+This allows the final pass of insertion sort to avoid having to move
+elements long distances. However, it still has a quadratic worst case,
+which can be reduced with more complex gap sequences.
+"""
+const CONTROLS = """
+If the two highlighted elements are out of order, hit LEFT ARROW to swap
+them. Otherwise, hit RIGHT ARROW to continue.
+"""
+const CODE = """
+def shell_sort(a):
+    gap = len(a)
+    while gap != 1:
+        gap = max(gap / 2, 1)
+        for i in range(gap):
+            for j in range(i, len(a) - gap, gap):
+                k = j
+                while k > i and a[k - gap] > a[k]:
+                    a.swap(k - gap, k)
+                    k -= gap
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",
@@ -58,3 +75,6 @@ func _grow():
             _begin = 0
         _end = _gap + _begin
         _index = _gap + _begin
+
+func get_frac():
+    return (array.frac(_index - _gap) + array.frac(_index)) / 2.0

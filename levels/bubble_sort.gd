@@ -1,19 +1,33 @@
-"""
-BUBBLE SORT
-
-Bubble sort iterates through the array and looks at each pair of
-elements, swapping them if they are out of order. When it has gone
-through the entire array without swapping a single pair, it has
-finished. Though simple to understand, bubble sort is hopelessly
-inefficient on all but the smallest of arrays.
-
-If the two highlighted elements are out of order, hit LEFT ARROW to swap
-them. Otherwise, hit RIGHT ARROW to continue.
-"""
-
 class_name BubbleSort
 extends ComparisonSort
 
+const NAME = "BUBBLE SORT"
+const DESCRIPTION = """
+Bubble sort looks at consecutive pairs of elements and swaps them if
+they are out of order, finishing when it has gone through the whole
+array from beginning to end without a single swap. The actual level
+contains an optimization that skips over elements guaranteed to be
+already in place.
+
+Due to its simplicity, it is commonly taught as the first sorting
+algorithm students learn in computer science classes, but is rarely used
+in real life because it is slow on large data and other simple quadratic
+algorithms like insertion sort perform better.
+"""
+const CONTROLS = """
+If the two highlighted elements are out of order, hit LEFT ARROW to swap
+them. Otherwise, hit RIGHT ARROW to continue.
+"""
+const CODE = """
+def bubble_sort(a):
+    swapped = true
+    while swapped:
+        swapped = false
+        for i in range(len(a) - 1):
+            if a[i] > a[i + 1]:
+                a.swap(i, i + 1)
+                swapped = true
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",
@@ -48,3 +62,6 @@ func get_effect(i):
     if i >= _end:
         return EFFECTS.DIMMED
     return EFFECTS.NONE
+
+func get_frac():
+    return (array.frac(_index) + array.frac(_index + 1)) / 2.0

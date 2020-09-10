@@ -1,21 +1,28 @@
-"""
-SELECTION SORT
-
-Selection sort incrementally builds a sorted array by repeatedly looking
-for the smallest element and swapping it onto the end of the sorted
-portion of the array, which initially starts with size zero but grows
-after each round. It is faster than an unoptimized bubble sort but
-slower than insertion sort.
-
-Keep on hitting RIGHT ARROW until you encounter an element that is
-smaller than the left highlighted element, then hit LEFT ARROW and
-repeat.
-"""
-
-
 class_name SelectionSort
 extends ComparisonSort
 
+const NAME = "SELECTION SORT"
+const DESCRIPTION = """
+Selection sort incrementally builds a sorted subarray by finding the
+smallest unprocessed element and putting it in place.
+
+It is not very useful in real life as it is beat by insertion sort.
+However, it has the distinguishing feature of making the least number
+of swaps in the worst case.
+"""
+const CONTROLS = """
+If the two highlighted elements are out of order, hit LEFT ARROW to swap
+them. Otherwise, hit RIGHT ARROW to continue.
+"""
+const CODE = """
+def selection_sort(a):
+    for i in range(len(a)):
+        smallest = i
+        for j in range(i + 1, len(a)):
+            if a[j] < a[smallest]:
+                smallest = j
+        a.swap(i, smallest)
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",
@@ -52,3 +59,6 @@ func get_effect(i):
 
 func get_pointer():
     return _min
+
+func get_frac():
+    return array.frac(_index)

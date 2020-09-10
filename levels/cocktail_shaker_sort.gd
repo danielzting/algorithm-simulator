@@ -1,16 +1,36 @@
-"""
-COCKTAIL SORT
-
-Cocktail shaker sort is a variation of bubble sort that
-alternates going backwards and forwards.
-
-If the two highlighted elements are out of order, hit LEFT ARROW to swap
-them. Otherwise, hit RIGHT ARROW to continue.
-"""
-
 class_name CocktailSort
 extends ComparisonSort
 
+const NAME = "COCKTAIL SHAKER SORT"
+const DESCRIPTION = """
+Cocktail shaker sort is a variation of bubble sort that alternates going
+backwards and forwards. The actual level contains an optimization that
+skips over elements guaranteed to be already in place.
+
+Because it is bidirectional, it is slightly faster than bubble sort, but
+is still quadratic and therefore not used on large data.
+"""
+const CONTROLS = """
+If the two highlighted elements are out of order, hit LEFT ARROW to swap
+them. Otherwise, hit RIGHT ARROW to continue.
+"""
+const CODE = """
+def cocktail_shaker_sort(a):
+    swapped = true
+    while swapped:
+        swapped = false
+        for i in range(len(a) - 1):
+            if a[i] > a[i + 1]:
+                a.swap(i, i + 1)
+                swapped = true
+        if not swapped:
+            break
+        swapped = false
+        for i in range(len(a) - 1, 0, -1)
+            if a[i - 1] > a[i]:
+                a.swap(i - 1, i)
+                swapped = true
+"""
 const ACTIONS = {
     "SWAP": "Left",
     "CONTINUE": "Right",
@@ -56,3 +76,6 @@ func get_effect(i):
     if i < _sorted and _forwards == true or i < _sorted - 1 or i >= array.size - _sorted:
         return EFFECTS.DIMMED
     return EFFECTS.NONE
+
+func get_frac():
+    return (array.frac(_index) + array.frac(_index + 1)) / 2.0

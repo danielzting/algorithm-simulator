@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends VBoxContainer
 
 const LEVELS = [
     BubbleSort,
@@ -12,99 +12,134 @@ const LEVELS = [
     CycleSort,
     OddEvenSort,
 ]
-const MIN_WAIT = 1.0 / 32 # Should be greater than maximum frame time
-const MAX_WAIT = 4
-const MIN_SIZE = 8
-const MAX_SIZE = 256
 
-var _level = GlobalScene.get_param("level", LEVELS[0]).new(ArrayModel.new(
-    GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)))
+const MIN_WAIT = 1.0 / 64
+const MAX_WAIT = 4
+const MIN_SIZE = 16
+const MAX_SIZE = 64
+
+var _index = LEVELS.find(GlobalScene.get_param("level", LEVELS[0]))
+var _level: ComparisonSort
+var _size = GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)
+var _data_type = GlobalScene.get_param(
+    "data_type", ArrayModel.DATA_TYPES.RANDOM_UNIQUE)
 
 func _ready():
-    var buttons = $LevelsBorder/Levels/LevelsContainer/Buttons
-    var scores = $LevelsBorder/Levels/LevelsContainer/Scores
-    for level in LEVELS:
-        var button = Button.new()
-        button.text = level.new(ArrayModel.new()).NAME
-        button.align = Button.ALIGN_LEFT
-        button.connect("focus_entered", self, "_on_Button_focus_entered")
-        button.connect("pressed", self, "_on_Button_pressed", [level])
-        buttons.add_child(button)
-        var score = HBoxContainer.new()
-        var time = Label.new()
-        time.align = Label.ALIGN_RIGHT
-        time.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-        var tier = Label.new()
-        score.add_child(time)
-        score.add_child(tier)
-        scores.add_child(score)
-    # Autofocus last played level
-    for button in buttons.get_children():
-        if button.text == _level.NAME:
-            button.grab_focus()
-    var top_button = buttons.get_children()[0]
-    var bottom_button = buttons.get_children()[-1]
-    # Allow looping from ends of list
-    top_button.focus_neighbour_top = bottom_button.get_path()
-    bottom_button.focus_neighbour_bottom = top_button.get_path()
+    _load_types($Level/Right/Display/TypesContainer)
+    _load_types($BigDisplay/TypesContainer)
+    _reload()
 
-func _on_Button_focus_entered(size=_level.array.size):
-    # Update high scores
-    var buttons = $LevelsBorder/Levels/LevelsContainer/Buttons
-    for i in range(LEVELS.size()):
-        var score = $LevelsBorder/Levels/LevelsContainer/Scores.get_child(i)
-        var name = buttons.get_child(i).text
-        var time = GlobalScore.get_time(name, size)
-        if time == INF:
-            score.get_child(0).text = ""
-            score.get_child(1).text = "INF"
-            score.get_child(1).add_color_override(
-                "font_color", GlobalTheme.GREEN)
-        else:
-            score.get_child(0).text = "%.3f" % time
-            score.get_child(1).text = GlobalScore.get_tier(name, size)
-            score.get_child(1).add_color_override(
-                "font_color", GlobalScore.get_color(name, size))
-    # Pause a bit to show completely sorted array
-    if _level.array.is_sorted():
-        # Prevent race condition caused by keyboard input during pause
-        set_process_input(false)
-        $Timer.stop()
-        yield(get_tree().create_timer(1), "timeout")
-        if not _level.array.is_sorted():
-            return
-        $Timer.start()
-        set_process_input(true)
-    _level = _get_level(get_focus_owner().text).new(ArrayModel.new(size))
-    $Preview/InfoBorder/Info/Description.text = _level.DESCRIPTION
-    $Preview/InfoBorder/Info/Controls.text = _level.CONTROLS
-    # Start over when simulation is finished
-    _level.connect("done", self, "_on_Button_focus_entered")
-    # Replace old display with new
-    for child in $Preview/Display.get_children():
-        child.queue_free()
-    $Preview/Display.add_child(ArrayView.new(_level))
+func _load_types(node):
+    var types = VBoxContainer.new()
+    types.name = "Types"
+    node.add_child(types)
+    for type in ArrayModel.DATA_TYPES:
+        var button = Button.new()
+        button.text = type.replace("_", " ")
+        button.connect("pressed", self, "_on_Button_pressed", [type])
+        types.add_child(button)
+    var top = types.get_child(0)
+    var bottom = types.get_child(types.get_child_count() - 1)
+    top.focus_neighbour_top = bottom.get_path()
+    bottom.focus_neighbour_bottom = top.get_path()
+
+func _reload():
+    # Load everything from scratch
+    _restart()
+    _load_scores(_level)
+    $NamesContainer/Names/Current.text = _level.NAME
+    $Level/Left/Code.text = _format(_level.DESCRIPTION) + "\n\n" + _level.CODE.strip_edges()
+    $Level/Right/Info/ControlsContainer/Controls.text = _format(_level.CONTROLS)
+
+func _format(text):
+    # Helper method to format text
+    return text.strip_edges().replace("\n", " ").replace("  ", "\n\n")
+
+func _restart():
+    set_process_input(true)
+    # Only load in a restarted simulation
+    $NamesContainer/Names/Current.grab_focus()
+    _level = LEVELS[_index].new(ArrayModel.new(_size, _data_type))
+    _level.connect("done", self, "_on_ComparisonSort_done")
+    var view = $Level/Right/Display if $Level.visible else $BigDisplay
+    var other = $BigDisplay if $Level.visible else $Level/Right/Display
+    # Delete both ArrayViews if they exist
+    if other.get_node_or_null("HBoxContainer") != null:
+        other.get_node("HBoxContainer").queue_free()
+    var array_view = view.get_node_or_null("HBoxContainer")
+    if array_view != null:
+        # XXX: remove_child is needed in order to ensure that the added
+        # child will be named "HBoxContainer" and not "HBoxContainer2"
+        # because the other ArrayView hasn't been queue_free'd yet
+        view.remove_child(array_view)
+        array_view.queue_free()
+    view.add_child(ArrayView.new(_level), true)
+    $Timer.start()
+
+func _load_scores(level):
+    var data = $Level/Right/Info/ScoresContainer/Scores/Data
+    data.get_node("Times").text = ""
+    for i in data.get_node("Sizes").text.split("\n"):
+        var time = str(GlobalScore.get_time(level.NAME, int(i)))
+        data.get_node("Times").text += "%.3f" % float(time)
+        if int(i) != MAX_SIZE:
+            data.get_node("Times").text += "\n"
+
+func _switch_level(index):
+    if index == -1:
+        _index = LEVELS.size() - 1
+    elif index == LEVELS.size():
+        _index = 0
+    else:
+        _index = index
+    _reload()
 
 func _input(event):
     if event.is_action_pressed("ui_cancel"):
         GlobalScene.change_scene("res://scenes/menu.tscn")
-    elif event.is_action_pressed("faster"):
-        $Timer.wait_time = max(MIN_WAIT, $Timer.wait_time / 2)
-    elif event.is_action_pressed("slower"):
-        $Timer.wait_time = min(MAX_WAIT, $Timer.wait_time * 2)
-    elif event.is_action_pressed("bigger"):
-        _on_Button_focus_entered(min(MAX_SIZE, _level.array.size * 2))
-    elif event.is_action_pressed("smaller"):
-        _on_Button_focus_entered(max(MIN_SIZE, _level.array.size / 2))
+    if event.is_action_pressed("ui_left", true):
+        _switch_level(_index - 1)
+    if event.is_action_pressed("ui_right", true):
+        _switch_level(_index + 1)
+    if event.is_action_pressed("bigger"):
+        _size = min(_size * 2, MAX_SIZE)
+        _reload()
+    if event.is_action_pressed("smaller"):
+        _size = max(_size / 2, MIN_SIZE)
+        _reload()
+    if event.is_action_pressed("faster"):
+        $Timer.wait_time = max($Timer.wait_time / 4, MIN_WAIT)
+    if event.is_action_pressed("slower"):
+        $Timer.wait_time = min($Timer.wait_time * 4, MAX_WAIT)
+    if event.is_action_pressed("change_data"):
+        var display = $Level/Right/Display if $Level.visible else $BigDisplay
+        display.get_node("HBoxContainer").hide()
+        display.get_node("HBoxContainer").sound.set_process(false)
+        display.get_node("TypesContainer").show()
+        $Timer.stop()
+        display.get_node("TypesContainer/Types").get_child(0).grab_focus()
+    if event.is_action_pressed("big_preview"):
+        $Level.visible = not $Level.visible
+        $BigDisplay.visible = not $BigDisplay.visible
+        _restart()
 
-func _on_Button_pressed(level):
-    GlobalScene.change_scene("res://scenes/play.tscn",
-        {"level": level, "size": _level.array.size})
-
-func _get_level(name):
-    for level in LEVELS:
-        if level.new(ArrayModel.new()).NAME == name:
-            return level
+func _on_ComparisonSort_done():
+    set_process_input(false)
+    $Timer.stop()
+    yield(get_tree().create_timer(1), "timeout")
+    _restart()
 
 func _on_Timer_timeout():
     _level.next(null)
+
+func _on_Current_pressed():
+    GlobalScene.change_scene("res://scenes/play.tscn",
+        {"level": LEVELS[_index], "size": _size, "data_type": _data_type})
+
+func _on_Button_pressed(data_type):
+    var display = $Level/Right/Display if $Level.visible else $BigDisplay
+    display.get_node("TypesContainer").hide()
+    display.get_node("HBoxContainer").show()
+    $Timer.start()
+    _data_type = ArrayModel.DATA_TYPES[data_type]
+    _restart()

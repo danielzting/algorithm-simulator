@@ -11,13 +11,8 @@ const EFFECTS = {
 }
 
 const DISABLE_TIME = 1.0
-var NAME = _get_header().split("  ")[0]
-var DESCRIPTION = _get_header().split("  ")[1]
-var CONTROLS = _get_header().split("  ")[2]
 
 var array: ArrayModel
-var moves = 0
-var test = _get_header().split("  ")[0]
 
 var _timer = Timer.new()
 
@@ -30,16 +25,12 @@ func _init(array):
     self.connect("mistake", self, "_on_ComparisonSort_mistake")
     self.connect("done", self, "_on_ComparisonSort_done")
 
-func _get_header():
-    return get_script().source_code.replace("\n", " ").split('"""')[1].strip_edges()
-
 func _ready():
     set_process_input(false)
 
 func _input(event):
     """Pass input events for checking and take appropriate action."""
     if event.is_pressed():
-        moves += 1
         return next(event.as_text())
 
 func next(action):
