@@ -31,3 +31,6 @@ func _on_Button_pressed():
     $Display/InstructionsContainer.hide()
     $Display/HBoxContainer.show()
     $Buttons/Start.grab_focus()
+
+func _on_GitHub_pressed():
+    OS.shell_open("https://github.com/DanielZTing/algorithm-simulator")

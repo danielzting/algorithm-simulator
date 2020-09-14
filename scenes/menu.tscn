@@ -28,7 +28,7 @@ script = ExtResource( 1 )
 [node name="Title" type="Label" parent="MainMenu"]
 margin_right = 1199.0
 margin_bottom = 19.0
-text = "Human Computer Simulator"
+text = "Algorithm Simulator"
 uppercase = true
 
 [node name="Display" type="MarginContainer" parent="MainMenu"]
@@ -44,9 +44,9 @@ __meta__ = {
 [node name="InstructionsContainer" type="MarginContainer" parent="MainMenu/Display"]
 visible = false
 margin_left = 484.0
-margin_top = 164.0
+margin_top = 146.0
 margin_right = 714.0
-margin_bottom = 434.0
+margin_bottom = 451.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource( 3 )
@@ -55,12 +55,18 @@ script = ExtResource( 3 )
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 210.0
-margin_bottom = 250.0
+margin_bottom = 285.0
 custom_constants/separation = 16
 
-[node name="Controls" type="HBoxContainer" parent="MainMenu/Display/InstructionsContainer/Instructions"]
+[node name="GitHub" type="Button" parent="MainMenu/Display/InstructionsContainer/Instructions"]
 margin_right = 190.0
-margin_bottom = 195.0
+margin_bottom = 19.0
+text = "Fork me on GitHub!"
+
+[node name="Controls" type="HBoxContainer" parent="MainMenu/Display/InstructionsContainer/Instructions"]
+margin_top = 35.0
+margin_right = 190.0
+margin_bottom = 230.0
 custom_constants/separation = 20
 
 [node name="Keys" type="Label" parent="MainMenu/Display/InstructionsContainer/Instructions/Controls"]
@@ -93,9 +99,9 @@ confirm"
 align = 2
 
 [node name="Button" type="Button" parent="MainMenu/Display/InstructionsContainer/Instructions"]
-margin_top = 211.0
+margin_top = 246.0
 margin_right = 190.0
-margin_bottom = 230.0
+margin_bottom = 265.0
 text = "OK"
 
 [node name="Spacing" type="Control" parent="MainMenu"]
@@ -133,6 +139,7 @@ text = "CREDITS"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+[connection signal="pressed" from="MainMenu/Display/InstructionsContainer/Instructions/GitHub" to="MainMenu" method="_on_GitHub_pressed"]
 [connection signal="pressed" from="MainMenu/Display/InstructionsContainer/Instructions/Button" to="MainMenu" method="_on_Button_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Help" to="MainMenu" method="_on_Help_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Start" to="MainMenu" method="_on_Start_pressed"]

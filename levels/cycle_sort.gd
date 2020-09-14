@@ -7,11 +7,12 @@ Cycle sort looks at the first element and finds its correct final
 position by counting the number of elements smaller than it. Then it
 saves the element at that index, writes the first element there, and
 repeats the process with the saved element. For the sake of
-demonstration, in the actual level, swaps are used instead.
+demonstration, the actual level uses swaps instead and skips over
+elements already in place.
 
 This results in a quadratic runtime but gives it the special property
-of being optimal in the number of writes to the array. This makes cycle
-sort useful in situations where writes are very expensive.
+of being optimal in the number of writes to the array, making it useful
+when writes are expensive.
 """
 const CONTROLS = """
 If the highlighted element is less than the element below the blue

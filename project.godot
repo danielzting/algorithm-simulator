@@ -110,7 +110,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Human Computer Simulator"
+config/name="Algorithm Simulator"
 run/main_scene="res://scenes/menu.tscn"
 boot_splash/image="res://assets/splash.png"
 config/icon="res://assets/icon.png"
