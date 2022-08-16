@@ -14,9 +14,6 @@ custom_constants/margin_right = 40
 custom_constants/margin_top = 30
 custom_constants/margin_left = 40
 custom_constants/margin_bottom = 30
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
 margin_left = 40.0
@@ -139,6 +136,7 @@ text = "CREDITS"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+
 [connection signal="pressed" from="MainMenu/Display/InstructionsContainer/Instructions/GitHub" to="MainMenu" method="_on_GitHub_pressed"]
 [connection signal="pressed" from="MainMenu/Display/InstructionsContainer/Instructions/Button" to="MainMenu" method="_on_Button_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Help" to="MainMenu" method="_on_Help_pressed"]

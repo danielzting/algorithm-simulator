@@ -10,7 +10,7 @@ const EFFECTS = {
     "DIMMED": GlobalTheme.DARK_GREEN,
 }
 
-const DISABLE_TIME = 1.0
+const DISABLE_TIME = .5
 
 var array: ArrayModel
 
@@ -30,8 +30,15 @@ func _ready():
 
 func _input(event):
     """Pass input events for checking and take appropriate action."""
-    if event.is_pressed():
+    if event is InputEventKey and event.is_pressed():
         return next(event.as_text())
+    if event is InputEventMouseButton and event.is_pressed():
+        print(event.position)
+        print(get_viewport().size)
+        if event.position.x < ProjectSettings.get_setting("display/window/size/width") / 2:
+            return next("Left")
+        else:
+            return next("Right")
 
 func next(action):
     """Check the action and advance state or emit signal as needed."""

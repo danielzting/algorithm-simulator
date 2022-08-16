@@ -8,9 +8,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GameDisplay" type="VBoxContainer" parent="."]
 margin_left = 20.0
@@ -62,4 +59,5 @@ align = 1
 [node name="Timer" type="Timer" parent="GameDisplay"]
 one_shot = true
 autostart = true
+
 [connection signal="timeout" from="GameDisplay/Timer" to="GameDisplay" method="_on_Timer_timeout"]

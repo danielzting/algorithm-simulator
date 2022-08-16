@@ -143,3 +143,10 @@ func _on_Button_pressed(data_type):
     $Timer.start()
     _data_type = ArrayModel.DATA_TYPES[data_type]
     _restart()
+
+
+func _on_Previous_pressed():
+    _switch_level(_index - 1)
+
+func _on_Next_pressed():
+    _switch_level(_index + 1)

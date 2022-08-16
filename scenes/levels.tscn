@@ -8,9 +8,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Levels" type="VBoxContainer" parent="."]
 margin_left = 20.0
@@ -30,28 +27,28 @@ margin_top = 20.0
 margin_right = 1220.0
 margin_bottom = 39.0
 
-[node name="Previous" type="Label" parent="Levels/NamesContainer/Names"]
+[node name="Previous" type="Button" parent="Levels/NamesContainer/Names"]
 margin_right = 557.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
-text = "<"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "<--"
+align = 0
 
 [node name="Current" type="Button" parent="Levels/NamesContainer/Names"]
 margin_left = 565.0
 margin_right = 635.0
 margin_bottom = 19.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_right = NodePath(".")
 text = "CURRENT"
 
-[node name="Next" type="Label" parent="Levels/NamesContainer/Names"]
+[node name="Next" type="Button" parent="Levels/NamesContainer/Names"]
 margin_left = 643.0
 margin_right = 1200.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
-text = ">"
+text = "-->"
+align = 2
 
 [node name="Level" type="HBoxContainer" parent="Levels"]
 margin_top = 67.0
@@ -205,5 +202,8 @@ margin_right = 1220.0
 margin_bottom = 20.0
 
 [node name="Timer" type="Timer" parent="Levels"]
+
+[connection signal="pressed" from="Levels/NamesContainer/Names/Previous" to="Levels" method="_on_Previous_pressed"]
 [connection signal="pressed" from="Levels/NamesContainer/Names/Current" to="Levels" method="_on_Current_pressed"]
+[connection signal="pressed" from="Levels/NamesContainer/Names/Next" to="Levels" method="_on_Next_pressed"]
 [connection signal="timeout" from="Levels/Timer" to="Levels" method="_on_Timer_timeout"]
