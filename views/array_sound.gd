@@ -2,8 +2,7 @@ class_name ArraySound
 extends Node
 
 const SAMPLE_HZ = 44100
-const MIN_HZ = 110
-const MAX_HZ = 440
+const MIN_HZ = 110 # A2
 
 var frac: float
 var player = AudioStreamPlayer.new()
@@ -17,7 +16,8 @@ func _fill_buffer(pulse_hz):
         _phase = fmod(_phase + increment, 1.0)
 
 func _process(delta):
-    _fill_buffer(MIN_HZ + (MAX_HZ - MIN_HZ) * frac)
+    # Each step of an already sorted array of size 32 <-> one semitone
+    _fill_buffer(MIN_HZ * pow(pow(2, 1.0 / 12), frac * 32))
 
 func _init():
     add_child(player)
