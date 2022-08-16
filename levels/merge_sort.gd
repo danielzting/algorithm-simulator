@@ -1,6 +1,8 @@
 class_name MergeSort
 extends ComparisonSort
 
+# BUG: Crashes on array sizes that are not powers of two
+
 const NAME = "MERGE SORT"
 const DESCRIPTION = """
 Merge sort merges subarrays of increasing size by setting a pointer to
