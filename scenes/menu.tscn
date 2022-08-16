@@ -40,65 +40,40 @@ __meta__ = {
 
 [node name="InstructionsContainer" type="MarginContainer" parent="MainMenu/Display"]
 visible = false
-margin_left = 484.0
-margin_top = 146.0
-margin_right = 714.0
-margin_bottom = 451.0
-size_flags_horizontal = 4
+margin_left = 20.0
+margin_top = 195.0
+margin_right = 1179.0
+margin_bottom = 403.0
 size_flags_vertical = 4
 script = ExtResource( 3 )
 
 [node name="Instructions" type="VBoxContainer" parent="MainMenu/Display/InstructionsContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 210.0
-margin_bottom = 285.0
+margin_right = 1139.0
+margin_bottom = 188.0
 custom_constants/separation = 16
 
 [node name="GitHub" type="Button" parent="MainMenu/Display/InstructionsContainer/Instructions"]
-margin_right = 190.0
+margin_right = 1119.0
 margin_bottom = 19.0
 text = "Fork me on GitHub!"
 
-[node name="Controls" type="HBoxContainer" parent="MainMenu/Display/InstructionsContainer/Instructions"]
+[node name="Label" type="Label" parent="MainMenu/Display/InstructionsContainer/Instructions"]
 margin_top = 35.0
-margin_right = 190.0
-margin_bottom = 230.0
-custom_constants/separation = 20
+margin_right = 1119.0
+margin_bottom = 98.0
+text = "Algorithm Simulator is designed to be played with mouse and keyboard. However, you can play with just a keyboard with arrow key navigation. You may also play without a keyboard by clicking or tapping on buttons and the left/right side of the screen instead of the left/right arrow keys."
+autowrap = true
 
-[node name="Keys" type="Label" parent="MainMenu/Display/InstructionsContainer/Instructions/Controls"]
-margin_right = 50.0
-margin_bottom = 195.0
-size_flags_horizontal = 4
-text = "W
-A
-S
-D
-M
-C
-B
-esc
-space"
-
-[node name="Actions" type="Label" parent="MainMenu/Display/InstructionsContainer/Instructions/Controls"]
-margin_left = 70.0
-margin_right = 190.0
-margin_bottom = 195.0
-text = "bigger
-slower
-smaller
-faster
-toggle sound
-change data
-big preview
-back
-confirm"
-align = 2
+[node name="Music" type="Button" parent="MainMenu/Display/InstructionsContainer/Instructions"]
+margin_bottom = 19.0
+text = "Toggle Music!"
 
 [node name="Button" type="Button" parent="MainMenu/Display/InstructionsContainer/Instructions"]
-margin_top = 246.0
-margin_right = 190.0
-margin_bottom = 265.0
+margin_top = 114.0
+margin_right = 1119.0
+margin_bottom = 133.0
 text = "OK"
 
 [node name="Spacing" type="Control" parent="MainMenu"]
@@ -138,6 +113,7 @@ wait_time = 0.25
 autostart = true
 
 [connection signal="pressed" from="MainMenu/Display/InstructionsContainer/Instructions/GitHub" to="MainMenu" method="_on_GitHub_pressed"]
+[connection signal="pressed" from="MainMenu/Display/InstructionsContainer/Instructions/Music" to="MainMenu" method="_on_Music_pressed"]
 [connection signal="pressed" from="MainMenu/Display/InstructionsContainer/Instructions/Button" to="MainMenu" method="_on_Button_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Help" to="MainMenu" method="_on_Help_pressed"]
 [connection signal="pressed" from="MainMenu/Buttons/Start" to="MainMenu" method="_on_Start_pressed"]

@@ -6,7 +6,8 @@ func _ready():
     $Buttons/Start.grab_focus()
     randomize()
     $Display.add_child(ArrayView.new(_level), true)
-    AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+    if not GlobalScene.get_param("keep_music_setting"):
+        AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 
 func _on_Start_pressed():
     GlobalScene.change_scene("res://scenes/levels.tscn")
@@ -34,3 +35,8 @@ func _on_Button_pressed():
 
 func _on_GitHub_pressed():
     OS.shell_open("https://github.com/DanielZTing/algorithm-simulator")
+
+func _on_Music_pressed():
+    var button = $Display/InstructionsContainer/Instructions/Music
+    var bus = AudioServer.get_bus_index("Master")
+    AudioServer.set_bus_mute(bus, not AudioServer.is_bus_mute(bus))

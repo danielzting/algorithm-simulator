@@ -30,10 +30,3 @@ func _init():
 func triangle(x):
     """Generate a triangle wave from the given phase."""
     return 2 / PI * asin(sin(PI * x))
-
-func _input(event):
-    if event.is_action_pressed("toggle_sound"):
-        # Prevent event from propagating to ComparisonSort trigger
-        get_tree().set_input_as_handled()
-        var bus = AudioServer.get_bus_index("Master")
-        AudioServer.set_bus_mute(bus, not AudioServer.is_bus_mute(bus))

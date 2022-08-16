@@ -33,8 +33,6 @@ func _input(event):
     if event is InputEventKey and event.is_pressed():
         return next(event.as_text())
     if event is InputEventMouseButton and event.is_pressed():
-        print(event.position)
-        print(get_viewport().size)
         if event.position.x < ProjectSettings.get_setting("display/window/size/width") / 2:
             return next("Left")
         else:
