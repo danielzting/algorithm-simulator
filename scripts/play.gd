@@ -28,6 +28,7 @@ func _input(event):
 
 func _on_Level_done():
     set_process(false)
+    $HUDBorder/HUD/Exit.queue_free()
     var time = get_score()
     var restart = Button.new()
     restart.text = "RESTART LEVEL"
@@ -42,6 +43,8 @@ func _on_Level_done():
     if GlobalScene.get_param("data_type") != ArrayModel.DATA_TYPES.RANDOM_UNIQUE:
         score.text += " (only random unique data counts toward a high score!)"
     else:
+        if time < GlobalScore.get_time(_level.NAME, GlobalScene.get_param("size")):
+            score.text = "HIGH SCORE! " + score.text
         GlobalScore.save_score(_level.NAME, _level.array.size, time)
     score.align = Label.ALIGN_RIGHT
     score.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -58,3 +61,6 @@ func _on_Button_pressed(scene):
         {"level": GlobalScene.get_param("level"),
          "size": GlobalScene.get_param("size"),
          "data_type": GlobalScene.get_param("data_type")})
+
+func _on_Exit_pressed():
+    _on_Button_pressed("levels")

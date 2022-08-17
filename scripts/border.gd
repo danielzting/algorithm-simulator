@@ -14,7 +14,7 @@ var _color_changes = 0
 
 func _ready():
     # Time last return to green with reenabling of controls
-    _timer.wait_time = ComparisonSort.DISABLE_TIME / COLOR_CHANGES
+    _timer.wait_time = float(ComparisonSort.DISABLE_TIME) / COLOR_CHANGES
     _timer.connect("timeout", self, "_on_Timer_timeout")
     add_child(_timer)
 

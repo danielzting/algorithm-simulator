@@ -6,9 +6,6 @@ func _ready():
     text = file.get_as_text()
     file.close()
 
-func _process(delta):
-    rect_position.y -= 1
-
 func _input(event):
     if event.is_pressed():
-        GlobalScene.change_scene("res://scenes/menu.tscn")
+        GlobalScene.change_scene("res://scenes/menu.tscn", {"keep_music_setting": true})

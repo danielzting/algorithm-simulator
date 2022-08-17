@@ -8,9 +8,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Levels" type="VBoxContainer" parent="."]
 margin_left = 20.0
@@ -30,28 +27,43 @@ margin_top = 20.0
 margin_right = 1220.0
 margin_bottom = 39.0
 
-[node name="Previous" type="Label" parent="Levels/NamesContainer/Names"]
-margin_right = 557.0
+[node name="Back" type="Button" parent="Levels/NamesContainer/Names"]
+margin_right = 170.0
+margin_bottom = 19.0
+text = "BACK TO MAIN MENU"
+
+[node name="Previous" type="Button" parent="Levels/NamesContainer/Names"]
+margin_left = 178.0
+margin_right = 562.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
-text = "<"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+text = "                              <--"
+align = 0
 
 [node name="Current" type="Button" parent="Levels/NamesContainer/Names"]
-margin_left = 565.0
-margin_right = 635.0
+margin_left = 570.0
+margin_right = 640.0
 margin_bottom = 19.0
+focus_neighbour_left = NodePath(".")
+focus_neighbour_top = NodePath("../BigPicture")
+focus_neighbour_right = NodePath(".")
 text = "CURRENT"
 
-[node name="Next" type="Label" parent="Levels/NamesContainer/Names"]
-margin_left = 643.0
-margin_right = 1200.0
+[node name="Next" type="Button" parent="Levels/NamesContainer/Names"]
+margin_left = 648.0
+margin_right = 1032.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
-text = ">"
+text = "-->                              "
+align = 2
+
+[node name="BigPicture" type="Button" parent="Levels/NamesContainer/Names"]
+margin_left = 1040.0
+margin_right = 1200.0
+margin_bottom = 19.0
+focus_neighbour_top = NodePath("../../../Level/Right/Info/ScoresContainer/Scores/Controls/Faster")
+focus_neighbour_bottom = NodePath("../Current")
+text = "BIG PICTURE MODE"
 
 [node name="Level" type="HBoxContainer" parent="Levels"]
 margin_top = 67.0
@@ -87,16 +99,16 @@ size_flags_horizontal = 3
 
 [node name="Display" type="MarginContainer" parent="Levels/Level/Right"]
 margin_right = 616.0
-margin_bottom = 475.0
+margin_bottom = 477.0
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
 [node name="TypesContainer" type="MarginContainer" parent="Levels/Level/Right/Display"]
 visible = false
 margin_left = 288.0
-margin_top = 217.0
+margin_top = 218.0
 margin_right = 328.0
-margin_bottom = 257.0
+margin_bottom = 258.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource( 3 )
@@ -105,16 +117,16 @@ script = ExtResource( 3 )
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 596.0
-margin_bottom = 455.0
+margin_bottom = 457.0
 
 [node name="Info" type="HBoxContainer" parent="Levels/Level/Right"]
-margin_top = 483.0
+margin_top = 485.0
 margin_right = 616.0
 margin_bottom = 613.0
 
 [node name="ControlsContainer" type="MarginContainer" parent="Levels/Level/Right/Info"]
 margin_right = 405.0
-margin_bottom = 130.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 script = ExtResource( 3 )
@@ -123,7 +135,7 @@ script = ExtResource( 3 )
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 385.0
-margin_bottom = 110.0
+margin_bottom = 108.0
 size_flags_vertical = 1
 text = "These are the controls for the level."
 autowrap = true
@@ -131,7 +143,7 @@ autowrap = true
 [node name="ScoresContainer" type="MarginContainer" parent="Levels/Level/Right/Info"]
 margin_left = 413.0
 margin_right = 616.0
-margin_bottom = 130.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 script = ExtResource( 3 )
 
@@ -139,47 +151,96 @@ script = ExtResource( 3 )
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 183.0
-margin_bottom = 110.0
+margin_bottom = 108.0
+custom_constants/separation = 4
 
-[node name="Header" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
+[node name="Easy" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
 margin_right = 163.0
 margin_bottom = 19.0
 
-[node name="Size" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Header"]
-margin_right = 40.0
-margin_bottom = 19.0
-text = "SIZE"
-
-[node name="Time" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Header"]
-margin_left = 48.0
-margin_right = 163.0
+[node name="Button" type="Button" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Easy"]
+margin_right = 125.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
-text = "HIGH SCORE"
-align = 2
+text = "EASY"
+align = 0
 
-[node name="Data" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
-margin_top = 27.0
+[node name="Time" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Easy"]
+margin_left = 133.0
 margin_right = 163.0
-margin_bottom = 90.0
-
-[node name="Sizes" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Data"]
-margin_right = 20.0
-margin_bottom = 63.0
-text = "16
-32
-64"
-
-[node name="Times" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Data"]
-margin_left = 28.0
-margin_right = 163.0
-margin_bottom = 63.0
-size_flags_horizontal = 3
-text = "INF
-INF
-INF"
+margin_bottom = 19.0
+text = "INF"
 align = 2
 uppercase = true
+
+[node name="Medium" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
+margin_top = 23.0
+margin_right = 163.0
+margin_bottom = 42.0
+
+[node name="Button" type="Button" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Medium"]
+margin_right = 125.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "MEDIUM"
+align = 0
+
+[node name="Time" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Medium"]
+margin_left = 133.0
+margin_right = 163.0
+margin_bottom = 19.0
+text = "INF"
+align = 2
+uppercase = true
+
+[node name="Hard" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
+margin_top = 46.0
+margin_right = 163.0
+margin_bottom = 65.0
+
+[node name="Button" type="Button" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Hard"]
+margin_right = 125.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "HARD"
+align = 0
+
+[node name="Time" type="Label" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Hard"]
+margin_left = 133.0
+margin_right = 163.0
+margin_bottom = 19.0
+text = "INF"
+align = 2
+uppercase = true
+
+[node name="Controls" type="HBoxContainer" parent="Levels/Level/Right/Info/ScoresContainer/Scores"]
+margin_top = 69.0
+margin_right = 163.0
+margin_bottom = 88.0
+
+[node name="Custom" type="Button" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Controls"]
+margin_right = 107.0
+margin_bottom = 19.0
+focus_neighbour_bottom = NodePath("../Slower")
+size_flags_horizontal = 3
+text = "CUSTOM..."
+align = 0
+
+[node name="Slower" type="Button" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Controls"]
+margin_left = 115.0
+margin_right = 135.0
+margin_bottom = 19.0
+focus_neighbour_top = NodePath("../Custom")
+focus_neighbour_bottom = NodePath("../Faster")
+text = "<<"
+
+[node name="Faster" type="Button" parent="Levels/Level/Right/Info/ScoresContainer/Scores/Controls"]
+margin_left = 143.0
+margin_right = 163.0
+margin_bottom = 19.0
+focus_neighbour_top = NodePath("../Slower")
+focus_neighbour_bottom = NodePath("../../../../../../../NamesContainer/Names/BigPicture")
+text = ">>"
 
 [node name="BigDisplay" type="MarginContainer" parent="Levels"]
 visible = false
@@ -205,5 +266,13 @@ margin_right = 1220.0
 margin_bottom = 20.0
 
 [node name="Timer" type="Timer" parent="Levels"]
+
+[connection signal="pressed" from="Levels/NamesContainer/Names/Back" to="Levels" method="_on_Back_pressed"]
+[connection signal="pressed" from="Levels/NamesContainer/Names/Previous" to="Levels" method="_on_Previous_pressed"]
 [connection signal="pressed" from="Levels/NamesContainer/Names/Current" to="Levels" method="_on_Current_pressed"]
+[connection signal="pressed" from="Levels/NamesContainer/Names/Next" to="Levels" method="_on_Next_pressed"]
+[connection signal="pressed" from="Levels/NamesContainer/Names/BigPicture" to="Levels" method="_on_BigPicture_pressed"]
+[connection signal="pressed" from="Levels/Level/Right/Info/ScoresContainer/Scores/Controls/Custom" to="Levels" method="_on_Custom_pressed"]
+[connection signal="pressed" from="Levels/Level/Right/Info/ScoresContainer/Scores/Controls/Slower" to="Levels" method="_on_Slower_pressed"]
+[connection signal="pressed" from="Levels/Level/Right/Info/ScoresContainer/Scores/Controls/Faster" to="Levels" method="_on_Faster_pressed"]
 [connection signal="timeout" from="Levels/Timer" to="Levels" method="_on_Timer_timeout"]

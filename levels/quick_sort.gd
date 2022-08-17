@@ -15,7 +15,7 @@ which it is faster than at the tradeoff of stability.
 """
 const CONTROLS = """
 If the highlighted element is less than the pivot or the pivot has been
-reached, press LEFT ARROW. Otherwise, press RIGHT ARROW.
+reached, press RIGHT ARROW. Otherwise, press LEFT ARROW.
 """
 const CODE = """
 def quicksort(a, low=0, high=len(a) - 1):
@@ -30,8 +30,8 @@ def quicksort(a, low=0, high=len(a) - 1):
         quicksort(a, pointer + 1, high)
 """
 const ACTIONS = {
-    "SWAP": "Left",
-    "CONTINUE": "Right",
+    "CONTINUE": "Left",
+    "SWAP": "Right",
 }
 var _index = 0 # Index of element being compared with pivot
 var _pointer = 0 # Boundary between partitions

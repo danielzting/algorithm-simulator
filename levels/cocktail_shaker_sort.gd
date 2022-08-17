@@ -36,7 +36,7 @@ const ACTIONS = {
     "CONTINUE": "Right",
 }
 var _index = 0 # First of two elements being compared
-var _sorted = 0 # Size of the sorted subarray at the end of the array
+var _sorted = 0 # Size of the sorted subarrays at the two ends of the array
 var _forwards = true
 var _swapped = false
 
@@ -61,6 +61,8 @@ func next(action):
             _forwards = false
             _index -= 2
             _sorted += 1
+            if _sorted == array.size / 2:
+                emit_signal("done")
     else:
         _index -= 1
         if _index == _sorted - 2:

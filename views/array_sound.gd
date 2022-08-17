@@ -2,8 +2,7 @@ class_name ArraySound
 extends Node
 
 const SAMPLE_HZ = 44100
-const MIN_HZ = 110
-const MAX_HZ = 440
+const MIN_HZ = 110 # A2
 
 var frac: float
 var player = AudioStreamPlayer.new()
@@ -17,7 +16,8 @@ func _fill_buffer(pulse_hz):
         _phase = fmod(_phase + increment, 1.0)
 
 func _process(delta):
-    _fill_buffer(MIN_HZ + (MAX_HZ - MIN_HZ) * frac)
+    # Each step of an already sorted array of size 32 <-> one semitone
+    _fill_buffer(MIN_HZ * pow(pow(2, 1.0 / 12), frac * 32))
 
 func _init():
     add_child(player)
@@ -30,10 +30,3 @@ func _init():
 func triangle(x):
     """Generate a triangle wave from the given phase."""
     return 2 / PI * asin(sin(PI * x))
-
-func _input(event):
-    if event.is_action_pressed("toggle_sound"):
-        # Prevent event from propagating to ComparisonSort trigger
-        get_tree().set_input_as_handled()
-        var bus = AudioServer.get_bus_index("Master")
-        AudioServer.set_bus_mute(bus, not AudioServer.is_bus_mute(bus))

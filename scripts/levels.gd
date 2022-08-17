@@ -14,7 +14,7 @@ const LEVELS = [
 ]
 
 const MIN_WAIT = 1.0 / 64
-const MAX_WAIT = 4
+const MAX_WAIT = 1
 const MIN_SIZE = 16
 const MAX_SIZE = 64
 
@@ -23,11 +23,18 @@ var _level: ComparisonSort
 var _size = GlobalScene.get_param("size", ArrayModel.DEFAULT_SIZE)
 var _data_type = GlobalScene.get_param(
     "data_type", ArrayModel.DATA_TYPES.RANDOM_UNIQUE)
+var _restart = false
 
 func _ready():
     _load_types($Level/Right/Display/TypesContainer)
     _load_types($BigDisplay/TypesContainer)
     _reload()
+    var easy = $Level/Right/Info/ScoresContainer/Scores/Easy/Button
+    easy.add_color_override("font_color", GlobalTheme.ORANGE)
+    easy.focus_neighbour_top = $NamesContainer/Names/Current.get_path()
+    for difficulty in $Level/Right/Info/ScoresContainer/Scores.get_children():
+        if difficulty.name != "Controls":
+            difficulty.get_child(0).connect("pressed", self, "_on_Difficulty_pressed", [difficulty])
 
 func _load_types(node):
     var types = VBoxContainer.new()
@@ -56,7 +63,6 @@ func _format(text):
     return text.strip_edges().replace("\n", " ").replace("  ", "\n\n")
 
 func _restart():
-    set_process_input(true)
     # Only load in a restarted simulation
     $NamesContainer/Names/Current.grab_focus()
     _level = LEVELS[_index].new(ArrayModel.new(_size, _data_type))
@@ -77,15 +83,16 @@ func _restart():
     $Timer.start()
 
 func _load_scores(level):
-    var data = $Level/Right/Info/ScoresContainer/Scores/Data
-    data.get_node("Times").text = ""
-    for i in data.get_node("Sizes").text.split("\n"):
-        var time = str(GlobalScore.get_time(level.NAME, int(i)))
-        data.get_node("Times").text += "%.3f" % float(time)
-        if int(i) != MAX_SIZE:
-            data.get_node("Times").text += "\n"
+    var data = $Level/Right/Info/ScoresContainer/Scores
+    for i in range(log(MAX_SIZE / MIN_SIZE) / log(2) + 1):
+        var time = str(GlobalScore.get_time(level.NAME, MIN_SIZE * pow(2, i)))
+        if time == "inf":
+            data.get_child(i).get_node("Time").text = "INF"
+        else:
+            data.get_child(i).get_node("Time").text = "%.3f" % float(time)
 
 func _switch_level(index):
+    _restart = false
     if index == -1:
         _index = LEVELS.size() - 1
     elif index == LEVELS.size():
@@ -96,38 +103,18 @@ func _switch_level(index):
 
 func _input(event):
     if event.is_action_pressed("ui_cancel"):
-        GlobalScene.change_scene("res://scenes/menu.tscn")
+        GlobalScene.change_scene("res://scenes/menu.tscn", {"keep_music_setting": true})
     if event.is_action_pressed("ui_left", true):
         _switch_level(_index - 1)
     if event.is_action_pressed("ui_right", true):
         _switch_level(_index + 1)
-    if event.is_action_pressed("bigger"):
-        _size = min(_size * 2, MAX_SIZE)
-        _reload()
-    if event.is_action_pressed("smaller"):
-        _size = max(_size / 2, MIN_SIZE)
-        _reload()
-    if event.is_action_pressed("faster"):
-        $Timer.wait_time = max($Timer.wait_time / 4, MIN_WAIT)
-    if event.is_action_pressed("slower"):
-        $Timer.wait_time = min($Timer.wait_time * 4, MAX_WAIT)
-    if event.is_action_pressed("change_data"):
-        var display = $Level/Right/Display if $Level.visible else $BigDisplay
-        display.get_node("HBoxContainer").hide()
-        display.get_node("HBoxContainer").sound.set_process(false)
-        display.get_node("TypesContainer").show()
-        $Timer.stop()
-        display.get_node("TypesContainer/Types").get_child(0).grab_focus()
-    if event.is_action_pressed("big_preview"):
-        $Level.visible = not $Level.visible
-        $BigDisplay.visible = not $BigDisplay.visible
-        _restart()
 
 func _on_ComparisonSort_done():
-    set_process_input(false)
     $Timer.stop()
+    _restart = true
     yield(get_tree().create_timer(1), "timeout")
-    _restart()
+    if _restart:
+        _restart()
 
 func _on_Timer_timeout():
     _level.next(null)
@@ -142,4 +129,48 @@ func _on_Button_pressed(data_type):
     display.get_node("HBoxContainer").show()
     $Timer.start()
     _data_type = ArrayModel.DATA_TYPES[data_type]
+    _restart()
+
+func _on_Previous_pressed():
+    _switch_level(_index - 1)
+
+func _on_Next_pressed():
+    _switch_level(_index + 1)
+
+func _on_Difficulty_pressed(difficulty):
+    _restart = false
+    _size = int(MIN_SIZE * pow(2, difficulty.get_index()))
+    for child in difficulty.get_parent().get_children():
+        if child.name != "Controls":
+            child.get_child(0).add_color_override("font_color", GlobalTheme.GREEN)
+    difficulty.get_child(0).add_color_override("font_color", GlobalTheme.ORANGE)
+    _restart()
+
+func _on_Custom_pressed():
+    _restart = false
+    var display = $Level/Right/Display
+    display.get_node("HBoxContainer").hide()
+    display.get_node("HBoxContainer").sound.set_process(false)
+    display.get_node("TypesContainer").show()
+    $Timer.stop()
+    display.get_node("TypesContainer/Types").get_child(0).grab_focus()
+
+func _on_Slower_pressed():
+    $Timer.wait_time = min($Timer.wait_time * 4, MAX_WAIT)
+
+func _on_Faster_pressed():
+    $Timer.wait_time = max($Timer.wait_time / 4, MIN_WAIT)
+
+func _on_Back_pressed():
+    GlobalScene.change_scene("res://scenes/menu.tscn", {"keep_music_setting": true})
+
+func _on_BigPicture_pressed():
+    _restart = false
+    $Level/Right/Display/TypesContainer.hide()
+    $Level.visible = not $Level.visible
+    $BigDisplay.visible = not $BigDisplay.visible
+    if $BigDisplay.visible:
+        $NamesContainer/Names/BigPicture.add_color_override("font_color", GlobalTheme.ORANGE)
+    else:
+        $NamesContainer/Names/BigPicture.add_color_override("font_color", GlobalTheme.GREEN)
     _restart()
