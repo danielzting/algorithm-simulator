@@ -29,9 +29,10 @@ func _ready():
     _load_types($Level/Right/Display/TypesContainer)
     _load_types($BigDisplay/TypesContainer)
     _reload()
-    var easy = $Level/Right/Info/ScoresContainer/Scores/Easy/Button
-    easy.add_color_override("font_color", GlobalTheme.ORANGE)
-    easy.focus_neighbour_top = $NamesContainer/Names/Current.get_path()
+    var scores = $Level/Right/Info/ScoresContainer/Scores
+    scores.get_node("Easy/Button").focus_neighbour_top = $NamesContainer/Names/Current.get_path()
+    var selectedDifficulty = scores.get_child(log(_size / MIN_SIZE) / log(2)).get_node("Button")
+    selectedDifficulty.add_color_override("font_color", GlobalTheme.ORANGE)
     for difficulty in $Level/Right/Info/ScoresContainer/Scores.get_children():
         if difficulty.name != "Controls":
             difficulty.get_child(0).connect("pressed", self, "_on_Difficulty_pressed", [difficulty])
