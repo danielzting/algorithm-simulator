@@ -28,6 +28,7 @@ func _input(event):
 
 func _on_Level_done():
     set_process(false)
+    $HUDBorder/HUD/Exit.queue_free()
     var time = get_score()
     var restart = Button.new()
     restart.text = "RESTART LEVEL"
@@ -58,3 +59,6 @@ func _on_Button_pressed(scene):
         {"level": GlobalScene.get_param("level"),
          "size": GlobalScene.get_param("size"),
          "data_type": GlobalScene.get_param("data_type")})
+
+func _on_Exit_pressed():
+    _on_Button_pressed("levels")

@@ -37,8 +37,8 @@ margin_left = 178.0
 margin_right = 562.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
-text = "<--"
-align = 2
+text = "                              <--"
+align = 0
 
 [node name="Current" type="Button" parent="Levels/NamesContainer/Names"]
 margin_left = 570.0
@@ -54,8 +54,8 @@ margin_left = 648.0
 margin_right = 1032.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
-text = "-->"
-align = 0
+text = "-->                              "
+align = 2
 
 [node name="BigPicture" type="Button" parent="Levels/NamesContainer/Names"]
 margin_left = 1040.0

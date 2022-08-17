@@ -33,10 +33,11 @@ func _input(event):
     if event is InputEventKey and event.is_pressed():
         return next(event.as_text())
     if event is InputEventMouseButton and event.is_pressed():
-        if event.position.x < ProjectSettings.get_setting("display/window/size/width") / 2:
-            return next("Left")
-        else:
-            return next("Right")
+        if event.position.y > 100:
+            if event.position.x < ProjectSettings.get_setting("display/window/size/width") / 2:
+                return next("Left")
+            else:
+                return next("Right")
 
 func next(action):
     """Check the action and advance state or emit signal as needed."""

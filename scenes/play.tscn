@@ -27,17 +27,25 @@ margin_top = 20.0
 margin_right = 1220.0
 margin_bottom = 39.0
 
+[node name="Exit" type="Button" parent="GameDisplay/HUDBorder/HUD"]
+margin_right = 40.0
+margin_bottom = 19.0
+text = "EXIT"
+align = 0
+
 [node name="Level" type="Label" parent="GameDisplay/HUDBorder/HUD"]
-margin_right = 596.0
+margin_left = 48.0
+margin_right = 1142.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 text = "LEVEL"
+align = 1
 
 [node name="Score" type="Label" parent="GameDisplay/HUDBorder/HUD"]
-margin_left = 604.0
+margin_left = 1150.0
 margin_right = 1200.0
 margin_bottom = 19.0
-size_flags_horizontal = 3
+size_flags_horizontal = 8
 text = "0.000"
 align = 2
 
@@ -60,4 +68,5 @@ align = 1
 one_shot = true
 autostart = true
 
+[connection signal="pressed" from="GameDisplay/HUDBorder/HUD/Exit" to="GameDisplay" method="_on_Exit_pressed"]
 [connection signal="timeout" from="GameDisplay/Timer" to="GameDisplay" method="_on_Timer_timeout"]
